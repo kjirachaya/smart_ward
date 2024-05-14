@@ -1,0 +1,91 @@
+{% extends "home.html" %}
+{% load static %}
+{% block title %}Operator{% endblock title %}
+{% block ward %}
+<a href="/patients/ward"><img src="{% static "/images/patients_top2_btn.png" %}" style="margin-right:20px;"/></a>
+{% endblock %}
+{% block form31 %}
+<a href="/patients/ward/form-31"><img src="{% static "/images/form31_top2_btn_1.png" %}" style="margin-right:10px;"/></a>
+{% endblock %}
+{% block form70 %}
+<a href="/patients/ward/form-70"><img src="{% static "/images/form70_top2_btn_2.png" %}" style="margin-right:10px;"/></a>
+{% endblock %}
+{% block content %}
+<div class="content-center" style="background-color: black;height:88vh;width:98vw;margin-top: 45px;position: absolute;border-radius: 20px;margin-left: 10px;margin-right: 5px;">
+    <div style="margin:10px;">
+        {% comment %} <button data-toggle="modal" data-target="#addOperatorModal" type="button" class="btn btn-primary" style="float: right;" >
+            Add Operator
+        </button> {% endcomment %}
+        <div style="padding: 50px;color: white;font-family: Kanit;">
+            <table style="width: 100%;">
+                <thead style="font-size: 20px;">
+                    <tr>
+                        <td>Operator ID</td>
+                        <td>Username</td>
+                        <td>First Name</td>
+                        <td>Last Name</td>
+                        <td>Email</td>
+                    </tr>
+                <thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr style="height:30px;font-size: 16px;border-bottom: 1pt solid #ffffff7d;">
+                        <td style="padding: 10px 0px 10px 0px;">{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addBedModal" role="dialog" style="font-family: Kanit;">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <form action="/patients/beds/add-bed" method="POST" >
+        {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Bed</h4>
+        </div>
+        <div class="modal-body">
+            <label class="col-form-label">Bed Number:</label>
+            <input type="text" name="input-bed" id="input-bed" value="{{ bed_count|add:"1" }}" disabled/>
+            <input type="text" name="input-bed-id" id="input-bed-id" value="{{ bed_count|add:"1" }}" hidden/>
+            {% comment %} <input type="text" class="form-control" id="input-hn-number" name="input-hn-number" onchange
+            onpropertychange
+            onkeyuponpaste oninput="input_hn_number_change()"/>
+            <input hidden type="text" name="input-bed-id" id="input-bed-id" value="" /> {% endcomment %}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="btn-add-bed" >Confirm</button>
+        </div>
+      </div>
+      </form>
+      
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{% comment %} <script src="/socket.io/socket.io.js"></script> {% endcomment %}
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script> {% endcomment %}
+<script>
+  {% comment %} var socket = io('http://127.0.0.1:8000'); {% endcomment %}
+  
+  {% comment %} socket.on('connect', function(){console.log("Hello World!");});
+  socket.emit('join', { room: 'ward' });
+  socket.on('update_ward', function(data){
+    window.location.reload();
+  });
+  socket.on('disconnect', function(){}); {% endcomment %}
+</script>
+{% endblock %}

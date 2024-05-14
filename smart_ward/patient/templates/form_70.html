@@ -1,0 +1,501 @@
+{% extends "home.html" %}
+{% load static %}
+{% block title %}Form 70{% endblock title %}
+{% block ward %}
+<a href="/patients/ward"><img src="{% static "/images/patients_top2_btn.png" %}" style="margin-right:20px;"/></a>
+{% endblock %}
+{% block form31 %}
+<a href="/patients/ward/form-31"><img src="{% static "/images/form31_top2_btn_1.png" %}" style="margin-right:10px;"/></a>
+{% endblock %}
+{% block form70 %}
+<a href=""><img src="{% static "/images/form70_top_btn_2.png" %}" style="margin-right:10px;"/></a>
+{% endblock %}
+{% block style_css %}
+<style>
+    @media print {        
+        .canvasjs-chart-container {
+          width: 7000px !important;
+        }
+      }
+</style>
+{% endblock style_css %}
+{% block content %}
+<div class="content-center" style="height:88vh;width:95vw;margin-top: 45px;position: absolute;border-radius: 20px;margin-left: 10px;margin-right: 5px;overflow-y: scroll;">
+<div style="margin:10px;">
+    <form method="GET" action="/patients/ward/form-70">
+        {% csrf_token %}
+    <div style="display: flex;margin-left: 10px;">
+        <div style="color:white;font-size: 25px;margin-right: 10px;font-family: Kanit;margin-left:15px;">HN</div>
+        <div><input type="text" value="{{ hn_number }}" name="hn_number" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div style="margin-left:60px;"><input type="text" value="{{ patient.firstname }} {{ patient.lastname }}" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;" disabled/></div>
+    </div>
+    <br>
+    <div style="display: flex;margin-left: 10px;">
+        <div style="color:white;font-size: 20px;margin-right: 10px;font-family: Kanit;">Since</div>
+        <div><input type="date" value="{{ start_date|date:"Y-m-d" }}" name="since_date_input" id="since_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div style="color:white;font-size: 20px;margin-right: 10px;font-family: Kanit;margin-left:20px;">To</div>
+        <div><input type="date" value="{{ end_date|date:"Y-m-d" }}" name="to_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div style="margin-left:25px;"><button type="submit" style="background: none;border: none;"><img src="{% static "/images/search_btn.png" %}"/></button></div>
+    </div>
+    </form>
+    <br>
+
+    <div style="display: flex;">
+        <div>
+            <div><h1 style="color: white;font-family: Kanit;margin-top:100px;padding-left: 40px;height:300px;">TEMP</h1></div>
+            <div><h1 style="color: white;font-family: Kanit;margin-top:100px;padding-left: 40px;height:300px;">PULSE</h1></div>
+            <div style="width: 100%;border-radius: 10px;height:72vh;font-family: Kanit;color: white;display: flex;margin-top:-9px;">
+                <table style="width: 200px;">
+                    <tbody style="width: 190px;display: block;">
+                        <tr style="height:26px;">
+                            <td>TIME</td>
+                            <td></td>
+                        </tr>
+                        <tr style="height:26px;"><td>&nbsp;</td></tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td colspan="2">RESPIRATIONS</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td rowspan="2">BP</td>
+                            <td>Systolic</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>Diastolic</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td colspan="2">MAP</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>O2Sat</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td colspan="2">Pain Score</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>Height of fundus</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td colspan="2">Weight</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td colspan="2">Height</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>Diet</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td colspan="2">Urination</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>Defections</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td rowspan="3">INTAKE</td>
+                            <td>ORAL</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td>PARENTERAL</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td>TOTAL</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td rowspan="3">OUTPUT</td>
+                            <td>ORINE</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>EMESIS</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>TOTAL</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td colspan="2">TOTAL INTAKE</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>TOTAL OUTPUT</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td colspan="2">LOCHIA</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>PHLEBITIS</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td colspan="2">MEWS</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>PPS</td>
+                        </tr>
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            <td colspan="2">NOTE</td>
+                        </tr>
+                        <tr style="height:26px;">
+                            <td>ATB</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% if hn_number %}
+        <div style="overflow-x: scroll;">
+            <div id="chart-temp-container" style="height: 400px; margin-left:0px;width: {% widthratio 32.7 1 size_of_telemetry_date_items %}px;"></div> <!-- width: 70 + 180 + 180 + 180 -->
+            <div id="chart-pulse-container" style="height: 400px; margin-left:0px;width:  {% widthratio 32.7 1 size_of_telemetry_date_items %}px;"></div> <!-- width: 70 + 180 + 180 + 180 -->
+            <div style="display: flex;font-family: Kanit;color: white;margin-left:32px;width:  {% widthratio 32.7 1 size_of_telemetry_date_items %}px;">
+                {% for item in telemetry_date_items %}
+                    <table style="text-align: center;width: {% widthratio 34.2 1 size_of_hr %}px;table-layout: fixed;border-spacing: 0px;border-right:1px solid #FFFFFF7d;">
+                        <tr style="height:26px;">
+                            <td colspan="{{ size_of_hr }}" style="width: {% widthratio 34.2 1 size_of_hr %}px;text-align: start;padding-left:5px;">{{ item.date_display }}</td>
+                        </tr>
+        
+                        <tr style="height:26px;">
+                        {% for telemetry in item.telemetry %}
+                            <td style="width: 34.2px;text-align: center;">{{ telemetry.hr }}</td>
+                        {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.respirations }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.bp_systolic }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.bp_diastolic }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.map }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.o2_sat }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.pain_score }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.height_of_fundus }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.weight }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.hight }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.diet }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.urination }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.defecations }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.intake_oral }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.intake_parenteral }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.intake_total }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.output_urine }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.output_emesis }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.output_total }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.total_intake }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.total_output }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.lochia }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.phlebitis }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.mews }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.pps }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="background-color: rgb(60, 60, 62);height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.note }}</td>
+                            {% endfor %}
+                        </tr>
+        
+                        <tr style="height:26px;">
+                            {% for telemetry in item.telemetry %}
+                                <td>{{ telemetry.value.atb }}</td>
+                            {% endfor %}
+                        </tr>
+                    
+                    </table>
+                {% endfor %}
+                </div>
+        </div>
+        
+        {% endif %}
+        
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+<script id="temp_date_items" type="application/json">{{ temp_date_items|safe }}</script>
+<script id="pulse_date_items" type="application/json">{{ pulse_date_items|safe }}</script>
+  <script type="text/javascript">
+    window.onload = function() {
+        var timeSeriesDataElement = document.getElementById('temp_date_items')
+        var pulseTimeSeriesDataElement = document.getElementById('pulse_date_items')
+        if (timeSeriesDataElement.textContent != "null" && pulseTimeSeriesDataElement.textContent != "null") {
+        var timeSeriesData = JSON.parse(timeSeriesDataElement.textContent) // {key: '02', data: ''}
+
+        // Convert the data to the desired format
+        var key = 2
+        var formattedData = timeSeriesData.map(function(item) {
+            var data = NaN
+            if (item.data != NaN && item.data != "") {
+                data = parseFloat(item.data)
+            }
+            var value = { x: parseInt(key), y: data };
+            key += 4
+            return value
+        });
+        
+        var pulseTimeSeriesData = JSON.parse(pulseTimeSeriesDataElement.textContent) // {key: '02', data: ''}
+        // Convert the data to the desired format
+        var pulseKey = 2
+        var pulseFormattedData = pulseTimeSeriesData.map(function(pulse) {
+            console.log(pulse.data)
+            var data = NaN
+            if (pulse.data != NaN && pulse.data != "") {
+                data = parseFloat(pulse.data)
+            }
+            var value = { x: parseInt(pulseKey), y: data };
+            pulseKey += 4
+            return value
+        });
+
+        CanvasJS.addColorSet("chartTempShades",
+                [//colorSet Array
+
+                "#FFFFFFFF",              
+                ]);
+      var chartTemp = new CanvasJS.Chart("chart-temp-container", {
+        width:(32*formattedData.length),
+        colorSet: "chartTempShades",
+        backgroundColor: "#00000000",
+        title: {
+            fontFamily: "Kanit",
+        },
+        axisX: {
+          interval: 4,
+          gridColor: "#00000000",
+          lineColor: "#00000000",
+          labelFontColor: "#00000000",
+          tickColor: "#00000000",
+          valueFormatString: "###000",
+          //gridThickness: 3,
+        },
+        axisY: {
+            labelFontColor: "#FFFFFFFF",
+            lineColor: "#FFFFFFFF",
+            gridColor: "#00000000",
+            tickColor: "#00000000",
+            valueFormatString: "###0",
+        },
+
+        data: [{
+          type: "line",
+          axisXIndex: 0, //defaults to 0
+          toolTipContent: "{y}",
+          dataPoints: formattedData,
+        }],
+
+        options: {
+            tooltips: {
+                mode: 'index',
+                intersect: false
+             },
+             hover: {
+                mode: 'index',
+                intersect: false
+             },
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    ticks: {
+                      display: false,
+                    }
+                  },
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false,
+                    }
+                }],
+            },
+        }
+      });
+      chartTemp.render();
+      CanvasJS.addColorSet("chartPulseShades",
+                [//colorSet Array
+
+                "#f9a545",              
+                ]);
+      var chartPulse = new CanvasJS.Chart("chart-pulse-container", {
+        width:((32*pulseFormattedData.length)),
+        colorSet: "chartPulseShades",
+        backgroundColor: "#00000000",
+        title: {
+            fontFamily: "Kanit",
+        },
+        axisX: {
+          interval: 4,
+          gridColor: "#00000000",
+          lineColor: "#00000000",
+          labelFontColor: "#00000000",
+          tickColor: "#00000000",
+          
+        },
+        axisY: {
+            labelFontColor: "#f9a545",
+            lineColor: "#f9a545",
+            gridColor: "#00000000",
+            tickColor: "#00000000",
+            valueFormatString: "###0",
+        },
+
+        data: [{
+          type: "line",
+          axisXIndex: 0, //defaults to 0
+          toolTipContent: "{y}",
+          dataPoints: pulseFormattedData,
+        }],
+
+        options: {
+            tooltips: {
+                mode: 'index',
+                intersect: false
+             },
+             hover: {
+                mode: 'index',
+                intersect: false
+             },
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    ticks: {
+                      display: false,
+                    }
+                  },
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false,
+                    }
+                }],
+            },
+        }
+      });
+      chartPulse.render();
+    }
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+<script>
+    var hn_number = "{{ hn_number }}"
+  var socket = io('http://127.0.0.1:8000');
+  
+  socket.on('connect', function(){console.log("Hello World!");});
+  socket.emit('join', { room: 'form70' });
+  socket.on('update_form70', function(data){
+    if (data == hn_number) {
+        window.location.reload();
+    }
+  });
+  socket.on('disconnect', function(){});
+</script>
+{% endblock %}

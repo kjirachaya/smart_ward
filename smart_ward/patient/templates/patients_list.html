@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block is_active_1 %}active{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <title hidden>{% block title %}Patients{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'patient_list.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Open Sans Condensed:700' rel='stylesheet'> 
+    <head>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+      </head>
+      <style>
+        h1 { font-family: 'Open Sans Condensed', sans-serif; font-size: 48px; color: #333; }
+        body { background-color: rgb(239, 239, 239) }
+      </style>
+<body>
+    
+    <div class="container">
+        {% comment %} <br> {% endcomment %}
+        {% comment %} <h1>Patients</h1> {% endcomment %}
+        {% comment %} <br> {% endcomment %}
+<table>
+<thead>
+    <tr class="table100-head">
+        <th class="column1">HN Number</th>
+        <th class="column2">First Name</th>
+        <th class="column3">Last Name</th>
+        <th style="text-align: center;">Form 31</th>
+        <th class="column5" style="text-align: center;">Form 70</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for x in patients %}
+        <tr>
+            <td class="column1">{{ x.hn_number }}</td>
+        <td class="column2">{{ x.firstname }}</td>
+        <td class="column3">{{ x.lastname }}</td>
+        <td style="text-align: center;"><a class="btn btn-primary" href="/patients/form-31?hn_number={{ x.hn_number }}" role="button">Form 31</a></td>
+        <td class="column5" style="text-align: center;"><a class="btn btn-primary" href="/patients/form-70?hn_number={{ x.hn_number }}" role="button">Form 70</a></td>
+        </tr>
+    {% endfor %}
+    
+    </tbody>
+</table>
+    </div>
+</body>
+</html>
+{% endblock %}

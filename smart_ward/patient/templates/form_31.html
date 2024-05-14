@@ -1,0 +1,117 @@
+{% extends "home.html" %}
+{% load static %}
+{% block title %}Form 31{% endblock title %}
+{% block ward %}
+<a href="/patients/ward"><img src="{% static "/images/patients_top2_btn.png" %}" style="margin-right:20px;"/></a>
+{% endblock %}
+{% block form31 %}
+<a href=""><img src="{% static "/images/form31_top_btn_1.png" %}" style="margin-right:10px;"/></a>
+{% endblock %}
+{% block form70 %}
+<a href="/patients/ward/form-70"><img src="{% static "/images/form70_top2_btn_2.png" %}" style="margin-right:10px;"/></a>
+{% endblock %}
+{% block content %}
+<div class="content-center" style="height:88vh;width:95vw;margin-top: 45px;position: absolute;border-radius: 20px;margin-left: 10px;margin-right: 5px;">
+<div style="margin:10px;">
+    <form method="GET" action="/patients/ward/form-31">
+        {% csrf_token %}
+    <div style="display: flex;margin-left: 10px;">
+        <div style="color:white;font-size: 25px;margin-right: 10px;font-family: Kanit;margin-left:15px;">HN</div>
+        <div><input type="text" value="{{ hn_number }}" name="hn_number" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div style="margin-left:60px;"><input type="text" value="{{ patient.firstname }} {{ patient.lastname }}" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;" disabled/></div>
+    </div>
+    <br>
+    <div style="display: flex;margin-left: 10px;">
+        <div style="color:white;font-size: 20px;margin-right: 10px;font-family: Kanit;">Since</div>
+        <div><input type="date" value="{{ start_date|date:"Y-m-d" }}" name="since_date_input" id="since_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div style="color:white;font-size: 20px;margin-right: 10px;font-family: Kanit;margin-left:20px;">To</div>
+        <div><input type="date" value="{{ end_date|date:"Y-m-d" }}" name="to_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div style="margin-left:25px;"><button type="submit" style="background: none;border: none;"><img src="{% static "/images/search_btn.png" %}"/></button></div>
+    </div>
+    </form>
+    <form method="GET" action="/patients/print-form-31">
+        {% csrf_token %}
+        <div style="display: none;">
+    <div style="display: flex;margin-left: 10px;">
+        <div style="color:white;font-size: 25px;margin-right: 10px;font-family: Kanit;margin-left:15px;">HN</div>
+        <div><input type="text" value="{{ hn_number }}" name="hn_number" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div style="margin-left:60px;"><input type="text" value="{{ patient.firstname }} {{ patient.lastname }}" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;" disabled/></div>
+    </div>
+    <br>
+    <div style="display: flex;margin-left: 10px;">
+        <div style="color:white;font-size: 20px;margin-right: 10px;font-family: Kanit;">Since</div>
+        <div><input type="date" value="{{ start_date|date:"Y-m-d" }}" name="since_date_input" id="since_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div style="color:white;font-size: 20px;margin-right: 10px;font-family: Kanit;margin-left:20px;">To</div>
+        <div><input type="date" value="{{ end_date|date:"Y-m-d" }}" name="to_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        
+    </div>
+    </div>
+    <div style="float: right;margin-top:-20px;"><button type="submit" class="btn btn-primary">Download CSV</button></div>
+    </form>
+    <br>
+
+    <div style="width: 100%;background-color: rgb(60, 60, 62); padding: 20px;border-radius: 10px;height:72vh;font-family: Kanit;overflow-y: scroll;">
+        <table style="width:100%;">
+            <thead>
+                <tr style="background-color: black;color: white;height:30px;">
+                    <th style="width: 30%;text-align: start;padding-left: 10px;">DATE TIME</th>
+                    <th style="width: 10%;text-align: center;">BP</th>
+                    <th style="width: 10%;text-align: center;">T.</th>
+                    <th style="width: 10%;text-align: center;">P.</th>
+                    <th style="width: 10%;text-align: center;">R.</th>
+                    <th style="width: 10%;text-align: center;">O2SAT</th>
+                    <th style="width: 40%;text-align: end;padding-right:10px;">REMARK</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for signal in signals_within_date_range %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                    <tr style="color: white; white;height:25px;">
+                        <td style="width: 30%;text-align: start;padding-left: 10px;">{{ signal.create_at }}</td>
+                        <td style="width: 10%;text-align: center;">{{ signal.bp_systolic }}/{{ signal.bp_diastolic }}</td>
+                        <td style="width: 10%;text-align: center;">{{ signal.temp }}</td>
+                        <td style="width: 10%;text-align: center;">{{ signal.pulse }}</td>
+                        <td style="width: 10%;text-align: center;">{{ signal.respirations }}</td>
+                        <td style="width: 10%;text-align: center;">{{ signal.o2_sat }}</td>
+                        <td style="width: 40%;text-align: end;padding-right:10px;">{{ signal.remark }}</td>
+                    </tr>
+                    {% else %}
+                    <tr style="background-color: black;color: white; white;height:30px;">
+                        <td style="width: 30%;text-align: start;padding-left: 10px;">{{ signal.create_at }}</td>
+                        <td style="width: 10%;text-align: center;">{{ signal.bp_systolic }}/{{ signal.bp_diastolic }}</td>
+                        <td style="width: 10%;text-align: center;">{{ signal.temp }}</td>
+                        <td style="width: 10%;text-align: center;">{{ signal.pulse }}</td>
+                        <td style="width: 10%;text-align: center;">{{ signal.respirations }}</td>
+                        <td style="width: 10%;text-align: center;">{{ signal.o2_sat }}</td>
+                        <td style="width: 40%;text-align: end;padding-right:10px;">{{ signal.remark }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        //your stuff
+        $('#since_date_input').value = "{{ start_date|date:"d/m/Y" }}"
+    });   
+  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+<script>
+  var socket = io('http://127.0.0.1:8000');
+  
+  socket.on('connect', function(){console.log("Hello World!");});
+  socket.emit('join', { room: 'form31' });
+  socket.on('update_form31', function(data){
+    if (data == {{ hn_number }}) {
+        window.location.reload();
+    }
+  });
+  socket.on('disconnect', function(){});
+</script>
+{% endblock %}

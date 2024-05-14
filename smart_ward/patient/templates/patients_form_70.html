@@ -1,0 +1,696 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block is_active_3 %}active{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <title hidden>{% block title %}Form 70{% endblock title %}</title>
+  <head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  
+  <script src ="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>  
+  <script src ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>  
+  <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+  <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">  
+  <link href='https://fonts.googleapis.com/css?family=Open Sans Condensed:700' rel='stylesheet'>
+  <link rel="stylesheet" href="{% static 'patient_form_31.css' %}">
+  <style>
+    body {
+        font-family: sans-serif;
+    }
+    canvas {
+      background: linear-gradient(-45deg, #5555ff, #9787ff);
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+
+      background: linear-gradient(-45deg, #5555FF, #9787FF, #FF55B8, #FF8787);
+  background-size: 400% 400%;
+  animation: bg 20s infinite;
+    }
+    .contents {
+        position: absolute;
+        left: 10%;
+        width: 80%;
+    }
+    h1 { font-family: 'Open Sans Condensed', sans-serif; font-size: 48px; color: #333; }
+    body { background-color: rgb(239, 239, 239) }
+    /* Style the container with a rounded border, grey background and some padding and margin */
+.profile-container {
+    border: 2px solid #ccc;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px 0;
+  }
+  
+  /* Clear floats after containers */
+  .profile-container::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Float images inside the container to the left. Add a right margin, and style the image as a circle */
+  .profile-container img {
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  
+  /* Increase the font-size of a span element */
+  .profile-container span {
+    font-size: 20px;
+    margin-right: 15px;
+  }
+  
+  /* Add media queries for responsiveness. This will center both the text and the image inside the container */
+  @media (max-width: 500px) {
+    .profile-container {
+      text-align: center;
+    }
+  
+    .profile-container img {
+      margin: auto;
+      float: none;
+      display: block;
+    }
+  }
+  table thead tr td {
+    border: 2px solid black!important;
+  }
+  table tbody tr td {
+    border: 1px solid black!important;
+  }
+  </style>
+
+  <body>
+    <div class="contents">
+        {% comment %} <br> {% endcomment %}
+        {% comment %} <div><h4><a href="/patients">&lt;&lt; Patients</a><h4></div> {% endcomment %}
+        <div style="display:flex;">
+            {% comment %} <h1>Form 70</h1> {% endcomment %}
+            <div>
+                <form method="GET" action="/patients/form-70">
+                    {% csrf_token %}
+                    <input id="hn_number" type='text' name='hn_number' value="{{ hn_number }}" hidden/>
+                    <div style='display:flex;'>
+                        <div class='input-group date' id='picker-since' style='width:200px;margin-right:20px;'>
+                            <p>Since</p>
+                            <div style='display:inline-table;'>
+                            <input id="since_date_input" name="since_date_input" type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>	                 
+                            </span>
+                        </div>
+                        </div>
+                        <div class='input-group date' id='picker-to' style='width:200px;'>
+                            <p>To</p>
+                            <div style='display:inline-table;'>
+                            <input id="to_date_input"  name="to_date_input" type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                            </div>
+                        </div>
+                        <button type="submit" id="search_button" class="btn btn-primary" style="height: min-content;
+                        margin-top: 35px;
+                        margin-left: 20px;">Search</button>
+                    </div>
+                    
+                    </form>
+            </div>
+            <div class="profile-container" style="float: right;margin-left: auto;">
+                <p><span>{{ patient.firstname }} {{ patient.lastname }}</span></p>
+                <p>HN Number: {{ patient.hn_number }} </p>
+            </div>
+        </div>
+        
+        <div>
+            <h1>Temp</h1>
+            <canvas id="temp-chart" width="400" height="100"></canvas>
+          </div>
+          <br>
+          <div>
+            <h1>Pulse</h1>
+            <canvas id="pulse-chart" width="400" height="100"></canvas>
+          </div>
+          <br>
+          <br>
+        <div style="overflow-x: scroll;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <td rowspan="2" colspan="2">เวลา</td>
+                    {% for item in time_series_data_4_hour %}
+                        {% if forloop.counter|divisibleby:6 %}
+                            <td colspan="6">{{ item.current_date }}</td>
+                        {% endif %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    {% for item in time_series_data_4_hour %}
+                        <td style="text-align: center;">{{ item.hour }}</td>
+                    {% endfor %}
+                   </tr>
+                </thead>
+                   <tr>
+                    <td colspan="2">RESPIRATIONS</td>
+                    {% for item in time_series_data_4_hour %}
+                        <td style="text-align: center;">{{ item.value.respirations }}</td>
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td rowspan="2">B.P</td>
+                    <td>Systolic</td>
+                    {% for item in time_series_data_4_hour %}
+                        <td style="text-align: center;">{{ item.value.bp_systolic }}</td>
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td>Diastolic</td>
+                    {% for item in time_series_data_4_hour %}
+                        <td style="text-align: center;">{{ item.value.bp_diastolic }}</td>
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">MAP</td>
+                    {% for item in time_series_data_4_hour %}
+                        <td style="text-align: center;">{{ item.value.map }}</td>
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">O2sat</td>
+                    {% for item in time_series_data_4_hour %}
+                        <td style="text-align: center;">{{ item.value.o2_sat }}</td>
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">Pain Score</td>
+                    {% for item in time_series_data_4_hour %}
+                        <td style="text-align: center;">{{ item.value.pain_score }}</td>
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">Height of fundus</td>
+                    {% for item in time_series_data_4_hour %}
+                        <td style="text-align: center;">{{ item.value.height_of_fundus }}</td>
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td>Weight</td>
+                    <td>Hight</td>
+                    {% for item in time_series_data_12_hour %}
+                        {% if forloop.counter0|divisibleby:3 %}
+                            <td colspan="3">{{ item.value.weight }}</td>
+                            <td colspan="3">{{ item.value.hight }}</td>
+                        {% endif %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">Diet</td>
+                    {% for item in time_series_data_16_hour %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <td colspan="6">{{ item.value.diet }}</td>
+                        {% endif %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">Urination</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.urination }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">Defecations</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.defecations }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td rowspan="3">INTAKE</td>
+                    <td>ORAL</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.intake_oral }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td>PARENTERAL</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.intake_parenteral }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td>TOTAL</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.intake_total }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td rowspan="3">OUTPUT</td>
+                    <td>URINE</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.output_urine }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td>EMESIS</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.output_emesis }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td>TOTAL</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.output_total }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">TOTAL INTAKE</td>
+                    {% for item in time_series_data_16_hour %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <td colspan="6">{{ item.value.total_intake }}</td>
+                        {% endif %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">TOTAL OUTPUT</td>
+                    {% for item in time_series_data_16_hour %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <td colspan="6">{{ item.value.total_output }}</td>
+                        {% endif %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">LOCHIA</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.lochia }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">PHLEBITIS</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.phlebitis }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">MEWS</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.mews }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">PPS</td>
+                    {% for item in time_series_data_8_hour %}
+                        {% comment %} {% if forloop.counter|divisibleby:2 %} {% endcomment %}
+                            <td colspan="2" style="text-align: center;">{{ item.value.pps }}</td>
+                        {% comment %} {% endif %} {% endcomment %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">NOTE</td>
+                    {% for item in time_series_data_16_hour %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <td colspan="6">{{ item.value.note }}</td>
+                        {% endif %}
+                    {% endfor %}
+                   </tr>
+                   <tr>
+                    <td colspan="2">ATB</td>
+                    {% for item in time_series_data_16_hour %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <td colspan="6">{{ item.value.atb }}</td>
+                        {% endif %}
+                    {% endfor %}
+                   </tr>
+            </table>
+        </div>
+    </div>
+    </div>
+    
+    <script id="temp-time-series-data" type="application/json">{{ temp_time_series_data_json|safe }}</script>
+    <script id="pulse-time-series-data" type="application/json">{{ pulse_time_series_data_json|safe }}</script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Get the time series data from the embedded <script> tag
+        var timeSeriesDataElement = document.getElementById('temp-time-series-data')
+        var timeSeriesData = JSON.parse(timeSeriesDataElement.textContent)
+      
+        // Extract timestamps and values from the time series data
+        var timestamps = timeSeriesData.map(function (item) {
+            var a = item[0].substring(11, 19).split(':'); // split it at the colons
+
+            var hour = (+a[0] * 10 /10);
+            return hour + 2
+        })
+        var values = timeSeriesData.map(function (item) {
+          return item[1]
+        })
+        var ctx = document.getElementById('temp-chart').getContext('2d')
+      
+        // Apply multiply blend when drawing datasets
+        var multiply = {
+          beforeDatasetsDraw: function (chart, options, el) {
+            chart.ctx.globalCompositeOperation = 'multiply'
+          },
+          afterDatasetsDraw: function (chart, options) {
+            chart.ctx.globalCompositeOperation = 'source-over'
+          },
+        }
+      
+        // Gradient color - this week
+        var gradientThisWeek = ctx.createLinearGradient(0, 0, 0, 150)
+        gradientThisWeek.addColorStop(0, '#5555FF')
+        gradientThisWeek.addColorStop(1, '#9787FF')
+      
+        // Gradient color - previous week
+        var gradientPrevWeek = ctx.createLinearGradient(0, 0, 0, 150)
+        gradientPrevWeek.addColorStop(0, '#FF55B8')
+        gradientPrevWeek.addColorStop(1, '#FF8787')
+        const totalDuration = 1000
+        const delayBetweenPoints = totalDuration / values.length
+        const previousY = (ctx) => (ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y)
+        const animation = {
+          x: {
+            type: 'number',
+            easing: 'linear',
+            duration: delayBetweenPoints,
+            from: NaN, // the point is initially skipped
+            delay(ctx) {
+              if (ctx.type !== 'data' || ctx.xStarted) {
+                return 0
+              }
+              ctx.xStarted = true
+              return ctx.index * delayBetweenPoints
+            }
+          },
+          y: {
+            type: 'number',
+            easing: 'linear',
+            duration: delayBetweenPoints,
+            from: previousY,
+            delay(ctx) {
+              if (ctx.type !== 'data' || ctx.yStarted) {
+                return 0
+              }
+              ctx.yStarted = true
+              return ctx.index * delayBetweenPoints
+            }
+          }
+        }
+        // Create a new Chart instance
+        var tempChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: timestamps,
+            datasets: [
+              {
+                label: "Temp",
+                data: values,
+                borderColor: 'rgba(255, 255, 255, 0.5)',
+                borderWidth: 4,
+                pointBackgroundColor: 'transparent',
+                pointBorderColor: '#FFFFFF',
+                pointBorderWidth: 5,
+                pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                pointHoverBorderWidth: 10,
+                lineTension: 0
+              }
+            ]
+          },
+          options: {
+            legend: {
+                display: true,
+                labels: {
+                  fontColor: 'rgb(255, 99, 132)',
+                  fontSize: 22,
+                  generateLabels: function(chart) {
+                    labels = Chart.defaults.global.legend.labels.generateLabels(chart);
+                    for (var key in labels) {
+                      labels[key].text = "Hello World";
+                      labels[key].fillStyle  = "rgba(133, 4, 12, 0.7)";
+                      labels[key].strokeStyle = "rgba(33, 44, 22, 0.7)"; 
+                    }
+                    return labels;
+                  }
+                }
+              },
+            elements: {
+              point: {
+                radius: 6,
+                hitRadius: 6,
+                hoverRadius: 6
+              }
+            },
+            animation,
+            tooltips: {
+                callbacks: {
+                   label: function(tooltipItem) {
+                          return tooltipItem.yLabel;
+                   }
+                }
+            },
+            scales: {
+              xAxes: [
+                {
+                  type: 'time',
+                  time: {
+                    parser: 'YYYY-MM-DDTHH:mm:ss',
+                    tooltipFormat: 'll',
+                    unit: 'day',
+                    displayFormats: {
+                      day: 'MMM DD'
+                    }
+                  },
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Date'
+                  }
+                }
+              ],
+              yAxes: [
+                {
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Value',
+                  },
+                }
+              ],
+              x: {
+                ticks: {
+                  color: "white"
+                }
+              },
+              y: {
+                ticks: {
+                  color: "white"
+                }
+              }
+            },
+            plugins: [multiply],
+          }
+        })
+      })
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // Get the time series data from the embedded <script> tag
+          var timeSeriesDataElement = document.getElementById('pulse-time-series-data')
+          var timeSeriesData = JSON.parse(timeSeriesDataElement.textContent)
+        
+          // Extract timestamps and values from the time series data
+          var timestamps = timeSeriesData.map(function (item) {
+            var a = item[0].substring(11, 19).split(':'); // split it at the colons
+
+            var hour = (+a[0] * 10 /10);
+            return hour + 2
+          })
+          var values = timeSeriesData.map(function (item) {
+            return item[1]
+          })
+          var ctx = document.getElementById('pulse-chart').getContext('2d')
+        
+          // Apply multiply blend when drawing datasets
+          var multiply = {
+            beforeDatasetsDraw: function (chart, options, el) {
+              chart.ctx.globalCompositeOperation = 'multiply'
+            },
+            afterDatasetsDraw: function (chart, options) {
+              chart.ctx.globalCompositeOperation = 'source-over'
+            },
+          }
+        
+          // Gradient color - this week
+          var gradientThisWeek = ctx.createLinearGradient(0, 0, 0, 150)
+          gradientThisWeek.addColorStop(0, '#5555FF')
+          gradientThisWeek.addColorStop(1, '#9787FF')
+        
+          // Gradient color - previous week
+          var gradientPrevWeek = ctx.createLinearGradient(0, 0, 0, 150)
+          gradientPrevWeek.addColorStop(0, '#FF55B8')
+          gradientPrevWeek.addColorStop(1, '#FF8787')
+          const totalDuration = 1000
+          const delayBetweenPoints = totalDuration / values.length
+          const previousY = (ctx) => (ctx.index === 0 ? ctx.chart.scales.y.getPixelForValue(100) : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(['y'], true).y)
+          const animation = {
+            x: {
+              type: 'number',
+              easing: 'linear',
+              duration: delayBetweenPoints,
+              from: NaN, // the point is initially skipped
+              delay(ctx) {
+                if (ctx.type !== 'data' || ctx.xStarted) {
+                  return 0
+                }
+                ctx.xStarted = true
+                return ctx.index * delayBetweenPoints
+              }
+            },
+            y: {
+              type: 'number',
+              easing: 'linear',
+              duration: delayBetweenPoints,
+              from: previousY,
+              delay(ctx) {
+                if (ctx.type !== 'data' || ctx.yStarted) {
+                  return 0
+                }
+                ctx.yStarted = true
+                return ctx.index * delayBetweenPoints
+              }
+            }
+          }
+          // Create a new Chart instance
+          var pulseChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: timestamps,
+              datasets: [
+                {
+                  label: "Pulse",
+                  data: values,
+                  borderColor: 'rgba(255, 255, 255, 0.5)',
+                  borderWidth: 4,
+                  pointBackgroundColor: 'transparent',
+                  pointBorderColor: '#FFFFFF',
+                  pointBorderWidth: 5,
+                  pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                  pointHoverBorderWidth: 10,
+                  lineTension: 0
+                }
+              ]
+            },
+            options: {
+              legend: {
+                  display: true,
+                  labels: {
+                    fontColor: 'rgb(255, 99, 132)',
+                    fontSize: 22,
+                    generateLabels: function(chart) {
+                      labels = Chart.defaults.global.legend.labels.generateLabels(chart);
+                      for (var key in labels) {
+                        labels[key].text = "Hello World";
+                        labels[key].fillStyle  = "rgba(133, 4, 12, 0.7)";
+                        labels[key].strokeStyle = "rgba(33, 44, 22, 0.7)"; 
+                      }
+                      return labels;
+                    }
+                  }
+                },
+              elements: {
+                point: {
+                  radius: 6,
+                  hitRadius: 6,
+                  hoverRadius: 6
+                }
+              },
+              animation,
+              tooltips: {
+                  callbacks: {
+                     label: function(tooltipItem) {
+                            return tooltipItem.yLabel;
+                     }
+                  }
+              },
+              scales: {
+                xAxes: [
+                  {
+                    type: 'time',
+                    time: {
+                      parser: 'YYYY-MM-DDTHH:mm:ss',
+                      tooltipFormat: 'll',
+                      unit: 'day',
+                      displayFormats: {
+                        day: 'MMM DD'
+                      }
+                    },
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Date'
+                    }
+                  }
+                ],
+                yAxes: [
+                  {
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Value',
+                    },
+                  }
+                ],
+                x: {
+                  ticks: {
+                    color: "white"
+                  }
+                },
+                y: {
+                  ticks: {
+                    color: "white"
+                  }
+                }
+              },
+              plugins: [multiply],
+            }
+          })
+        })
+      </script>
+      <script type="text/javascript">
+        $(function () {
+            $('#picker-since').datetimepicker({
+               format: 'DD MMM YYYY',
+               defaultDate: '{{ start_date|date:"Y-m-d H:i:s" }}'
+            });
+            $('#picker-to').datetimepicker({
+               format: 'DD MMM YYYY',
+               defaultDate: '{{ end_date|date:"Y-m-d H:i:s" }}'
+            });
+        });
+     </script>
+  </body>
+</html>
+{% endblock %}

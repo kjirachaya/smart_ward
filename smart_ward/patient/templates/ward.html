@@ -1,0 +1,194 @@
+{% extends "home.html" %}
+{% load static %}
+{% block title %}Patients{% endblock title %}
+{% block ward %}
+<a href="/patients/ward"><img src="{% static "/images/patients_top_btn.png" %}" style="margin-right:20px;"/></a>
+{% endblock %}
+{% block form31 %}
+<a href="/patients/ward/form-31"><img src="{% static "/images/form31_top2_btn_1.png" %}" style="margin-right:10px;"/></a>
+{% endblock %}
+{% block form70 %}
+<a href="/patients/ward/form-70"><img src="{% static "/images/form70_top2_btn_2.png" %}" style="margin-right:10px;"/></a>
+{% endblock %}
+{% block content %}
+{% if is_list_view %}
+<div class="content-center" style="background-color: black;height:88vh;width:98vw;margin-top: 45px;position: absolute;border-radius: 20px;margin-left: 10px;margin-right: 5px;">
+    <div style="margin:10px;">
+        <div>
+            <a href="/patients/ward?is_list_view=0"><img src="{% static "/images/toggle_list.png" %}"/></a>
+        </div>
+        <div style="padding: 50px;color: white;font-family: Kanit;">
+            <table style="width: 100%;">
+                <thead style="font-size: 20px;">
+                    <tr>
+                        <td>HN Number</td>
+                        <td>First Name</td>
+                        <td>Last Name</td>
+                        <td style="text-align: center;">Form 31</td>
+                        <td style="text-align: center;">Form 70</td>
+                    </tr>
+                <thead>
+                <tbody>
+                    {% for patient in patient_items %}
+                    <tr style="height:30px;font-size: 16px;border-bottom: 1pt solid #ffffff7d;">
+                        <td style="padding: 10px 0px 10px 0px;">{{ patient.hn_number }}</td>
+                        <td>{{ patient.firstname }}</td>
+                        <td>{{ patient.lastname }}</td>
+                        <td style="text-align: center;"><a href="form-31?hn_number={{ patient.hn_number }}"><img src="{% static "/images/pa_form_31_btn.png" %}"/></a></td>
+                        <td style="text-align: center;"><a href="form-70?hn_number={{ patient.hn_number }}"><img src="{% static "/images/pa_form_70_btn.png" %}"/></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+{% else %}
+
+<div class="content-center" style="background-color: rgb(60, 60, 62);height:88vh;width:98vw;margin-top: 50px;position: absolute;border-radius: 20px;margin-left: 10px;margin-right: 5px;">
+    <div style="margin:10px;">
+        <div>
+            <a href="/patients/ward?is_list_view=1"><img src="{% static "/images/toggle_bed.png" %}"/></a>
+        </div>
+        <div style="padding: 50px;display: flex;flex-wrap: wrap;">
+            {% for bed in bed_items %}
+                {% if bed.patient.id == '' or bed.patient.id == None %}
+                <div style="display: grid;margin-right:40px;">
+                    <div><span style="color: white;font-size: 25px;">HN</span> <span style="color: white;font-size: 25px;">-----</span></div>
+                    <div style="position:relative;">
+                        <img src="{% static "/images/bed_offline.png" %}"/>
+                        <div>
+                        <img class="{{ forloop.counter }}" onClick="add_bed_button({{ forloop.counter }})" src="{% static "/images/add_onbed_btn.png" %}" data-toggle="modal" data-target="#addPatientModal" type="button" style="position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        margin-bottom:30px;
+                        margin-left: 30%;
+                        text-align: center;
+                        cursor: pointer;"/>
+                        </div>
+                        <div style="position:absolute;font-size: 90px;top:0;left: 0;margin-top:75px;text-align: center;width: 100%;color: rgb(0, 0, 0, 0.5);">{{ forloop.counter }}</div>
+                    </div>
+                </div>
+                {% else %}
+                <div style="display: grid;margin-right:40px;">
+                    <div><span style="color: rgb(236, 176, 86);font-size: 25px;">HN</span> <span style="color: white;font-size: 25px;">{{ bed.patient.hn_number }}</span></div>
+                    <div style="position:relative;">
+                        <img src="{% static "/images/bed_online.png" %}"/>
+                        <img class="{{ forloop.counter }}" onClick="remove_bed_button({{ forloop.counter }})" src="{% static "/images/closebed_onbed_btn.png" %}" data-toggle="modal" data-target="#removePatientModal" type="button" style="position: absolute;
+                        right: 0;
+                        margin-right: 5px;
+                        top: 0;
+                        margin-top: 5px;
+                        cursor: pointer;"/>
+                        <a href="form-31?hn_number={{ bed.patient.hn_number }}"><img src="{% static "/images/form31_onbed_btn.png" %}" style="position: absolute;
+                        left: 0;
+                        margin-left: 12%;
+                        bottom: 0;
+                        margin-bottom: 70px;"/></a>
+                        <a href="form-70?hn_number={{ bed.patient.hn_number }}"><img src="{% static "/images/form70_onbed_btn.png" %}" style="position: absolute;
+                        left: 0;
+                        margin-left: 12%;
+                        bottom: 0;
+                        margin-bottom: 30px;"/></a>
+                        <div style="position:absolute;font-size: 90px;top:0;left: 0;margin-top:75px;text-align: center;width: 100%;">{{ forloop.counter }}</div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+
+{% endif %}
+
+<!-- Modal -->
+<div class="modal fade" id="addPatientModal" role="dialog" style="font-family: Kanit;">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <form method="POST" action="/patients/ward/add-patient">
+        {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Patient for Bed number </h4>
+        </div>
+        <div class="modal-body">
+            <label class="col-form-label">HN Number:</label>
+            <input type="text" class="form-control" id="input-hn-number" name="input-hn-number" onchange
+            onpropertychange
+            onkeyuponpaste oninput="input_hn_number_change()"/>
+            <input hidden type="text" name="input-bed-id" id="input-bed-id" value="" />
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary disabled" id="btn-add-patient" >Add Patient</button>
+        </div>
+      </div>
+      </form>
+      
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="removePatientModal" role="dialog" style="font-family: Kanit;">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <form method="POST" action="/patients/ward/remove-patient">
+        {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Patient for Bed number </h4>
+        </div>
+        <div class="modal-body">
+            Do you confirm to remove?
+            <input hidden type="text" name="input-bed-id" id="input-bed-id" value="" />
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-danger" id="btn-remove-patient" >Confirm</button>
+        </div>
+      </div>
+      </form>
+      
+    </div>
+  </div>
+{% endblock %}
+{% block scripts %}
+{% comment %} <script src="/socket.io/socket.io.js"></script> {% endcomment %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+<script>
+    var bed_number = 0
+    function add_bed_button(clicked_id) {
+        bed_number = clicked_id
+        $('.modal-title')[0].textContent = "Add Patient for Bed number " + clicked_id
+        $('#input-bed-id').val(bed_number)
+        console.log(clicked_id);
+    }
+    function remove_bed_button(clicked_id) {
+        bed_number = clicked_id
+        $('#removePatientModal .modal-title')[0].textContent = "Remove Patient for Bed number " + clicked_id
+        $('#removePatientModal #input-bed-id').val(bed_number)
+        console.log(clicked_id);
+    }
+    function input_hn_number_change() {
+        console.log($('#input-hn-number').val())
+        if ($('#input-hn-number').val() != "") {
+            document.querySelector('#btn-add-patient').classList.remove("disabled");
+        } else {
+            document.querySelector('#btn-add-patient').classList.add("disabled");
+        }
+    }
+  var socket = io('http://127.0.0.1:8000');
+  
+  socket.on('connect', function(){console.log("Hello World!");});
+  socket.emit('join', { room: 'ward' });
+  socket.on('update_ward', function(data){
+    window.location.reload();
+  });
+  socket.on('disconnect', function(){});
+</script>
+{% endblock %}

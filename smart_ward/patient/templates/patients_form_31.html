@@ -1,0 +1,196 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block is_active_2 %}active{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title hidden>{% block title %}Form 31{% endblock title %}</title>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+      </head>
+    <!-- Script to initialize date picker -->
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+    <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"> 
+    <link href='https://fonts.googleapis.com/css?family=Open Sans Condensed:700' rel='stylesheet'> 
+    <link rel="stylesheet" href="{% static 'patient_form_31.css' %}">
+<style>
+    h1 { font-family: 'Open Sans Condensed', sans-serif; font-size: 48px; color: #333; }
+    body { background-color: rgb(239, 239, 239) }
+    /* Style the container with a rounded border, grey background and some padding and margin */
+.profile-container {
+    border: 2px solid #ccc;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px 0;
+  }
+  
+  /* Clear floats after containers */
+  .profile-container::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Float images inside the container to the left. Add a right margin, and style the image as a circle */
+  .profile-container img {
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  
+  /* Increase the font-size of a span element */
+  .profile-container span {
+    font-size: 20px;
+    margin-right: 15px;
+  }
+  
+  /* Add media queries for responsiveness. This will center both the text and the image inside the container */
+  @media (max-width: 500px) {
+    .profile-container {
+      text-align: center;
+    }
+  
+    .profile-container img {
+      margin: auto;
+      float: none;
+      display: block;
+    }
+  }
+</style>
+
+<body>
+    <div class="container" style="margin-bottom:20px;">
+        {% comment %} <br> {% endcomment %}
+        {% comment %} <div><h4><a href="/patients">&lt;&lt; Patients</a><h4></div> {% endcomment %}
+        <div style="display:flex;">
+            {% comment %} <h1>Form 31</h1> {% endcomment %}
+            <div>
+                <form method="GET" action="/patients/form-31">
+                    {% csrf_token %}
+                    <input id="hn_number" type='text' name='hn_number' value="{{ hn_number }}" hidden/>
+                    <div style='display:flex;'>
+                        <div class='input-group date' id='picker-since' style='width:200px;margin-right:20px;'>
+                            <p>Since</p>
+                            <div style='display:inline-table;'>
+                            <input id="since_date_input" name="since_date_input" type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>	                 
+                            </span>
+                        </div>
+                        </div>
+                        <div class='input-group date' id='picker-to' style='width:200px;'>
+                            <p>To</p>
+                            <div style='display:inline-table;'>
+                            <input id="to_date_input"  name="to_date_input" type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                            </div>
+                        </div>
+                        <button type="submit" id="search_button" class="btn btn-primary" style="height: min-content;
+                        margin-top: 35px;
+                        margin-left: 20px;">Search</button>
+                    </div>
+                    
+                    </form>
+            </div>
+            <div class="profile-container" style="float: right;margin-left: auto;">
+                <p><span>{{ patient.firstname }} {{ patient.lastname }}</span></p>
+                <p>HN Number: {{ patient.hn_number }} </p>
+            </div>
+        </div>
+        <br>
+        <div>
+        <table class="table table-hover">
+            <thead style="
+            border-radius: 10px;
+            background-color: #5ebf9e;
+            color: white;
+            font-size: 20px;
+        ">
+                <tr>
+                    <th scope="col">Date Time</th>
+                    <th  scope="col">B.P</th>
+                    <th  scope="col">T.</th>
+                    <th  scope="col">P.</th>
+                    <th  scope="col">R.</th>
+                    <th  scope="col">O2sat</th>
+                    <th scope="col">REMARK</th>
+                    {% comment %} <th scope="col"></th> {% endcomment %}
+                </tr>
+                </thead>
+                <tbody style="font-size: 18px;">
+                    {% for x in signals_within_date_range %}
+                    <tr style="
+                    height: 50px;
+                ">
+                    <td class="column1" style="
+                    align-content: center;
+                ">{{ x.create_at }}</td>
+                    <td class="column2"style="
+                    align-content: center;
+                ">{{ x.bp_systolic }}/{{ x.bp_diastolic }}</td>
+                    <td class="column3"style="
+                    align-content: center;
+                ">{{ x.temp }}</td>
+                    <td class="column3"style="
+                    align-content: center;
+                ">{{ x.pulse }}</td>
+                    <td class="column3"style="
+                    align-content: center;
+                ">{{ x.respirations }}</td>
+                    <td class="column3"style="
+                    align-content: center;
+                ">{{ x.o2_sat }}</td>
+                    <td class="column3"style="
+                    align-content: center;
+                ">{{ x.remark }}</td>
+                {% comment %} <td class="column3"style="
+                    align-content: center;
+                "><a class="btn btn-info" href="/patients/form-31?hn_number={{ x.hn_number }}" role="button">Remark</a></td> {% endcomment %}
+                    </tr>
+                {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+      <script type="text/javascript">
+        $(function () {
+            $('#picker-since').datetimepicker({
+                format: 'DD MMM YYYY',
+                defaultDate: '{{ start_date|date:"Y-m-d H:i:s" }}'
+             });
+             $('#picker-to').datetimepicker({
+                format: 'DD MMM YYYY',
+                defaultDate: '{{ end_date|date:"Y-m-d H:i:s" }}'
+             });
+            });
+      </script>
+
+      {% comment %} <script>
+        const socket = new WebSocket('ws://localhost:8000/ws/notifications/');
+
+        socket.onopen = function(event) {
+            console.log('WebSocket connection established.');
+        };
+
+        socket.onmessage = function(event) {
+            const message = JSON.parse(event.data);
+            console.log(message);
+            if (message.type === 'refresh_page') {
+                window.location.reload(); // Refresh the page
+            }
+        };
+    </script> {% endcomment %}
+   </div>
+</body>
+</html>
+{% endblock %}
