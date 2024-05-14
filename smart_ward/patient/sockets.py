@@ -34,6 +34,7 @@ async def connect(sid, env):
     await sio.enter_room(sid, "ward")
     await sio.enter_room(sid, "form31")
     await sio.enter_room(sid, "form70")
+    await sio.enter_room(sid, "bed")
     await sio.emit("connect", f"Connected as {sid}")
 
 # communication with orm

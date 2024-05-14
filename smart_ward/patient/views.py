@@ -61,6 +61,46 @@ def print_form31(request):
 
     writer = csv.writer(response)
     writer.writerow(["Name", patient[0].firstname])
+    writer.writerow(["HN Number", patient[0].hn_number])
+    writer.writerow(["Date Time", "BP", "T.", "P.", "R.", "O2Sat", "Remark"])
+    for item in signals_within_date_range.values():
+       create_at_value = item['create_at']
+       time_display = item['create_at']
+       if isinstance(create_at_value, datetime):
+         time_display = item['create_at'].strftime("%m/%d/%Y, %H:%M:%S")
+       writer.writerow([time_display, item['bp_systolic'], item['temp'], item['pulse'], item['respirations'], item['o2_sat'], item['remark']])
+
+    return response
+
+def print_form70(request):
+    if request.user.is_authenticated == False:
+      return redirect("login")
+    # Create the HttpResponse object with the appropriate CSV header.
+    date_display = datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+    file_name = "form-31-" + date_display + ".csv"
+    response = HttpResponse(
+        content_type="text/csv",
+        headers={"Content-Disposition": 'attachment; filename="' + file_name +'"'},
+    )
+
+    default_datetime = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    if (request.GET.get('hn_number') == None):
+      return
+    if request.GET.get('since_date_input') != None:
+      start_date = datetime.strptime(request.GET.get('since_date_input'), "%Y-%m-%d")
+    else:
+      start_date = default_datetime - timedelta(days=7)
+    if request.GET.get('to_date_input') != None:
+      end_date = datetime.strptime(request.GET.get('to_date_input'), "%Y-%m-%d")
+    else:
+      end_date = default_datetime
+    
+    signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), create_at__date__range=[start_date, end_date])
+    patient = Patient.objects.filter(hn_number=request.GET.get('hn_number'))
+
+    writer = csv.writer(response)
+    writer.writerow(["Name", patient[0].firstname])
+    writer.writerow(["HN Number", patient[0].hn_number])
     writer.writerow(["Date Time", "BP", "T.", "P.", "R.", "O2Sat", "Remark"])
     for item in signals_within_date_range.values():
        create_at_value = item['create_at']
@@ -105,6 +145,7 @@ def addBed(request):
     input_bed_id = data['input-bed-id']
     print(input_bed_id)
     bed_instance = Bed.objects.create(bed_id=input_bed_id)
+    sio.emit("update_bed", "update_bed", room="bed")
   
   return redirect("/patients/beds")
 
