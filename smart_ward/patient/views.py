@@ -160,11 +160,11 @@ def wardAddPatient(request):
     print(input_bed_id)
     bed = get_object_or_404(Bed, bed_id=input_bed_id)
     patient = get_object_or_404(Patient, hn_number=input_hn_number)
-    if (patient.bed_id != None):
-      bed.save()
-    else:
-      bed.patient_id = patient.id
-      bed.save()
+    #if (patient.bed_id != None):
+    #  bed.save()
+    #else:
+    bed.patient_id = patient.id
+    bed.save()
   
   return redirect("/patients/ward")
 

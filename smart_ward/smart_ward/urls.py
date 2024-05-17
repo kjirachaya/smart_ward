@@ -22,6 +22,7 @@ urlpatterns = [
     path('members/', include('members.urls')),
     path('patients/', include('patient.urls')),
     path('admin/', admin.site.urls),
+    #path('socket.io/', include('django_socketio.urls')),
     # path("admin/", admin.site.urls), path("chat/", include("patient.urls")),
     # path("", include('django_socketio.urls')),
 ]

@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'home',
     'bootstrap5',
     'channels',
+    'django_socketio',
 ]
 
 SESSION_EXPIRE_SECONDS = 180  # Expire after 30 minutes
@@ -163,3 +164,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 USE_L10N = False
 
 DATE_INPUT_FORMATS = ['%d/%m/%Y %H:%M:%S']
+
+CSRF_TRUSTED_ORIGINS = [
+   'http://103.253.73.15'
+]
