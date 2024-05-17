@@ -1,0 +1,4 @@
+/venv
+/smart_ward/db.sqlite3
+/smart_ward/dump.rdb
+/smart_ward/productionfiles

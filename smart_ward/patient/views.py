@@ -101,6 +101,7 @@ def print_form70(request):
     writer = csv.writer(response)
     writer.writerow(["Name", patient[0].firstname])
     writer.writerow(["HN Number", patient[0].hn_number])
+    writer.writerow(["TIME", ])
     writer.writerow(["Date Time", "BP", "T.", "P.", "R.", "O2Sat", "Remark"])
     for item in signals_within_date_range.values():
        create_at_value = item['create_at']
@@ -160,11 +161,13 @@ def wardAddPatient(request):
     print(input_bed_id)
     bed = get_object_or_404(Bed, bed_id=input_bed_id)
     patient = get_object_or_404(Patient, hn_number=input_hn_number)
-    #if (patient.bed_id != None):
-    #  bed.save()
-    #else:
-    bed.patient_id = patient.id
-    bed.save()
+    if (patient.bed_id != None):
+      bed.save()
+    else:
+      bed.patient_id = patient.id
+      bed.save()
+      patient.bed_id = bed.bed_id
+      patient.save()
   
   return redirect("/patients/ward")
 
@@ -326,9 +329,9 @@ def wardForm70(request):
     telemetrys = []
     current_date += diffTime
 
-  telemetryDateItems.reverse()
-  tempDateItems.reverse()
-  pulseDateItems.reverse()
+  # telemetryDateItems.reverse()
+  # tempDateItems.reverse()
+  # pulseDateItems.reverse()
   widthTemp = len(telemetryDateItems) * len(setOfHr)
   context = {
     'hn_number': request.GET.get('hn_number'),
@@ -342,6 +345,8 @@ def wardForm70(request):
     'set_of_hr': setOfHr,
     'size_of_hr': len(setOfHr),
     'size_of_telemetry_date_items': widthTemp,
+    'width_px': (35*widthTemp) + 59,
+    'width_table_px': 35*len(setOfHr),
   }
   return HttpResponse(template.render(context, request))
 

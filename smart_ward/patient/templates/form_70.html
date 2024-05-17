@@ -139,18 +139,18 @@
         </div>
         {% if hn_number %}
         <div style="overflow-x: scroll;">
-            <div id="chart-temp-container" style="height: 400px; margin-left:0px;width: {% widthratio 32.7 1 size_of_telemetry_date_items %}px;"></div> <!-- width: 70 + 180 + 180 + 180 -->
-            <div id="chart-pulse-container" style="height: 400px; margin-left:0px;width:  {% widthratio 32.7 1 size_of_telemetry_date_items %}px;"></div> <!-- width: 70 + 180 + 180 + 180 -->
-            <div style="display: flex;font-family: Kanit;color: white;margin-left:32px;width:  {% widthratio 32.7 1 size_of_telemetry_date_items %}px;">
+            <div id="chart-temp-container" style="height: 400px; margin-left:0px;width: {{ width_px }}px;"></div> <!-- width: 70 + 180 + 180 + 180 -->
+            <div id="chart-pulse-container" style="height: 400px; margin-left:0px;width:  {{ width_px }}px;"></div> <!-- width: 70 + 180 + 180 + 180 -->
+            <div style="display: flex;font-family: Kanit;color: white;margin-left:32px;width: {{ width_px }}px;">
                 {% for item in telemetry_date_items %}
-                    <table style="text-align: center;width: {% widthratio 34.2 1 size_of_hr %}px;table-layout: fixed;border-spacing: 0px;border-right:1px solid #FFFFFF7d;">
+                    <table style="text-align: center;width: {{ width_table_px }}px;table-layout: fixed;border-spacing: 0px;border-right:1px solid #FFFFFF7d;">
                         <tr style="height:26px;">
-                            <td colspan="{{ size_of_hr }}" style="width: {% widthratio 34.2 1 size_of_hr %}px;text-align: start;padding-left:5px;">{{ item.date_display }}</td>
+                            <td colspan="{{ size_of_hr }}" style="width: {{ width_table_px }}px;text-align: start;padding-left:5px;">{{ item.date_display }}</td>
                         </tr>
         
                         <tr style="height:26px;">
                         {% for telemetry in item.telemetry %}
-                            <td style="width: 34.2px;text-align: center;">{{ telemetry.hr }}</td>
+                            <td style="width: 35px;text-align: center;">{{ telemetry.hr }}</td>
                         {% endfor %}
                         </tr>
         
@@ -364,7 +364,7 @@
                 "#FFFFFFFF",              
                 ]);
       var chartTemp = new CanvasJS.Chart("chart-temp-container", {
-        width:(32*formattedData.length),
+        width:{{ width_px }},
         colorSet: "chartTempShades",
         backgroundColor: "#00000000",
         title: {
@@ -372,12 +372,12 @@
         },
         axisX: {
           interval: 4,
-          gridColor: "#00000000",
           lineColor: "#00000000",
+          gridColor: "#00000000",
           labelFontColor: "#00000000",
           tickColor: "#00000000",
           valueFormatString: "###000",
-          //gridThickness: 3,
+          gridThickness: 1,
         },
         axisY: {
             labelFontColor: "#FFFFFFFF",
@@ -426,7 +426,7 @@
                 "#f9a545",              
                 ]);
       var chartPulse = new CanvasJS.Chart("chart-pulse-container", {
-        width:((32*pulseFormattedData.length)),
+        width:{{ width_px }},
         colorSet: "chartPulseShades",
         backgroundColor: "#00000000",
         title: {
@@ -438,6 +438,7 @@
           lineColor: "#00000000",
           labelFontColor: "#00000000",
           tickColor: "#00000000",
+          gridThickness: 1,
           
         },
         axisY: {

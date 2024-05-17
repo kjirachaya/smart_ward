@@ -45,7 +45,8 @@ class Patient(models.Model):
   firstname = models.CharField(max_length=255)
   lastname = models.CharField(max_length=255)
   hn_number = models.CharField(max_length=5, unique=True, default='00000', null=True)
-  bed_id = models.CharField(max_length=255, null=True)
+  bed_id = models.CharField(max_length=255, null=True, blank=True)
+  id_card = models.CharField(max_length=13, default="", null=True, blank=True)
 #   groups = models.ManyToManyField('auth.Group', related_name='patient_groups')
 
   def save(self, *args, **kwargs):
