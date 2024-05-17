@@ -1,0 +1,812 @@
+[Thu May 16 06:20:39.238140 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:53288] Not Found: /favicon.ico
+[Thu May 16 06:23:03.944167 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227] Internal Server Error: /admin/login/
+[Thu May 16 06:23:03.944202 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227] Traceback (most recent call last):
+[Thu May 16 06:23:03.944209 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+[Thu May 16 06:23:03.944215 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return self.cursor.execute(sql, params)
+[Thu May 16 06:23:03.944221 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+[Thu May 16 06:23:03.944227 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return super().execute(query, params)
+[Thu May 16 06:23:03.944233 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227] sqlite3.OperationalError: attempt to write a readonly database
+[Thu May 16 06:23:03.944238 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227] 
+[Thu May 16 06:23:03.944244 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227] The above exception was the direct cause of the following exception:
+[Thu May 16 06:23:03.944250 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227] 
+[Thu May 16 06:23:03.944255 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227] Traceback (most recent call last):
+[Thu May 16 06:23:03.944261 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+[Thu May 16 06:23:03.944267 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     response = get_response(request)
+[Thu May 16 06:23:03.944273 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+[Thu May 16 06:23:03.944279 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Thu May 16 06:23:03.944285 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:23:03.944290 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return bound_method(*args, **kwargs)
+[Thu May 16 06:23:03.944296 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+[Thu May 16 06:23:03.944302 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     response = view_func(request, *args, **kwargs)
+[Thu May 16 06:23:03.944308 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 441, in login
+[Thu May 16 06:23:03.944314 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return LoginView.as_view(**defaults)(request)
+[Thu May 16 06:23:03.944319 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+[Thu May 16 06:23:03.944325 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return self.dispatch(request, *args, **kwargs)
+[Thu May 16 06:23:03.944341 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:23:03.944347 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return bound_method(*args, **kwargs)
+[Thu May 16 06:23:03.944353 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/decorators/debug.py", line 92, in sensitive_post_parameters_wrapper
+[Thu May 16 06:23:03.944359 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return view(request, *args, **kwargs)
+[Thu May 16 06:23:03.944365 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:23:03.944371 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return bound_method(*args, **kwargs)
+[Thu May 16 06:23:03.944376 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+[Thu May 16 06:23:03.944382 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     response = view_func(request, *args, **kwargs)
+[Thu May 16 06:23:03.944388 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:23:03.944394 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return bound_method(*args, **kwargs)
+[Thu May 16 06:23:03.944400 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+[Thu May 16 06:23:03.944406 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     response = view_func(request, *args, **kwargs)
+[Thu May 16 06:23:03.944411 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 90, in dispatch
+[Thu May 16 06:23:03.944417 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return super().dispatch(request, *args, **kwargs)
+[Thu May 16 06:23:03.944423 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+[Thu May 16 06:23:03.944429 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return handler(request, *args, **kwargs)
+[Thu May 16 06:23:03.944435 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+[Thu May 16 06:23:03.944440 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return self.form_valid(form)
+[Thu May 16 06:23:03.944446 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 109, in form_valid
+[Thu May 16 06:23:03.944452 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     auth_login(self.request, form.get_user())
+[Thu May 16 06:23:03.944458 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/auth/__init__.py", line 118, in login
+[Thu May 16 06:23:03.944467 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     request.session.cycle_key()
+[Thu May 16 06:23:03.944473 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/sessions/backends/base.py", line 304, in cycle_key
+[Thu May 16 06:23:03.944480 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     self.create()
+[Thu May 16 06:23:03.944488 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/sessions/backends/db.py", line 54, in create
+[Thu May 16 06:23:03.944496 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     self.save(must_create=True)
+[Thu May 16 06:23:03.944502 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/sessions/backends/db.py", line 86, in save
+[Thu May 16 06:23:03.944509 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     obj.save(
+[Thu May 16 06:23:03.944516 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 814, in save
+[Thu May 16 06:23:03.944523 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     self.save_base(
+[Thu May 16 06:23:03.944531 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 877, in save_base
+[Thu May 16 06:23:03.944538 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     updated = self._save_table(
+[Thu May 16 06:23:03.944543 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1020, in _save_table
+[Thu May 16 06:23:03.944549 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     results = self._do_insert(
+[Thu May 16 06:23:03.944555 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1061, in _do_insert
+[Thu May 16 06:23:03.944561 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return manager._insert(
+[Thu May 16 06:23:03.944566 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+[Thu May 16 06:23:03.944572 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return getattr(self.get_queryset(), name)(*args, **kwargs)
+[Thu May 16 06:23:03.944578 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1805, in _insert
+[Thu May 16 06:23:03.944584 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return query.get_compiler(using=using).execute_sql(returning_fields)
+[Thu May 16 06:23:03.944590 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+[Thu May 16 06:23:03.944596 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     cursor.execute(sql, params)
+[Thu May 16 06:23:03.944601 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+[Thu May 16 06:23:03.944611 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return super().execute(sql, params)
+[Thu May 16 06:23:03.944617 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+[Thu May 16 06:23:03.944623 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return self._execute_with_wrappers(
+[Thu May 16 06:23:03.944628 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+[Thu May 16 06:23:03.944634 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return executor(sql, params, many, context)
+[Thu May 16 06:23:03.944640 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+[Thu May 16 06:23:03.944646 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     with self.db.wrap_database_errors:
+[Thu May 16 06:23:03.944652 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+[Thu May 16 06:23:03.944658 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     raise dj_exc_value.with_traceback(traceback) from exc_value
+[Thu May 16 06:23:03.944664 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+[Thu May 16 06:23:03.944669 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return self.cursor.execute(sql, params)
+[Thu May 16 06:23:03.944675 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+[Thu May 16 06:23:03.944681 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227]     return super().execute(query, params)
+[Thu May 16 06:23:03.944687 2024] [wsgi:error] [pid 52950:tid 139697008854592] [remote 124.120.121.174:54227] django.db.utils.OperationalError: attempt to write a readonly database
+[Thu May 16 06:23:59.515244 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585] Internal Server Error: /admin/login/
+[Thu May 16 06:23:59.515325 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585] Traceback (most recent call last):
+[Thu May 16 06:23:59.515333 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+[Thu May 16 06:23:59.515343 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return self.cursor.execute(sql, params)
+[Thu May 16 06:23:59.515374 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+[Thu May 16 06:23:59.515382 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return super().execute(query, params)
+[Thu May 16 06:23:59.515390 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585] sqlite3.OperationalError: attempt to write a readonly database
+[Thu May 16 06:23:59.515398 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585] 
+[Thu May 16 06:23:59.515405 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585] The above exception was the direct cause of the following exception:
+[Thu May 16 06:23:59.515491 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585] 
+[Thu May 16 06:23:59.515501 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585] Traceback (most recent call last):
+[Thu May 16 06:23:59.515508 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+[Thu May 16 06:23:59.515515 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     response = get_response(request)
+[Thu May 16 06:23:59.515523 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+[Thu May 16 06:23:59.515530 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Thu May 16 06:23:59.515536 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:23:59.515542 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return bound_method(*args, **kwargs)
+[Thu May 16 06:23:59.515548 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+[Thu May 16 06:23:59.515554 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     response = view_func(request, *args, **kwargs)
+[Thu May 16 06:23:59.515560 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 441, in login
+[Thu May 16 06:23:59.515566 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return LoginView.as_view(**defaults)(request)
+[Thu May 16 06:23:59.515571 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+[Thu May 16 06:23:59.515577 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return self.dispatch(request, *args, **kwargs)
+[Thu May 16 06:23:59.515583 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:23:59.515589 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return bound_method(*args, **kwargs)
+[Thu May 16 06:23:59.515595 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/decorators/debug.py", line 92, in sensitive_post_parameters_wrapper
+[Thu May 16 06:23:59.515601 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return view(request, *args, **kwargs)
+[Thu May 16 06:23:59.515607 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:23:59.515613 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return bound_method(*args, **kwargs)
+[Thu May 16 06:23:59.515619 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+[Thu May 16 06:23:59.515625 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     response = view_func(request, *args, **kwargs)
+[Thu May 16 06:23:59.515639 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:23:59.515646 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return bound_method(*args, **kwargs)
+[Thu May 16 06:23:59.515652 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+[Thu May 16 06:23:59.515658 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     response = view_func(request, *args, **kwargs)
+[Thu May 16 06:23:59.515663 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 90, in dispatch
+[Thu May 16 06:23:59.515670 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return super().dispatch(request, *args, **kwargs)
+[Thu May 16 06:23:59.515675 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+[Thu May 16 06:23:59.515682 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return handler(request, *args, **kwargs)
+[Thu May 16 06:23:59.515688 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+[Thu May 16 06:23:59.515694 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return self.form_valid(form)
+[Thu May 16 06:23:59.515700 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 109, in form_valid
+[Thu May 16 06:23:59.515706 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     auth_login(self.request, form.get_user())
+[Thu May 16 06:23:59.515712 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/auth/__init__.py", line 118, in login
+[Thu May 16 06:23:59.515718 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     request.session.cycle_key()
+[Thu May 16 06:23:59.515723 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/sessions/backends/base.py", line 304, in cycle_key
+[Thu May 16 06:23:59.515729 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     self.create()
+[Thu May 16 06:23:59.515735 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/sessions/backends/db.py", line 54, in create
+[Thu May 16 06:23:59.515741 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     self.save(must_create=True)
+[Thu May 16 06:23:59.515747 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/sessions/backends/db.py", line 86, in save
+[Thu May 16 06:23:59.515753 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     obj.save(
+[Thu May 16 06:23:59.515759 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 814, in save
+[Thu May 16 06:23:59.515768 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     self.save_base(
+[Thu May 16 06:23:59.515774 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 877, in save_base
+[Thu May 16 06:23:59.515780 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     updated = self._save_table(
+[Thu May 16 06:23:59.515786 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1020, in _save_table
+[Thu May 16 06:23:59.515792 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     results = self._do_insert(
+[Thu May 16 06:23:59.515798 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1061, in _do_insert
+[Thu May 16 06:23:59.515804 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return manager._insert(
+[Thu May 16 06:23:59.515809 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+[Thu May 16 06:23:59.515815 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return getattr(self.get_queryset(), name)(*args, **kwargs)
+[Thu May 16 06:23:59.515821 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1805, in _insert
+[Thu May 16 06:23:59.515827 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return query.get_compiler(using=using).execute_sql(returning_fields)
+[Thu May 16 06:23:59.515833 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+[Thu May 16 06:23:59.515839 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     cursor.execute(sql, params)
+[Thu May 16 06:23:59.515845 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+[Thu May 16 06:23:59.515851 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return super().execute(sql, params)
+[Thu May 16 06:23:59.515857 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+[Thu May 16 06:23:59.515863 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return self._execute_with_wrappers(
+[Thu May 16 06:23:59.515869 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+[Thu May 16 06:23:59.515875 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return executor(sql, params, many, context)
+[Thu May 16 06:23:59.515881 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+[Thu May 16 06:23:59.515887 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     with self.db.wrap_database_errors:
+[Thu May 16 06:23:59.515893 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+[Thu May 16 06:23:59.515902 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     raise dj_exc_value.with_traceback(traceback) from exc_value
+[Thu May 16 06:23:59.515908 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+[Thu May 16 06:23:59.515914 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return self.cursor.execute(sql, params)
+[Thu May 16 06:23:59.515920 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+[Thu May 16 06:23:59.515927 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585]     return super().execute(query, params)
+[Thu May 16 06:23:59.515933 2024] [wsgi:error] [pid 52950:tid 139697126360640] [remote 124.120.121.174:54585] django.db.utils.OperationalError: attempt to write a readonly database
+[Thu May 16 06:25:30.555166 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311] Internal Server Error: /admin/login/
+[Thu May 16 06:25:30.555278 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311] Traceback (most recent call last):
+[Thu May 16 06:25:30.555287 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+[Thu May 16 06:25:30.555329 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return self.cursor.execute(sql, params)
+[Thu May 16 06:25:30.555335 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+[Thu May 16 06:25:30.555342 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return super().execute(query, params)
+[Thu May 16 06:25:30.555348 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311] sqlite3.OperationalError: attempt to write a readonly database
+[Thu May 16 06:25:30.555354 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311] 
+[Thu May 16 06:25:30.555360 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311] The above exception was the direct cause of the following exception:
+[Thu May 16 06:25:30.555366 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311] 
+[Thu May 16 06:25:30.555372 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311] Traceback (most recent call last):
+[Thu May 16 06:25:30.555378 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+[Thu May 16 06:25:30.555384 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     response = get_response(request)
+[Thu May 16 06:25:30.555390 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+[Thu May 16 06:25:30.555397 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+[Thu May 16 06:25:30.555403 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:25:30.555409 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return bound_method(*args, **kwargs)
+[Thu May 16 06:25:30.555415 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+[Thu May 16 06:25:30.555434 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     response = view_func(request, *args, **kwargs)
+[Thu May 16 06:25:30.555440 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 441, in login
+[Thu May 16 06:25:30.555446 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return LoginView.as_view(**defaults)(request)
+[Thu May 16 06:25:30.555452 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+[Thu May 16 06:25:30.555458 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return self.dispatch(request, *args, **kwargs)
+[Thu May 16 06:25:30.555464 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:25:30.555471 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return bound_method(*args, **kwargs)
+[Thu May 16 06:25:30.555477 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/decorators/debug.py", line 92, in sensitive_post_parameters_wrapper
+[Thu May 16 06:25:30.555483 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return view(request, *args, **kwargs)
+[Thu May 16 06:25:30.555489 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:25:30.555495 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return bound_method(*args, **kwargs)
+[Thu May 16 06:25:30.555501 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+[Thu May 16 06:25:30.555507 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     response = view_func(request, *args, **kwargs)
+[Thu May 16 06:25:30.555513 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/utils/decorators.py", line 46, in _wrapper
+[Thu May 16 06:25:30.555519 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return bound_method(*args, **kwargs)
+[Thu May 16 06:25:30.555525 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+[Thu May 16 06:25:30.555532 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     response = view_func(request, *args, **kwargs)
+[Thu May 16 06:25:30.555538 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 90, in dispatch
+[Thu May 16 06:25:30.555544 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return super().dispatch(request, *args, **kwargs)
+[Thu May 16 06:25:30.555550 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+[Thu May 16 06:25:30.555556 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return handler(request, *args, **kwargs)
+[Thu May 16 06:25:30.555568 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+[Thu May 16 06:25:30.555575 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return self.form_valid(form)
+[Thu May 16 06:25:30.555580 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/auth/views.py", line 109, in form_valid
+[Thu May 16 06:25:30.555587 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     auth_login(self.request, form.get_user())
+[Thu May 16 06:25:30.555593 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/auth/__init__.py", line 118, in login
+[Thu May 16 06:25:30.555599 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     request.session.cycle_key()
+[Thu May 16 06:25:30.555605 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/sessions/backends/base.py", line 304, in cycle_key
+[Thu May 16 06:25:30.555611 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     self.create()
+[Thu May 16 06:25:30.555617 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/sessions/backends/db.py", line 54, in create
+[Thu May 16 06:25:30.555623 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     self.save(must_create=True)
+[Thu May 16 06:25:30.555629 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/contrib/sessions/backends/db.py", line 86, in save
+[Thu May 16 06:25:30.555635 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     obj.save(
+[Thu May 16 06:25:30.555641 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 814, in save
+[Thu May 16 06:25:30.555647 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     self.save_base(
+[Thu May 16 06:25:30.555652 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 877, in save_base
+[Thu May 16 06:25:30.555659 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     updated = self._save_table(
+[Thu May 16 06:25:30.555664 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1020, in _save_table
+[Thu May 16 06:25:30.555670 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     results = self._do_insert(
+[Thu May 16 06:25:30.555676 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1061, in _do_insert
+[Thu May 16 06:25:30.555682 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return manager._insert(
+[Thu May 16 06:25:30.555688 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+[Thu May 16 06:25:30.555694 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return getattr(self.get_queryset(), name)(*args, **kwargs)
+[Thu May 16 06:25:30.555706 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1805, in _insert
+[Thu May 16 06:25:30.555713 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return query.get_compiler(using=using).execute_sql(returning_fields)
+[Thu May 16 06:25:30.555719 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+[Thu May 16 06:25:30.555725 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     cursor.execute(sql, params)
+[Thu May 16 06:25:30.555731 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+[Thu May 16 06:25:30.555737 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return super().execute(sql, params)
+[Thu May 16 06:25:30.555743 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+[Thu May 16 06:25:30.555749 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return self._execute_with_wrappers(
+[Thu May 16 06:25:30.555754 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+[Thu May 16 06:25:30.555761 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return executor(sql, params, many, context)
+[Thu May 16 06:25:30.555766 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+[Thu May 16 06:25:30.555772 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     with self.db.wrap_database_errors:
+[Thu May 16 06:25:30.555779 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+[Thu May 16 06:25:30.555785 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     raise dj_exc_value.with_traceback(traceback) from exc_value
+[Thu May 16 06:25:30.555791 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+[Thu May 16 06:25:30.555796 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return self.cursor.execute(sql, params)
+[Thu May 16 06:25:30.555803 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]   File "/var/www/smart_ward/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+[Thu May 16 06:25:30.555809 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311]     return super().execute(query, params)
+[Thu May 16 06:25:30.555815 2024] [wsgi:error] [pid 53204:tid 140341430314560] [remote 124.120.121.174:55311] django.db.utils.OperationalError: attempt to write a readonly database
+[Thu May 16 06:28:10.491512 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56403] <QuerySet []>
+[Thu May 16 06:28:10.492062 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56403] {'bed_items': [], 'is_list_view': False}
+[Thu May 16 06:28:49.496838 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56697] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:28:49.497459 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56697] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:28:49.498195 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56697] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:28:49.498222 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56697] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:28:49.498812 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56697] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:28:49.498836 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56697] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:28:49.499442 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56697] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:28:49.499467 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56697] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:28:49.500033 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56697] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:28:49.500062 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56697] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 06:28:57.326708 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56772] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:28:57.327178 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56772] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:28:57.327969 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56772] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:28:57.327998 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56772] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:28:57.328627 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56772] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:28:57.328658 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56772] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:28:57.329292 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56772] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:28:57.329322 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56772] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:28:57.329939 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56772] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:28:57.329976 2024] [wsgi:error] [pid 53317:tid 140614127482432] [remote 124.120.121.174:56772] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 06:29:27.736672 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56995] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:29:27.737103 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56995] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:29:27.737855 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56995] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:29:27.737881 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56995] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:29:27.738480 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56995] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:29:27.738504 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56995] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:29:27.739105 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56995] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:29:27.739131 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56995] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:29:27.739702 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56995] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:29:27.739741 2024] [wsgi:error] [pid 53317:tid 140614051948096] [remote 124.120.121.174:56995] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 06:31:07.516977 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:57660] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:31:07.518587 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:57660] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:31:07.520720 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:57660] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:31:07.520753 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:57660] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:31:07.521490 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:57660] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:31:07.521514 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:57660] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:31:07.522135 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:57660] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:31:07.522163 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:57660] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:31:07.522734 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:57660] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:31:07.522764 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:57660] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 06:31:19.731870 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57784] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:31:19.732303 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57784] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:31:19.733051 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57784] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:31:19.733076 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57784] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:31:19.733765 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57784] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:31:19.733798 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57784] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:31:19.734451 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57784] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:31:19.734476 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57784] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:31:19.735083 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57784] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:31:19.735114 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57784] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 06:34:19.679601 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:59322] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:34:19.680007 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:59322] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:34:19.680719 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:59322] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:34:19.680746 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:59322] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:34:19.681402 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:59322] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:34:19.681427 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:59322] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:34:19.682043 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:59322] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:34:19.682068 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:59322] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:34:19.682675 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:59322] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:34:19.682709 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:59322] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 06:34:47.716386 2024] [wsgi:error] [pid 53521:tid 140441666545216] [remote 124.120.121.174:57531] Not Found: /socket.io/
+[Thu May 16 06:36:42.753673 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:60607] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:36:42.754143 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:60607] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:36:42.754963 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:60607] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:36:42.755012 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:60607] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:36:42.755693 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:60607] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:36:42.755741 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:60607] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:36:42.756342 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:60607] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:36:42.756373 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:60607] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:36:42.756974 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:60607] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:36:42.757010 2024] [wsgi:error] [pid 53521:tid 140441784051264] [remote 124.120.121.174:60607] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 06:37:59.614614 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:61116] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:37:59.615114 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:61116] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:37:59.615995 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:61116] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:37:59.616021 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:61116] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:37:59.616677 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:61116] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:37:59.616701 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:61116] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:37:59.617291 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:61116] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:37:59.617315 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:61116] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:37:59.617912 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:61116] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:37:59.617944 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:61116] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 06:40:13.151914 2024] [wsgi:error] [pid 54305:tid 140516516857408] [remote 124.120.121.174:62189] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:40:13.152327 2024] [wsgi:error] [pid 54305:tid 140516516857408] [remote 124.120.121.174:62189] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:40:13.153144 2024] [wsgi:error] [pid 54305:tid 140516516857408] [remote 124.120.121.174:62189] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:40:13.153172 2024] [wsgi:error] [pid 54305:tid 140516516857408] [remote 124.120.121.174:62189] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:40:13.153799 2024] [wsgi:error] [pid 54305:tid 140516516857408] [remote 124.120.121.174:62189] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:40:13.153825 2024] [wsgi:error] [pid 54305:tid 140516516857408] [remote 124.120.121.174:62189] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:40:13.154406 2024] [wsgi:error] [pid 54305:tid 140516516857408] [remote 124.120.121.174:62189] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:40:13.154452 2024] [wsgi:error] [pid 54305:tid 140516516857408] [remote 124.120.121.174:62189] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:40:13.155089 2024] [wsgi:error] [pid 54305:tid 140516516857408] [remote 124.120.121.174:62189] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:40:13.155127 2024] [wsgi:error] [pid 54305:tid 140516516857408] [remote 124.120.121.174:62189] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 06:42:02.077125 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:62971] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:42:02.077539 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:62971] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:42:02.078302 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:62971] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:42:02.078330 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:62971] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:42:02.078986 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:62971] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:42:02.079032 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:62971] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:42:02.079640 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:62971] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:42:02.079665 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:62971] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:42:02.080250 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:62971] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:42:02.080281 2024] [wsgi:error] [pid 54305:tid 140516634355264] [remote 124.120.121.174:62971] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 06:48:32.700798 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50136] Not Found: /patients/ward/login/
+[Thu May 16 06:48:48.112821 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] ipd_admin
+[Thu May 16 06:48:48.194804 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 06:48:48.195398 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 06:48:48.196420 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] {'bed_id': '1', 'patient': {}}
+[Thu May 16 06:48:48.196455 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 06:48:48.197126 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] {'bed_id': '2', 'patient': {}}
+[Thu May 16 06:48:48.197161 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 06:48:48.197858 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] {'bed_id': '3', 'patient': {}}
+[Thu May 16 06:48:48.197907 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 06:48:48.198569 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] {'bed_id': '4', 'patient': {}}
+[Thu May 16 06:48:48.198603 2024] [wsgi:error] [pid 54635:tid 140545040676416] [remote 124.120.121.174:50263] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 07:02:34.711881 2024] [wsgi:error] [pid 55080:tid 140385934104128] [remote 54.242.233.63:35872] Not Found: /gate.php
+[Thu May 16 07:02:34.721758 2024] [wsgi:error] [pid 55080:tid 140385925711424] [remote 54.242.233.63:35860] Not Found: /99vt
+[Thu May 16 07:02:34.732555 2024] [wsgi:error] [pid 55080:tid 140386018031168] [remote 54.242.233.63:35788] Not Found: /aaaaaaaaaaaaaaaaaaaaaaaaaqr
+[Thu May 16 07:02:34.737290 2024] [wsgi:error] [pid 55080:tid 140385900525120] [remote 54.242.233.63:35816] Not Found: /robots.txt
+[Thu May 16 07:02:34.737668 2024] [wsgi:error] [pid 55080:tid 140385908926016] [remote 54.242.233.63:35822] Not Found: /robots.txt
+[Thu May 16 07:02:35.632669 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 54.242.233.63:58554] Not Found: /99vu
+[Thu May 16 07:11:56.509667 2024] [wsgi:error] [pid 55080:tid 140385908926016] [remote 124.120.121.174:55164] Not Found: /favicon.ico
+[Thu May 16 07:12:02.733520 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] admin
+[Thu May 16 07:12:02.838700 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 07:12:02.839108 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 07:12:02.840123 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] {'bed_id': '1', 'patient': {}}
+[Thu May 16 07:12:02.840167 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 07:12:02.840776 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] {'bed_id': '2', 'patient': {}}
+[Thu May 16 07:12:02.840800 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 07:12:02.841404 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] {'bed_id': '3', 'patient': {}}
+[Thu May 16 07:12:02.841427 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 07:12:02.842068 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] {'bed_id': '4', 'patient': {}}
+[Thu May 16 07:12:02.842105 2024] [wsgi:error] [pid 55080:tid 140385942496832] [remote 124.120.121.174:55200] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 07:16:15.159240 2024] [wsgi:error] [pid 55269:tid 140549691168320] [remote 124.120.121.174:57318] Not Found: /socket.io/
+[Thu May 16 07:16:36.823374 2024] [wsgi:error] [pid 55269:tid 140549573662272] [remote 124.120.121.174:57485] Not Found: /socket.io/
+[Thu May 16 07:16:55.408165 2024] [wsgi:error] [pid 55269:tid 140549691168320] [remote 124.120.121.174:57627] Not Found: /socket.io/
+[Thu May 16 07:20:41.588724 2024] [wsgi:error] [pid 55572:tid 139755158140480] [remote 124.120.121.174:59301] Not Found: /socket.io/
+[Thu May 16 07:37:19.636252 2024] [proxy:error] [pid 56022:tid 140142107063872] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:3000 (localhost) failed
+[Thu May 16 07:37:19.636313 2024] [proxy_http:error] [pid 56022:tid 140142107063872] [client 124.120.121.174:51353] AH01114: HTTP: failed to make connection to backend: localhost
+[Thu May 16 07:37:43.024833 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:51518] None
+[Thu May 16 07:37:47.802072 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] admin
+[Thu May 16 07:37:47.933642 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 07:37:47.934024 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 07:37:47.934854 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] {'bed_id': '1', 'patient': {}}
+[Thu May 16 07:37:47.934881 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 07:37:47.935560 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] {'bed_id': '2', 'patient': {}}
+[Thu May 16 07:37:47.935586 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 07:37:47.936193 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] {'bed_id': '3', 'patient': {}}
+[Thu May 16 07:37:47.936217 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 07:37:47.936814 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] {'bed_id': '4', 'patient': {}}
+[Thu May 16 07:37:47.936845 2024] [wsgi:error] [pid 56020:tid 140142098671168] [remote 124.120.121.174:51554] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 07:37:56.311332 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:60731] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 07:37:56.311726 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:60731] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 07:37:56.312452 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:60731] {'bed_id': '1', 'patient': {}}
+[Thu May 16 07:37:56.312483 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:60731] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 07:37:56.313100 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:60731] {'bed_id': '2', 'patient': {}}
+[Thu May 16 07:37:56.313124 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:60731] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 07:37:56.313717 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:60731] {'bed_id': '3', 'patient': {}}
+[Thu May 16 07:37:56.313743 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:60731] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 07:37:56.314358 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:60731] {'bed_id': '4', 'patient': {}}
+[Thu May 16 07:37:56.314401 2024] [wsgi:error] [pid 56020:tid 140141981173312] [remote 124.120.121.174:60731] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 07:40:12.387321 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] admin
+[Thu May 16 07:40:12.491065 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 07:40:12.491469 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 07:40:12.492337 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] {'bed_id': '1', 'patient': {}}
+[Thu May 16 07:40:12.492365 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 07:40:12.492992 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] {'bed_id': '2', 'patient': {}}
+[Thu May 16 07:40:12.493017 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 07:40:12.493615 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] {'bed_id': '3', 'patient': {}}
+[Thu May 16 07:40:12.493638 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 07:40:12.494213 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] {'bed_id': '4', 'patient': {}}
+[Thu May 16 07:40:12.494243 2024] [wsgi:error] [pid 56150:tid 140495025268288] [remote 124.120.121.174:52735] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 07:40:26.899354 2024] [proxy:error] [pid 56151:tid 140494881384000] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:3000 (localhost) failed
+[Thu May 16 07:40:26.900875 2024] [proxy_http:error] [pid 56151:tid 140494881384000] [client 124.120.121.174:43349] AH01114: HTTP: failed to make connection to backend: localhost
+[Thu May 16 07:48:37.756476 2024] [proxy:error] [pid 56308:tid 140675748197952] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:3000 (localhost) failed
+[Thu May 16 07:48:37.756529 2024] [proxy_http:error] [pid 56308:tid 140675748197952] [client 124.120.121.174:56806] AH01114: HTTP: failed to make connection to backend: localhost
+[Thu May 16 07:48:50.332281 2024] [proxy:error] [pid 56308:tid 140675697841728] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:3000 (localhost) failed
+[Thu May 16 07:48:50.332336 2024] [proxy_http:error] [pid 56308:tid 140675697841728] [client 124.120.121.174:56887] AH01114: HTTP: failed to make connection to backend: localhost
+[Thu May 16 07:49:03.973122 2024] [proxy:error] [pid 56308:tid 140675337152064] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:3000 (localhost) failed
+[Thu May 16 07:49:03.973179 2024] [proxy_http:error] [pid 56308:tid 140675337152064] [client 124.120.121.174:56988] AH01114: HTTP: failed to make connection to backend: localhost
+[Thu May 16 07:49:11.275820 2024] [proxy:error] [pid 56308:tid 140674741564992] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:3000 (localhost) failed
+[Thu May 16 07:49:11.275879 2024] [proxy_http:error] [pid 56308:tid 140674741564992] [client 124.120.121.174:57039] AH01114: HTTP: failed to make connection to backend: localhost
+[Thu May 16 07:49:57.861039 2024] [wsgi:error] [pid 56403:tid 140052892902976] [remote 124.120.121.174:57340] Not Found: /socket.io/
+[Thu May 16 07:50:03.048674 2024] [wsgi:error] [pid 56403:tid 140052926473792] [remote 124.120.121.174:57375] Not Found: /socket.io/
+[Thu May 16 07:55:31.193460 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60415] Not Found: /socket.io/
+[Thu May 16 07:55:41.568841 2024] [wsgi:error] [pid 56596:tid 140638624474688] [remote 124.120.121.174:60484] Not Found: /socket.io/
+[Thu May 16 07:55:41.864452 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:61725] Not Found: /socket.io/
+[Thu May 16 07:55:51.960376 2024] [wsgi:error] [pid 56596:tid 140638624474688] [remote 124.120.121.174:60551] Not Found: /socket.io/
+[Thu May 16 07:55:55.042668 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60571] Not Found: /socket.io/
+[Thu May 16 07:55:57.429060 2024] [wsgi:error] [pid 56596:tid 140638624474688] [remote 124.120.121.174:60582] Not Found: /socket.io/
+[Thu May 16 07:56:26.312746 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] admin
+[Thu May 16 07:56:26.483376 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] <QuerySet [{'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}, {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}, {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}, {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}]>
+[Thu May 16 07:56:26.483808 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] {'id': 1, 'bed_id': '1', 'patient_id': None, 'active': True}
+[Thu May 16 07:56:26.484702 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] {'bed_id': '1', 'patient': {}}
+[Thu May 16 07:56:26.484730 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] {'id': 2, 'bed_id': '2', 'patient_id': None, 'active': True}
+[Thu May 16 07:56:26.485589 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] {'bed_id': '2', 'patient': {}}
+[Thu May 16 07:56:26.485621 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] {'id': 3, 'bed_id': '3', 'patient_id': None, 'active': True}
+[Thu May 16 07:56:26.486265 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] {'bed_id': '3', 'patient': {}}
+[Thu May 16 07:56:26.486291 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] {'id': 4, 'bed_id': '4', 'patient_id': None, 'active': True}
+[Thu May 16 07:56:26.486904 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] {'bed_id': '4', 'patient': {}}
+[Thu May 16 07:56:26.486936 2024] [wsgi:error] [pid 56596:tid 140638658045504] [remote 124.120.121.174:60787] {'bed_items': [{'bed_id': '1', 'patient': {}}, {'bed_id': '2', 'patient': {}}, {'bed_id': '3', 'patient': {}}, {'bed_id': '4', 'patient': {}}], 'is_list_view': False}
+[Thu May 16 07:57:18.155195 2024] [wsgi:error] [pid 56693:tid 140349905774144] [remote 124.120.121.174:61172] Not Found: /socket.io/
+[Thu May 16 07:58:34.721167 2024] [wsgi:error] [pid 56693:tid 140349872203328] [remote 87.121.69.52:58894] Forbidden (CSRF cookie not set.): /
+[Thu May 16 08:15:33.580981 2024] [proxy:error] [pid 57176:tid 140574411400768] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:5000 (127.0.0.1) failed
+[Thu May 16 08:15:33.581041 2024] [proxy_http:error] [pid 57176:tid 140574411400768] [client 124.120.121.174:53247] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:15:37.585349 2024] [proxy:error] [pid 57176:tid 140574394615360] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:5000 (127.0.0.1) failed
+[Thu May 16 08:15:37.585393 2024] [proxy_http:error] [pid 57176:tid 140574394615360] [client 124.120.121.174:53276] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:15:39.526603 2024] [proxy:error] [pid 57176:tid 140574377829952] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:5000 (127.0.0.1) failed
+[Thu May 16 08:15:39.526665 2024] [proxy_http:error] [pid 57176:tid 140574377829952] [client 124.120.121.174:53284] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:16:15.377507 2024] [proxy:error] [pid 57176:tid 140574361044544] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:8080 (*) failed
+[Thu May 16 08:16:15.377559 2024] [proxy_http:error] [pid 57176:tid 140574361044544] [client 124.120.121.174:53592] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:16:32.763986 2024] [proxy:error] [pid 57176:tid 140573868549696] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:8080 (*) failed
+[Thu May 16 08:16:32.764029 2024] [proxy_http:error] [pid 57176:tid 140573868549696] [client 124.120.121.174:62967] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:17:14.826819 2024] [proxy:error] [pid 57388:tid 140459791873600] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:8000 (*) failed
+[Thu May 16 08:17:14.826872 2024] [proxy_http:error] [pid 57388:tid 140459791873600] [client 124.120.121.174:54002] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:17:26.297385 2024] [proxy:error] [pid 57389:tid 140459733124672] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:5000 (127.0.0.1) failed
+[Thu May 16 08:17:26.297437 2024] [proxy_http:error] [pid 57389:tid 140459733124672] [client 124.120.121.174:54083] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:18:05.814298 2024] [proxy:error] [pid 57487:tid 139698460796480] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:5000 (127.0.0.1) failed
+[Thu May 16 08:18:05.814399 2024] [proxy_http:error] [pid 57487:tid 139698460796480] [client 124.120.121.174:54328] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:18:17.681080 2024] [proxy:error] [pid 57486:tid 139698357917248] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:8000 (*) failed
+[Thu May 16 08:18:17.681128 2024] [proxy_http:error] [pid 57486:tid 139698357917248] [client 124.120.121.174:54421] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:19:50.694803 2024] [proxy:error] [pid 57584:tid 140228727662144] (111)Connection refused: AH00957: ws: attempt to connect to 127.0.0.1:3000 (localhost) failed
+[Thu May 16 08:19:50.694930 2024] [proxy_http:error] [pid 57584:tid 140228727662144] [client 124.120.121.174:55065] AH01114: HTTP: failed to make connection to backend: localhost
+[Thu May 16 08:25:01.039838 2024] [wsgi:error] [pid 57700:tid 140633622181440] [remote 124.120.121.174:57222] mod_wsgi (pid=57700): Failed to exec Python script file '/var/www/smart_ward/smart_ward/smart_ward/wsgi.py'.
+[Thu May 16 08:25:01.039907 2024] [wsgi:error] [pid 57700:tid 140633622181440] [remote 124.120.121.174:57222] mod_wsgi (pid=57700): Exception occurred processing WSGI script '/var/www/smart_ward/smart_ward/smart_ward/wsgi.py'.
+[Thu May 16 08:25:01.043513 2024] [wsgi:error] [pid 57700:tid 140633622181440] [remote 124.120.121.174:57222] Traceback (most recent call last):
+[Thu May 16 08:25:01.043554 2024] [wsgi:error] [pid 57700:tid 140633622181440] [remote 124.120.121.174:57222]   File "/var/www/smart_ward/smart_ward/smart_ward/wsgi.py", line 11, in <module>
+[Thu May 16 08:25:01.043561 2024] [wsgi:error] [pid 57700:tid 140633622181440] [remote 124.120.121.174:57222]     from django_socketio import SocketIO
+[Thu May 16 08:25:01.043588 2024] [wsgi:error] [pid 57700:tid 140633622181440] [remote 124.120.121.174:57222] ImportError: cannot import name 'SocketIO' from 'django_socketio' (/var/www/smart_ward/venv/lib/python3.10/site-packages/django_socketio-0.3.9-py3.10.egg/django_socketio/__init__.py)
+[Thu May 16 08:25:03.256244 2024] [wsgi:error] [pid 57700:tid 140633504683584] [remote 124.120.121.174:57245] mod_wsgi (pid=57700): Failed to exec Python script file '/var/www/smart_ward/smart_ward/smart_ward/wsgi.py'.
+[Thu May 16 08:25:03.256335 2024] [wsgi:error] [pid 57700:tid 140633504683584] [remote 124.120.121.174:57245] mod_wsgi (pid=57700): Exception occurred processing WSGI script '/var/www/smart_ward/smart_ward/smart_ward/wsgi.py'.
+[Thu May 16 08:25:03.256452 2024] [wsgi:error] [pid 57700:tid 140633504683584] [remote 124.120.121.174:57245] Traceback (most recent call last):
+[Thu May 16 08:25:03.256484 2024] [wsgi:error] [pid 57700:tid 140633504683584] [remote 124.120.121.174:57245]   File "/var/www/smart_ward/smart_ward/smart_ward/wsgi.py", line 11, in <module>
+[Thu May 16 08:25:03.256493 2024] [wsgi:error] [pid 57700:tid 140633504683584] [remote 124.120.121.174:57245]     from django_socketio import SocketIO
+[Thu May 16 08:25:03.256519 2024] [wsgi:error] [pid 57700:tid 140633504683584] [remote 124.120.121.174:57245] ImportError: cannot import name 'SocketIO' from 'django_socketio' (/var/www/smart_ward/venv/lib/python3.10/site-packages/django_socketio-0.3.9-py3.10.egg/django_socketio/__init__.py)
+[Thu May 16 08:25:32.682095 2024] [wsgi:error] [pid 57792:tid 139797301327424] [remote 124.120.121.174:57465] mod_wsgi (pid=57792): Failed to exec Python script file '/var/www/smart_ward/smart_ward/smart_ward/wsgi.py'.
+[Thu May 16 08:25:32.682175 2024] [wsgi:error] [pid 57792:tid 139797301327424] [remote 124.120.121.174:57465] mod_wsgi (pid=57792): Exception occurred processing WSGI script '/var/www/smart_ward/smart_ward/smart_ward/wsgi.py'.
+[Thu May 16 08:25:32.682399 2024] [wsgi:error] [pid 57792:tid 139797301327424] [remote 124.120.121.174:57465] Traceback (most recent call last):
+[Thu May 16 08:25:32.682427 2024] [wsgi:error] [pid 57792:tid 139797301327424] [remote 124.120.121.174:57465]   File "/var/www/smart_ward/smart_ward/smart_ward/wsgi.py", line 13, in <module>
+[Thu May 16 08:25:32.682434 2024] [wsgi:error] [pid 57792:tid 139797301327424] [remote 124.120.121.174:57465]     from django_socketio import SocketIO
+[Thu May 16 08:25:32.682453 2024] [wsgi:error] [pid 57792:tid 139797301327424] [remote 124.120.121.174:57465] ImportError: cannot import name 'SocketIO' from 'django_socketio' (/var/www/smart_ward/venv/lib/python3.10/site-packages/django_socketio-0.3.9-py3.10.egg/django_socketio/__init__.py)
+[Thu May 16 08:25:33.971231 2024] [wsgi:error] [pid 57792:tid 139797334898240] [remote 124.120.121.174:57473] mod_wsgi (pid=57792): Failed to exec Python script file '/var/www/smart_ward/smart_ward/smart_ward/wsgi.py'.
+[Thu May 16 08:25:33.971319 2024] [wsgi:error] [pid 57792:tid 139797334898240] [remote 124.120.121.174:57473] mod_wsgi (pid=57792): Exception occurred processing WSGI script '/var/www/smart_ward/smart_ward/smart_ward/wsgi.py'.
+[Thu May 16 08:25:33.971446 2024] [wsgi:error] [pid 57792:tid 139797334898240] [remote 124.120.121.174:57473] Traceback (most recent call last):
+[Thu May 16 08:25:33.971478 2024] [wsgi:error] [pid 57792:tid 139797334898240] [remote 124.120.121.174:57473]   File "/var/www/smart_ward/smart_ward/smart_ward/wsgi.py", line 13, in <module>
+[Thu May 16 08:25:33.971486 2024] [wsgi:error] [pid 57792:tid 139797334898240] [remote 124.120.121.174:57473]     from django_socketio import SocketIO
+[Thu May 16 08:25:33.971509 2024] [wsgi:error] [pid 57792:tid 139797334898240] [remote 124.120.121.174:57473] ImportError: cannot import name 'SocketIO' from 'django_socketio' (/var/www/smart_ward/venv/lib/python3.10/site-packages/django_socketio-0.3.9-py3.10.egg/django_socketio/__init__.py)
+[Thu May 16 08:35:33.038978 2024] [wsgi:error] [pid 58207:tid 140647020877376] [remote 124.120.121.174:61329] mod_wsgi (pid=58207): Failed to exec Python script file '/var/www/smart_ward/socketio_wsgi.py'.
+[Thu May 16 08:35:33.039094 2024] [wsgi:error] [pid 58207:tid 140647020877376] [remote 124.120.121.174:61329] mod_wsgi (pid=58207): Exception occurred processing WSGI script '/var/www/smart_ward/socketio_wsgi.py'.
+[Thu May 16 08:35:33.039321 2024] [wsgi:error] [pid 58207:tid 140647020877376] [remote 124.120.121.174:61329] Traceback (most recent call last):
+[Thu May 16 08:35:33.039359 2024] [wsgi:error] [pid 58207:tid 140647020877376] [remote 124.120.121.174:61329]   File "/var/www/smart_ward/socketio_wsgi.py", line 3, in <module>
+[Thu May 16 08:35:33.039366 2024] [wsgi:error] [pid 58207:tid 140647020877376] [remote 124.120.121.174:61329]     from django_socketio import SocketIO
+[Thu May 16 08:35:33.039390 2024] [wsgi:error] [pid 58207:tid 140647020877376] [remote 124.120.121.174:61329] ImportError: cannot import name 'SocketIO' from 'django_socketio' (/var/www/smart_ward/venv/lib/python3.10/site-packages/django_socketio-0.3.9-py3.10.egg/django_socketio/__init__.py)
+[Thu May 16 08:35:34.983137 2024] [wsgi:error] [pid 58207:tid 140646903379520] [remote 124.120.121.174:61343] mod_wsgi (pid=58207): Failed to exec Python script file '/var/www/smart_ward/socketio_wsgi.py'.
+[Thu May 16 08:35:34.983200 2024] [wsgi:error] [pid 58207:tid 140646903379520] [remote 124.120.121.174:61343] mod_wsgi (pid=58207): Exception occurred processing WSGI script '/var/www/smart_ward/socketio_wsgi.py'.
+[Thu May 16 08:35:34.983299 2024] [wsgi:error] [pid 58207:tid 140646903379520] [remote 124.120.121.174:61343] Traceback (most recent call last):
+[Thu May 16 08:35:34.983321 2024] [wsgi:error] [pid 58207:tid 140646903379520] [remote 124.120.121.174:61343]   File "/var/www/smart_ward/socketio_wsgi.py", line 3, in <module>
+[Thu May 16 08:35:34.983328 2024] [wsgi:error] [pid 58207:tid 140646903379520] [remote 124.120.121.174:61343]     from django_socketio import SocketIO
+[Thu May 16 08:35:34.983349 2024] [wsgi:error] [pid 58207:tid 140646903379520] [remote 124.120.121.174:61343] ImportError: cannot import name 'SocketIO' from 'django_socketio' (/var/www/smart_ward/venv/lib/python3.10/site-packages/django_socketio-0.3.9-py3.10.egg/django_socketio/__init__.py)
+[Thu May 16 08:36:55.966837 2024] [wsgi:error] [pid 58310:tid 139679004653120] [remote 124.120.121.174:61859] mod_wsgi (pid=58310): Exception occurred processing WSGI script '/var/www/smart_ward/smart_ward/smart_ward/asgi.py'.
+[Thu May 16 08:36:55.966983 2024] [wsgi:error] [pid 58310:tid 139679004653120] [remote 124.120.121.174:61859] TypeError: ASGIApp.__call__() missing 1 required positional argument: 'send'
+[Thu May 16 08:36:57.318813 2024] [wsgi:error] [pid 58310:tid 139679038223936] [remote 124.120.121.174:61874] mod_wsgi (pid=58310): Exception occurred processing WSGI script '/var/www/smart_ward/smart_ward/smart_ward/asgi.py'.
+[Thu May 16 08:36:57.318947 2024] [wsgi:error] [pid 58310:tid 139679038223936] [remote 124.120.121.174:61874] TypeError: ASGIApp.__call__() missing 1 required positional argument: 'send'
+[Thu May 16 08:38:20.908675 2024] [wsgi:error] [pid 58404:tid 139873577281088] [remote 124.120.121.174:62429] mod_wsgi (pid=58404): Exception occurred processing WSGI script '/var/www/smart_ward/smart_ward/smart_ward/asgi.py'.
+[Thu May 16 08:38:20.908819 2024] [wsgi:error] [pid 58404:tid 139873577281088] [remote 124.120.121.174:62429] TypeError: ASGIApp.__call__() missing 1 required positional argument: 'send'
+[Thu May 16 08:39:26.092179 2024] [proxy:error] [pid 58502:tid 139779458963008] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 08:39:26.092248 2024] [proxy_http:error] [pid 58502:tid 139779458963008] [client 124.120.121.174:62936] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:39:28.325718 2024] [proxy:error] [pid 58503:tid 139779500926528] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 08:39:28.325756 2024] [proxy_http:error] [pid 58503:tid 139779500926528] [client 124.120.121.174:62950] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:39:29.437927 2024] [proxy:error] [pid 58503:tid 139779484141120] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 08:39:29.437974 2024] [proxy_http:error] [pid 58503:tid 139779484141120] [client 124.120.121.174:62959] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:41:21.647610 2024] [proxy:error] [pid 58502:tid 139779425392192] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 08:41:21.647688 2024] [proxy_http:error] [pid 58502:tid 139779425392192] [client 124.120.121.174:63736] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:42:06.114502 2024] [proxy:error] [pid 58725:tid 139772571928128] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 08:42:06.114557 2024] [proxy_http:error] [pid 58725:tid 139772571928128] [client 124.120.121.174:64050] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:42:07.595550 2024] [proxy:error] [pid 58725:tid 139772555142720] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 08:42:07.595588 2024] [proxy_http:error] [pid 58725:tid 139772555142720] [client 124.120.121.174:64067] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:42:19.740927 2024] [proxy:error] [pid 58725:tid 139772538357312] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 08:42:19.740976 2024] [proxy_http:error] [pid 58725:tid 139772538357312] [client 124.120.121.174:64516] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:42:46.948449 2024] [proxy:error] [pid 58724:tid 139772563535424] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 08:42:46.948517 2024] [proxy_http:error] [pid 58724:tid 139772563535424] [client 124.120.121.174:64381] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 08:43:09.637450 2024] [proxy:error] [pid 58724:tid 139772546750016] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 08:43:09.637651 2024] [proxy_http:error] [pid 58724:tid 139772546750016] [client 124.120.121.174:64521] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 10:34:26.230496 2024] [proxy:error] [pid 61372:tid 140517639714368] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 10:34:26.231115 2024] [proxy_http:error] [pid 61372:tid 140517639714368] [client 64.62.156.119:27307] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 10:36:39.835664 2024] [proxy:error] [pid 61371:tid 140517631321664] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 10:36:39.835752 2024] [proxy_http:error] [pid 61371:tid 140517631321664] [client 64.62.156.114:10387] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 10:37:11.802046 2024] [proxy:error] [pid 61371:tid 140517505431104] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 10:37:11.802097 2024] [proxy_http:error] [pid 61371:tid 140517505431104] [client 64.62.156.111:32823] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 10:39:34.618629 2024] [proxy:error] [pid 61371:tid 140517723432512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 10:39:34.618758 2024] [proxy_http:error] [pid 61371:tid 140517723432512] [client 185.191.126.213:56904] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 10:44:35.486259 2024] [proxy:error] [pid 61371:tid 140517555787328] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 10:44:35.486430 2024] [proxy_http:error] [pid 61371:tid 140517555787328] [client 141.98.11.79:45378] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 11:14:17.850700 2024] [proxy:error] [pid 61371:tid 140517539001920] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 11:14:17.850823 2024] [proxy_http:error] [pid 61371:tid 140517539001920] [client 115.77.201.221:49753] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 11:28:21.265649 2024] [proxy:error] [pid 61371:tid 140517564180032] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 11:28:21.265763 2024] [proxy_http:error] [pid 61371:tid 140517564180032] [client 185.191.126.213:52826] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 11:31:18.629025 2024] [proxy:error] [pid 61371:tid 140517547394624] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 11:31:18.629195 2024] [proxy_http:error] [pid 61371:tid 140517547394624] [client 198.199.115.10:54526] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 11:35:08.441493 2024] [proxy:error] [pid 61371:tid 140517572572736] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 11:35:08.441573 2024] [proxy_http:error] [pid 61371:tid 140517572572736] [client 183.81.169.139:34070] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:02:34.923995 2024] [proxy:error] [pid 61372:tid 140517614536256] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:02:34.924068 2024] [proxy_http:error] [pid 61372:tid 140517614536256] [client 54.173.65.235:32870] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:02:35.025616 2024] [proxy:error] [pid 61371:tid 140517513823808] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:02:35.025655 2024] [proxy_http:error] [pid 61371:tid 140517513823808] [client 54.173.65.235:32886] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:02:36.061405 2024] [proxy:error] [pid 61372:tid 140517597750848] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:02:36.061442 2024] [proxy_http:error] [pid 61372:tid 140517597750848] [client 54.173.65.235:55648] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:02:36.079788 2024] [proxy:error] [pid 61372:tid 140517102843456] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:02:36.079821 2024] [proxy_http:error] [pid 61372:tid 140517102843456] [client 54.173.65.235:55638] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:02:36.897822 2024] [proxy:error] [pid 61372:tid 140517094450752] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:02:36.897855 2024] [proxy_http:error] [pid 61372:tid 140517094450752] [client 54.173.65.235:32894] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:02:37.195582 2024] [proxy:error] [pid 61372:tid 140517086058048] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:02:37.195628 2024] [proxy_http:error] [pid 61372:tid 140517086058048] [client 54.173.65.235:32910] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:02:37.197119 2024] [proxy:error] [pid 61372:tid 140517052487232] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:02:37.197141 2024] [proxy_http:error] [pid 61372:tid 140517052487232] [client 54.173.65.235:32908] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:05:26.245275 2024] [proxy:error] [pid 61372:tid 140516549187136] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:05:26.245346 2024] [proxy_http:error] [pid 61372:tid 140516549187136] [client 192.241.193.117:50322] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:07:56.178925 2024] [proxy:error] [pid 61372:tid 140516557579840] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:07:56.179049 2024] [proxy_http:error] [pid 61372:tid 140516557579840] [client 159.89.195.4:41934] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:12:21.430160 2024] [proxy:error] [pid 61371:tid 140517614536256] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:12:21.430240 2024] [proxy_http:error] [pid 61371:tid 140517614536256] [client 87.236.176.173:56281] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:14:38.535953 2024] [proxy:error] [pid 61371:tid 140517631321664] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:14:38.536014 2024] [proxy_http:error] [pid 61371:tid 140517631321664] [client 174.138.61.44:52258] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:30:11.520985 2024] [proxy:error] [pid 61372:tid 140516524009024] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:30:11.521071 2024] [proxy_http:error] [pid 61372:tid 140516524009024] [client 13.75.149.32:58986] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:30:12.019920 2024] [proxy:error] [pid 61371:tid 140517580965440] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:30:12.019969 2024] [proxy_http:error] [pid 61371:tid 140517580965440] [client 13.75.149.32:59216] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:34:25.521197 2024] [proxy:error] [pid 61372:tid 140516498830912] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:34:25.521339 2024] [proxy_http:error] [pid 61372:tid 140516498830912] [client 179.43.188.106:37032] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:51:03.045849 2024] [proxy:error] [pid 61371:tid 140517639714368] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:51:03.046008 2024] [proxy_http:error] [pid 61371:tid 140517639714368] [client 31.220.1.83:57698] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 12:53:10.236473 2024] [proxy:error] [pid 61371:tid 140517589358144] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 12:53:10.236547 2024] [proxy_http:error] [pid 61371:tid 140517589358144] [client 185.191.126.213:51850] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 13:00:15.157156 2024] [proxy:error] [pid 61371:tid 140517497038400] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 13:00:15.157211 2024] [proxy_http:error] [pid 61371:tid 140517497038400] [client 78.153.140.179:50266] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 13:07:37.156441 2024] [proxy:error] [pid 61371:tid 140517530609216] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 13:07:37.156571 2024] [proxy_http:error] [pid 61371:tid 140517530609216] [client 162.216.150.20:61212] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 13:25:32.833530 2024] [proxy:error] [pid 61371:tid 140517522216512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 13:25:32.833666 2024] [proxy_http:error] [pid 61371:tid 140517522216512] [client 193.118.53.58:59212] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 13:25:36.312936 2024] [proxy:error] [pid 61371:tid 140517606143552] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 13:25:36.312979 2024] [proxy_http:error] [pid 61371:tid 140517606143552] [client 193.118.53.58:46972] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 13:36:05.327865 2024] [proxy:error] [pid 61371:tid 140517488645696] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 13:36:05.328003 2024] [proxy_http:error] [pid 61371:tid 140517488645696] [client 195.1.144.109:52614] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 14:09:58.212431 2024] [proxy:error] [pid 61371:tid 140517455074880] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 14:09:58.212525 2024] [proxy_http:error] [pid 61371:tid 140517455074880] [client 109.205.213.198:56694] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 14:30:19.759869 2024] [proxy:error] [pid 61371:tid 140517614536256] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 14:30:19.759942 2024] [proxy_http:error] [pid 61371:tid 140517614536256] [client 149.50.110.239:50322] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 14:41:02.203219 2024] [proxy:error] [pid 61371:tid 140517631321664] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 14:41:02.203283 2024] [proxy_http:error] [pid 61371:tid 140517631321664] [client 185.191.126.213:35702] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 14:50:23.062279 2024] [proxy:error] [pid 61371:tid 140517505431104] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 14:50:23.062349 2024] [proxy_http:error] [pid 61371:tid 140517505431104] [client 154.212.141.155:33554] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 14:50:25.340156 2024] [proxy:error] [pid 61371:tid 140517723432512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 14:50:25.340208 2024] [proxy_http:error] [pid 61371:tid 140517723432512] [client 154.212.141.235:43936] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 14:50:25.687553 2024] [proxy:error] [pid 61371:tid 140517555787328] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 14:50:25.687587 2024] [proxy_http:error] [pid 61371:tid 140517555787328] [client 154.212.141.235:43956] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 15:06:31.022260 2024] [proxy:error] [pid 61371:tid 140517597750848] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 15:06:31.022333 2024] [proxy_http:error] [pid 61371:tid 140517597750848] [client 192.241.215.27:43260] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 15:16:47.353743 2024] [proxy:error] [pid 61372:tid 140516490438208] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 15:16:47.353830 2024] [proxy_http:error] [pid 61372:tid 140516490438208] [client 216.244.66.230:39040] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 15:35:30.646732 2024] [proxy:error] [pid 61371:tid 140517497038400] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 15:35:30.646914 2024] [proxy_http:error] [pid 61371:tid 140517497038400] [client 83.97.73.245:53274] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 15:36:32.083888 2024] [proxy:error] [pid 61372:tid 140517639714368] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 15:36:32.084045 2024] [proxy_http:error] [pid 61372:tid 140517639714368] [client 35.202.9.133:46384] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 16:05:26.519113 2024] [proxy:error] [pid 61371:tid 140517547394624] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 16:05:26.520029 2024] [proxy_http:error] [pid 61371:tid 140517547394624] [client 128.199.52.28:27828] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 16:30:23.863420 2024] [proxy:error] [pid 61371:tid 140517480252992] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 16:30:23.863628 2024] [proxy_http:error] [pid 61371:tid 140517480252992] [client 183.81.169.139:37156] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 16:55:44.608243 2024] [proxy:error] [pid 61371:tid 140517513823808] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 16:55:44.608318 2024] [proxy_http:error] [pid 61371:tid 140517513823808] [client 185.180.143.138:50356] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:00:38.502197 2024] [proxy:error] [pid 61371:tid 140517471860288] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:00:38.502271 2024] [proxy_http:error] [pid 61371:tid 140517471860288] [client 185.224.128.43:40744] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:02:35.409511 2024] [proxy:error] [pid 61371:tid 140517631321664] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:02:35.409562 2024] [proxy_http:error] [pid 61371:tid 140517631321664] [client 34.235.153.245:36988] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:02:35.464907 2024] [proxy:error] [pid 61372:tid 140517606143552] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:02:35.464967 2024] [proxy_http:error] [pid 61372:tid 140517606143552] [client 34.235.153.245:36944] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:02:35.465604 2024] [proxy:error] [pid 61371:tid 140517463467584] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:02:35.465639 2024] [proxy_http:error] [pid 61371:tid 140517463467584] [client 34.235.153.245:36928] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:02:35.681568 2024] [proxy:error] [pid 61372:tid 140517597750848] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:02:35.681615 2024] [proxy_http:error] [pid 61372:tid 140517597750848] [client 34.235.153.245:37002] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:02:35.682026 2024] [proxy:error] [pid 61372:tid 140517102843456] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:02:35.682047 2024] [proxy_http:error] [pid 61372:tid 140517102843456] [client 34.235.153.245:36992] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:02:35.768252 2024] [proxy:error] [pid 61372:tid 140517589358144] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:02:35.768322 2024] [proxy_http:error] [pid 61372:tid 140517589358144] [client 34.235.153.245:37014] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:02:36.288209 2024] [proxy:error] [pid 61372:tid 140517052487232] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:02:36.288254 2024] [proxy_http:error] [pid 61372:tid 140517052487232] [client 34.235.153.245:37022] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:05:02.145455 2024] [proxy:error] [pid 61371:tid 140517555787328] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:05:02.145517 2024] [proxy_http:error] [pid 61371:tid 140517555787328] [client 14.139.82.61:53533] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:05:02.537969 2024] [proxy:error] [pid 61371:tid 140517597750848] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:05:02.538006 2024] [proxy_http:error] [pid 61371:tid 140517597750848] [client 122.252.253.9:53561] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:05:02.675380 2024] [proxy:error] [pid 61371:tid 140517497038400] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:05:02.675424 2024] [proxy_http:error] [pid 61371:tid 140517497038400] [client 122.252.253.9:53570] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:05:02.944636 2024] [proxy:error] [pid 61371:tid 140517547394624] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:05:02.944671 2024] [proxy_http:error] [pid 61371:tid 140517547394624] [client 14.139.82.61:53574] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:05:03.443735 2024] [proxy:error] [pid 61371:tid 140517572572736] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:05:03.443775 2024] [proxy_http:error] [pid 61371:tid 140517572572736] [client 14.139.82.61:53596] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:05:04.467621 2024] [proxy:error] [pid 61371:tid 140517480252992] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:05:04.467655 2024] [proxy_http:error] [pid 61371:tid 140517480252992] [client 14.139.82.61:53629] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:05:05.183176 2024] [proxy:error] [pid 61371:tid 140517513823808] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:05:05.183213 2024] [proxy_http:error] [pid 61371:tid 140517513823808] [client 122.252.253.9:53695] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:05:05.931168 2024] [proxy:error] [pid 61371:tid 140517471860288] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:05:05.931201 2024] [proxy_http:error] [pid 61371:tid 140517471860288] [client 14.139.82.61:53706] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:05:06.623049 2024] [proxy:error] [pid 61371:tid 140517614536256] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:05:06.623086 2024] [proxy_http:error] [pid 61371:tid 140517614536256] [client 122.252.253.9:53758] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:08:59.531765 2024] [proxy:error] [pid 61372:tid 140517060879936] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:08:59.531848 2024] [proxy_http:error] [pid 61372:tid 140517060879936] [client 83.97.73.245:56472] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:24:50.352438 2024] [proxy:error] [pid 61371:tid 140517631321664] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:24:50.352513 2024] [proxy_http:error] [pid 61371:tid 140517631321664] [client 192.241.196.34:40508] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:45:36.678349 2024] [proxy:error] [pid 61371:tid 140517505431104] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:45:36.678420 2024] [proxy_http:error] [pid 61371:tid 140517505431104] [client 46.229.139.93:33728] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:50:51.072828 2024] [proxy:error] [pid 61371:tid 140517723432512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:50:51.072912 2024] [proxy_http:error] [pid 61371:tid 140517723432512] [client 185.191.126.213:57168] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 17:54:48.211321 2024] [proxy:error] [pid 61372:tid 140516549187136] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 17:54:48.211450 2024] [proxy_http:error] [pid 61372:tid 140516549187136] [client 179.43.188.106:58768] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 18:28:09.965929 2024] [proxy:error] [pid 61371:tid 140517622928960] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 18:28:09.966137 2024] [proxy_http:error] [pid 61371:tid 140517622928960] [client 179.43.188.106:37884] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 18:48:21.176847 2024] [proxy:error] [pid 61372:tid 140516557579840] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 18:48:21.177039 2024] [proxy_http:error] [pid 61372:tid 140516557579840] [client 167.248.133.191:47542] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 18:48:24.718962 2024] [proxy:error] [pid 61371:tid 140517589358144] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 18:48:24.719034 2024] [proxy_http:error] [pid 61371:tid 140517589358144] [client 167.248.133.191:42836] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 19:04:39.393359 2024] [proxy:error] [pid 61372:tid 140516524009024] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 19:04:39.393500 2024] [proxy_http:error] [pid 61372:tid 140516524009024] [client 149.50.110.239:54774] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 19:09:36.594501 2024] [proxy:error] [pid 61371:tid 140517564180032] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 19:09:36.594632 2024] [proxy_http:error] [pid 61371:tid 140517564180032] [client 179.43.188.106:45046] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 19:51:34.253691 2024] [proxy:error] [pid 61371:tid 140517530609216] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 19:51:34.253837 2024] [proxy_http:error] [pid 61371:tid 140517530609216] [client 87.121.69.52:44114] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 19:58:42.792810 2024] [proxy:error] [pid 61371:tid 140517522216512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 19:58:42.792955 2024] [proxy_http:error] [pid 61371:tid 140517522216512] [client 104.152.52.240:49519] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 20:15:13.508406 2024] [proxy:error] [pid 61371:tid 140517606143552] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 20:15:13.508540 2024] [proxy_http:error] [pid 61371:tid 140517606143552] [client 185.191.126.213:35056] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 20:21:31.778642 2024] [proxy:error] [pid 61371:tid 140517488645696] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 20:21:31.778703 2024] [proxy_http:error] [pid 61371:tid 140517488645696] [client 103.161.35.44:47190] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 20:22:53.046586 2024] [proxy:error] [pid 61371:tid 140517455074880] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 20:22:53.046661 2024] [proxy_http:error] [pid 61371:tid 140517455074880] [client 109.205.213.198:46536] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 20:32:13.865968 2024] [proxy:error] [pid 61371:tid 140517446682176] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 20:32:13.866091 2024] [proxy_http:error] [pid 61371:tid 140517446682176] [client 205.210.31.81:61236] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 21:13:28.887859 2024] [proxy:error] [pid 61371:tid 140517463467584] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 21:13:28.887933 2024] [proxy_http:error] [pid 61371:tid 140517463467584] [client 34.38.151.7:60656] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 21:35:25.093869 2024] [proxy:error] [pid 61371:tid 140517580965440] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 21:35:25.094019 2024] [proxy_http:error] [pid 61371:tid 140517580965440] [client 149.50.110.239:33458] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 22:02:36.851486 2024] [proxy:error] [pid 61371:tid 140517597750848] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 22:02:36.851558 2024] [proxy_http:error] [pid 61371:tid 140517597750848] [client 54.165.233.246:52792] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 22:02:36.871213 2024] [proxy:error] [pid 61371:tid 140517539001920] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 22:02:36.871249 2024] [proxy_http:error] [pid 61371:tid 140517539001920] [client 54.165.233.246:52778] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 22:02:37.207787 2024] [proxy:error] [pid 61371:tid 140517572572736] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 22:02:37.207826 2024] [proxy_http:error] [pid 61371:tid 140517572572736] [client 54.165.233.246:52752] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 22:02:37.208665 2024] [proxy:error] [pid 61371:tid 140517522216512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 22:02:37.208665 2024] [proxy:error] [pid 61372:tid 140516498830912] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 22:02:37.208695 2024] [proxy_http:error] [pid 61371:tid 140517522216512] [client 54.165.233.246:52766] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 22:02:37.208707 2024] [proxy_http:error] [pid 61372:tid 140516498830912] [client 54.165.233.246:52768] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 22:02:37.383504 2024] [proxy:error] [pid 61372:tid 140516507223616] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 22:02:37.383544 2024] [proxy_http:error] [pid 61372:tid 140516507223616] [client 54.165.233.246:52808] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 22:02:37.904829 2024] [proxy:error] [pid 61372:tid 140517639714368] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 22:02:37.904868 2024] [proxy_http:error] [pid 61372:tid 140517639714368] [client 54.165.233.246:52824] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 22:23:12.453814 2024] [proxy:error] [pid 61371:tid 140517488645696] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 22:23:12.453880 2024] [proxy_http:error] [pid 61371:tid 140517488645696] [client 195.1.144.109:55432] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 22:32:28.810612 2024] [proxy:error] [pid 61372:tid 140517606143552] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 22:32:28.810703 2024] [proxy_http:error] [pid 61372:tid 140517606143552] [client 185.224.128.43:53692] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 22:38:51.476355 2024] [proxy:error] [pid 61372:tid 140517102843456] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 22:38:51.476427 2024] [proxy_http:error] [pid 61372:tid 140517102843456] [client 185.16.38.111:33786] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Thu May 16 23:05:27.896058 2024] [proxy:error] [pid 61371:tid 140517455074880] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Thu May 16 23:05:27.896136 2024] [proxy_http:error] [pid 61371:tid 140517455074880] [client 185.191.126.213:49642] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 00:40:34.721949 2024] [proxy:error] [pid 61372:tid 140517077665344] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 00:40:34.722032 2024] [proxy_http:error] [pid 61372:tid 140517077665344] [client 78.36.246.45:54429] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 00:58:03.890344 2024] [proxy:error] [pid 61372:tid 140517069272640] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 00:58:03.890419 2024] [proxy_http:error] [pid 61372:tid 140517069272640] [client 185.191.126.213:46814] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:38.881037 2024] [proxy:error] [pid 61372:tid 140517052487232] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:38.881108 2024] [proxy_http:error] [pid 61372:tid 140517052487232] [client 159.223.31.243:5187] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:39.481264 2024] [proxy:error] [pid 61371:tid 140517446682176] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:39.481312 2024] [proxy_http:error] [pid 61371:tid 140517446682176] [client 159.223.31.243:5311] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:39.481329 2024] [proxy:error] [pid 61372:tid 140517614536256] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:39.481371 2024] [proxy_http:error] [pid 61372:tid 140517614536256] [client 159.223.31.243:22307] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:39.485980 2024] [proxy:error] [pid 61371:tid 140517631321664] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:39.486012 2024] [proxy_http:error] [pid 61371:tid 140517631321664] [client 159.223.31.243:26657] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:40.073651 2024] [proxy:error] [pid 61372:tid 140517622928960] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:40.073687 2024] [proxy_http:error] [pid 61372:tid 140517622928960] [client 159.223.31.243:30953] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:40.115113 2024] [proxy:error] [pid 61371:tid 140517580965440] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:40.115151 2024] [proxy_http:error] [pid 61371:tid 140517580965440] [client 159.223.31.243:26699] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:40.705390 2024] [proxy:error] [pid 61371:tid 140517639714368] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:40.705427 2024] [proxy_http:error] [pid 61371:tid 140517639714368] [client 159.223.31.243:32711] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:41.287920 2024] [proxy:error] [pid 61371:tid 140517589358144] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:41.287978 2024] [proxy_http:error] [pid 61371:tid 140517589358144] [client 159.223.31.243:19013] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:42.232572 2024] [proxy:error] [pid 61371:tid 140517539001920] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:42.232607 2024] [proxy_http:error] [pid 61371:tid 140517539001920] [client 157.230.100.23:18292] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:42.242263 2024] [proxy:error] [pid 61371:tid 140517497038400] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:42.242296 2024] [proxy_http:error] [pid 61371:tid 140517497038400] [client 46.101.123.227:41646] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:42.248713 2024] [proxy:error] [pid 61372:tid 140516557579840] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:42.248743 2024] [proxy_http:error] [pid 61372:tid 140516557579840] [client 64.226.121.172:33934] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:42.252385 2024] [proxy:error] [pid 61372:tid 140516532401728] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:42.252410 2024] [proxy_http:error] [pid 61372:tid 140516532401728] [client 178.128.197.147:25446] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:00:42.828338 2024] [proxy:error] [pid 61371:tid 140517530609216] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:00:42.828381 2024] [proxy_http:error] [pid 61371:tid 140517530609216] [client 178.128.197.147:25464] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:30:36.408323 2024] [proxy:error] [pid 61372:tid 140516507223616] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:30:36.408412 2024] [proxy_http:error] [pid 61372:tid 140516507223616] [client 184.22.32.44:60375] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:30:38.235417 2024] [proxy:error] [pid 61371:tid 140517522216512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:30:38.235484 2024] [proxy_http:error] [pid 61371:tid 140517522216512] [client 184.22.32.44:60402] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:30:45.365511 2024] [proxy:error] [pid 61371:tid 140517606143552] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:30:45.365579 2024] [proxy_http:error] [pid 61371:tid 140517606143552] [client 184.22.32.44:60487] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 01:30:45.603587 2024] [proxy:error] [pid 61371:tid 140517555787328] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 01:30:45.603631 2024] [proxy_http:error] [pid 61371:tid 140517555787328] [client 184.22.32.44:60492] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 02:00:00.094455 2024] [proxy:error] [pid 61371:tid 140517606143552] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 02:00:00.094525 2024] [proxy_http:error] [pid 61371:tid 140517606143552] [client 87.121.69.52:57572] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 02:03:25.023701 2024] [proxy:error] [pid 61371:tid 140517555787328] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 02:03:25.023815 2024] [proxy_http:error] [pid 61371:tid 140517555787328] [client 49.237.4.171:49646] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 02:15:06.071626 2024] [proxy:error] [pid 61371:tid 140517455074880] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 02:15:06.071696 2024] [proxy_http:error] [pid 61371:tid 140517455074880] [client 168.76.20.229:57648] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 02:15:06.293072 2024] [proxy:error] [pid 61371:tid 140517614536256] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 02:15:06.293111 2024] [proxy_http:error] [pid 61371:tid 140517614536256] [client 168.76.20.229:37982] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 02:15:06.486333 2024] [proxy:error] [pid 61371:tid 140517446682176] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 02:15:06.486369 2024] [proxy_http:error] [pid 61371:tid 140517446682176] [client 168.76.20.229:34483] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 02:15:06.805927 2024] [proxy:error] [pid 61371:tid 140517631321664] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 02:15:06.805963 2024] [proxy_http:error] [pid 61371:tid 140517631321664] [client 168.76.20.229:23693] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 02:24:40.116644 2024] [proxy:error] [pid 61371:tid 140517639714368] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 02:24:40.116719 2024] [proxy_http:error] [pid 61371:tid 140517639714368] [client 46.174.191.28:28586] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 02:43:00.496455 2024] [proxy:error] [pid 61371:tid 140517723432512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 02:43:00.496525 2024] [proxy_http:error] [pid 61371:tid 140517723432512] [client 167.94.138.114:60846] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 02:43:06.350992 2024] [proxy:error] [pid 61371:tid 140517539001920] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 02:43:06.351063 2024] [proxy_http:error] [pid 61371:tid 140517539001920] [client 167.94.138.114:39980] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:02:36.178552 2024] [proxy:error] [pid 61371:tid 140517572572736] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:02:36.178628 2024] [proxy_http:error] [pid 61371:tid 140517572572736] [client 54.174.217.223:40770] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:02:36.179383 2024] [proxy:error] [pid 61371:tid 140517622928960] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:02:36.179417 2024] [proxy_http:error] [pid 61371:tid 140517622928960] [client 54.174.217.223:40748] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:02:36.184733 2024] [proxy:error] [pid 61371:tid 140517522216512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:02:36.184763 2024] [proxy_http:error] [pid 61371:tid 140517522216512] [client 54.174.217.223:40762] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:02:36.210616 2024] [proxy:error] [pid 61371:tid 140517606143552] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:02:36.210650 2024] [proxy_http:error] [pid 61371:tid 140517606143552] [client 54.174.217.223:40778] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:02:36.538817 2024] [proxy:error] [pid 61372:tid 140516515616320] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:02:36.538867 2024] [proxy_http:error] [pid 61372:tid 140516515616320] [client 54.174.217.223:40824] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:02:36.540488 2024] [proxy:error] [pid 61372:tid 140516490438208] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:02:36.540521 2024] [proxy_http:error] [pid 61372:tid 140516490438208] [client 54.174.217.223:40776] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:45:38.040432 2024] [proxy:error] [pid 61371:tid 140517614536256] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:45:38.040503 2024] [proxy_http:error] [pid 61371:tid 140517614536256] [client 185.224.128.43:35128] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:48:40.513567 2024] [proxy:error] [pid 61372:tid 140517723432512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:48:40.513650 2024] [proxy_http:error] [pid 61372:tid 140517723432512] [client 167.99.189.13:40032] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:59:24.594974 2024] [proxy:error] [pid 61372:tid 140517589358144] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:59:24.595135 2024] [proxy_http:error] [pid 61372:tid 140517589358144] [client 65.154.226.167:45532] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:59:40.861892 2024] [proxy:error] [pid 61372:tid 140517077665344] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:59:40.861947 2024] [proxy_http:error] [pid 61372:tid 140517077665344] [client 185.191.126.213:59660] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:59:51.448730 2024] [proxy:error] [pid 61372:tid 140517069272640] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:59:51.448775 2024] [proxy_http:error] [pid 61372:tid 140517069272640] [client 65.154.226.167:36956] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 03:59:53.026743 2024] [proxy:error] [pid 61372:tid 140517052487232] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 03:59:53.026791 2024] [proxy_http:error] [pid 61372:tid 140517052487232] [client 34.122.147.229:36086] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:00:09.079449 2024] [proxy:error] [pid 61372:tid 140517060879936] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:00:09.079503 2024] [proxy_http:error] [pid 61372:tid 140517060879936] [client 205.169.39.224:2675] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:04:42.441859 2024] [proxy:error] [pid 61371:tid 140517446682176] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:04:42.441962 2024] [proxy_http:error] [pid 61371:tid 140517446682176] [client 65.154.226.169:13845] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:04:44.946353 2024] [proxy:error] [pid 61371:tid 140517631321664] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:04:44.946392 2024] [proxy_http:error] [pid 61371:tid 140517631321664] [client 34.97.91.62:5981] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:05:02.942562 2024] [proxy:error] [pid 61371:tid 140517639714368] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:05:02.942626 2024] [proxy_http:error] [pid 61371:tid 140517639714368] [client 65.154.226.168:13404] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:05:40.109085 2024] [proxy:error] [pid 61371:tid 140517723432512] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:05:40.109146 2024] [proxy_http:error] [pid 61371:tid 140517723432512] [client 205.169.39.252:6821] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:06:01.341868 2024] [proxy:error] [pid 61371:tid 140517539001920] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:06:01.341984 2024] [proxy_http:error] [pid 61371:tid 140517539001920] [client 185.191.126.213:55846] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:07:25.934629 2024] [proxy:error] [pid 61371:tid 140517497038400] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:07:25.934697 2024] [proxy_http:error] [pid 61371:tid 140517497038400] [client 65.154.226.166:49270] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:08:06.636458 2024] [proxy:error] [pid 61371:tid 140517622928960] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:08:06.636510 2024] [proxy_http:error] [pid 61371:tid 140517622928960] [client 179.43.188.106:45912] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:10:16.885869 2024] [proxy:error] [pid 61372:tid 140516540794432] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:10:16.885983 2024] [proxy_http:error] [pid 61372:tid 140516540794432] [client 65.154.226.170:18917] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:10:27.601314 2024] [proxy:error] [pid 61372:tid 140517622928960] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:10:27.601379 2024] [proxy_http:error] [pid 61372:tid 140517622928960] [client 205.169.39.115:42219] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:13:42.333946 2024] [proxy:error] [pid 61371:tid 140517547394624] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:13:42.334028 2024] [proxy_http:error] [pid 61371:tid 140517547394624] [client 65.154.226.169:26533] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:15:49.886629 2024] [proxy:error] [pid 61371:tid 140517555787328] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:15:49.886699 2024] [proxy_http:error] [pid 61371:tid 140517555787328] [client 205.169.39.201:16235] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:16:09.813098 2024] [proxy:error] [pid 61372:tid 140516557579840] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:16:09.813178 2024] [proxy_http:error] [pid 61372:tid 140516557579840] [client 65.154.226.169:52569] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:16:15.597255 2024] [proxy:error] [pid 61371:tid 140517455074880] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:16:15.597403 2024] [proxy_http:error] [pid 61371:tid 140517455074880] [client 65.154.226.167:58643] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 04:58:05.537632 2024] [proxy:error] [pid 61372:tid 140516498830912] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 04:58:05.537732 2024] [proxy_http:error] [pid 61372:tid 140516498830912] [client 185.191.126.213:36620] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
