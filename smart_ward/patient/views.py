@@ -330,9 +330,9 @@ def wardForm70(request):
     telemetrys = []
     current_date += diffTime
 
-  telemetryDateItems.reverse()
-  tempDateItems.reverse()
-  pulseDateItems.reverse()
+  # telemetryDateItems.reverse()
+  # tempDateItems.reverse()
+  # pulseDateItems.reverse()
   widthTemp = len(telemetryDateItems) * len(setOfHr)
   context = {
     'hn_number': request.GET.get('hn_number'),
