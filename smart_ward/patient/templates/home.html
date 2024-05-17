@@ -6,6 +6,7 @@
   <title>
     IPD Center Platform
   </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -22,6 +23,11 @@
       body {
         font-family: bebasNeue;
       }
+      @media only screen and (max-width: 600px) {
+        .hide-mobile {
+            display: none;
+        }
+      }
   </style>
   {% block style_css  %}{% endblock style_css %}
 </head>
@@ -30,12 +36,12 @@
     <div style="position: relative;height:98vh;width:98vw;">
         <div class="content-header" style="position: absolute;top: 0;width:100%;margin-top: 10px;">
             <div style="display: flex;">
-                <img src="{% static "/images/centraluser_icon.png" %}" style="height: 30px;"/>
-                <div style="color: white;font-size: 45px;margin-left:10px;line-height: 35px;">{% block title %}{% endblock title %}</div>
+                <img class="hide-mobile" src="{% static "/images/centraluser_icon.png" %}" style="height: 30px;"/>
+                <div class="hide-mobile" style="color: white;font-size: 45px;margin-left:10px;line-height: 35px;">{% block title %}{% endblock title %}</div>
                 <div style="float: right;position: absolute;right: 0;">
                     {% block ward %}{% endblock %}
                     {% block form31 %}{% endblock %}
-                    {% block form70 %}{% endblock %}
+                    {% comment %} {% block form70 %}{% endblock %} {% endcomment %}
                     <a href="/logout"><img src="{% static "/images/ic_logout.png" %}" style="width:24px;height:24px;cursor: pointer;"/></a>
                 </div>
             </div>
