@@ -20,10 +20,10 @@ def main():
 def init_socketio():
     os.system('python manage.py runserver_socketio 0.0.0.0:9000')
 
-socketio_thread = Thread(target=init_socketio, args=())
-socketio_thread.start()
+#socketio_thread = Thread(target=init_socketio, args=())#
+#socketio_thread.start()
 
 if __name__ == '__main__':
-    #main()
-    uvicorn.run("smart_ward.asgi:application", reload=True)
+    main()
+    #uvicorn.run("smart_ward.asgi:application", reload=True)
 

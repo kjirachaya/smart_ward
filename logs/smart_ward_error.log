@@ -810,3 +810,15 @@
 [Fri May 17 04:16:15.597403 2024] [proxy_http:error] [pid 61371:tid 140517455074880] [client 65.154.226.167:58643] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
 [Fri May 17 04:58:05.537632 2024] [proxy:error] [pid 61372:tid 140516498830912] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
 [Fri May 17 04:58:05.537732 2024] [proxy_http:error] [pid 61372:tid 140516498830912] [client 185.191.126.213:36620] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Fri May 17 16:18:27.805264 2024] [proxy:error] [pid 718:tid 140233425282624] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 16:18:27.805571 2024] [proxy_http:error] [pid 718:tid 140233425282624] [client 184.22.35.170:63898] AH01114: HTTP: failed to make connection to backend: 127.0.0.1, referer: http://103.253.73.15/patients/ward/
+[Fri May 17 16:18:27.873477 2024] [proxy:error] [pid 719:tid 140233425282624] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Fri May 17 16:18:27.873508 2024] [proxy_http:error] [pid 719:tid 140233425282624] [client 184.22.35.170:27453] AH01114: HTTP: failed to make connection to backend: 127.0.0.1, referer: http://103.253.73.15/patients/ward/form-70/?hn_number=00001
+[Mon May 20 03:04:18.949239 2024] [proxy:error] [pid 725:tid 140457219896896] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Mon May 20 03:04:18.970620 2024] [proxy_http:error] [pid 725:tid 140457219896896] [client 184.22.35.28:52369] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Mon May 20 03:04:19.088662 2024] [proxy:error] [pid 724:tid 140457228289600] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Mon May 20 03:04:19.088696 2024] [proxy_http:error] [pid 724:tid 140457228289600] [client 184.22.35.28:52371] AH01114: HTTP: failed to make connection to backend: 127.0.0.1, referer: http://103.253.73.15/
+[Mon May 20 03:21:45.436024 2024] [proxy:error] [pid 728:tid 140182200788544] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Mon May 20 03:21:45.436266 2024] [proxy_http:error] [pid 728:tid 140182200788544] [client 184.22.35.28:58130] AH01114: HTTP: failed to make connection to backend: 127.0.0.1
+[Mon May 20 03:21:45.506175 2024] [proxy:error] [pid 727:tid 140182200788544] (111)Connection refused: AH00957: http: attempt to connect to 127.0.0.1:8001 (127.0.0.1) failed
+[Mon May 20 03:21:45.506211 2024] [proxy_http:error] [pid 727:tid 140182200788544] [client 184.22.35.28:58132] AH01114: HTTP: failed to make connection to backend: 127.0.0.1, referer: http://103.253.73.15/login/
