@@ -11,15 +11,73 @@
 <a href="/patients/ward/form-70"><img src="{% static "/images/form70_top2_btn_2.png" %}" style="margin-right:10px;"/></a>
 {% endblock %}
 {% block content %}
+{% block style_css %}
+<style>
+    .padding-beds {
+        padding: 50px;
+    }
+    .margin-right-bed {
+        margin-right:40px;
+    }
+    .font-header {
+        font-size: 20px;
+    }
+    .font-body {
+        font-size: 16px;
+    }
+    @media only screen and (max-width: 600px) {
+        .padding-beds {
+            padding: 10px;
+        }
+        .margin-right-bed {
+            margin-right: 15px;
+        }
+        .font-header {
+            font-size: 14px;
+        }
+        .img-form {
+            width: 90px;
+        }
+    }
+    @media only screen and (max-width: 400px) {
+        .padding-beds {
+            padding: 10px;
+        }
+        .margin-right-bed {
+            margin-right: 5px;
+        }
+        .font-header {
+            font-size: 12px;
+        }
+        .img-form {
+            width: 80px;
+        }
+    }
+    @media only screen and (max-width: 320px) {
+        .padding-beds {
+            justify-content: center;
+        }
+        .font-header {
+            font-size: 12px;
+        }
+        .img-form {
+            width: 70px;
+        }
+        .font-body {
+            font-size: 14px;
+        }
+    }
+</style>
+{% endblock %}
 {% if is_list_view %}
 <div class="content-center" style="background-color: black;height:88vh;width:98vw;margin-top: 45px;position: absolute;border-radius: 20px;margin-left: 10px;margin-right: 5px;">
     <div style="margin:10px;">
         <div>
             <a href="/patients/ward?is_list_view=0"><img src="{% static "/images/toggle_list.png" %}"/></a>
         </div>
-        <div style="padding: 50px;color: white;font-family: Kanit;">
+        <div class="padding-beds" style="color: white;font-family: Kanit;">
             <table style="width: 100%;">
-                <thead style="font-size: 20px;">
+                <thead class="font-header" style="">
                     <tr>
                         <td>HN Number</td>
                         <td>First Name</td>
@@ -30,12 +88,12 @@
                 <thead>
                 <tbody>
                     {% for patient in patient_items %}
-                    <tr style="height:30px;font-size: 16px;border-bottom: 1pt solid #ffffff7d;">
+                    <tr class="font-body" style="height:30px;border-bottom: 1pt solid #ffffff7d;">
                         <td style="padding: 10px 0px 10px 0px;">{{ patient.hn_number }}</td>
                         <td>{{ patient.firstname }}</td>
                         <td>{{ patient.lastname }}</td>
-                        <td style="text-align: center;"><a href="form-31?hn_number={{ patient.hn_number }}"><img src="{% static "/images/pa_form_31_btn.png" %}"/></a></td>
-                        <td style="text-align: center;"><a href="form-70?hn_number={{ patient.hn_number }}"><img src="{% static "/images/pa_form_70_btn.png" %}"/></a></td>
+                        <td style="text-align: center;"><a href="form-31?hn_number={{ patient.hn_number }}"><img class="img-form" src="{% static "/images/pa_form_31_btn.png" %}"/></a></td>
+                        <td style="text-align: center;"><a href="form-70?hn_number={{ patient.hn_number }}"><img class="img-form" src="{% static "/images/pa_form_70_btn.png" %}"/></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -51,10 +109,10 @@
         <div>
             <a href="/patients/ward?is_list_view=1"><img src="{% static "/images/toggle_bed.png" %}"/></a>
         </div>
-        <div style="padding: 50px;display: flex;flex-wrap: wrap;">
+        <div class="padding-beds" style="display: flex;flex-wrap: wrap;">
             {% for bed in bed_items %}
                 {% if bed.patient.id == '' or bed.patient.id == None %}
-                <div style="display: grid;margin-right:40px;">
+                <div style="display: grid;" class="margin-right-bed">
                     <div><span style="color: white;font-size: 25px;">HN</span> <span style="color: white;font-size: 25px;">-----</span></div>
                     <div style="position:relative;">
                         <img src="{% static "/images/bed_offline.png" %}"/>
@@ -71,7 +129,7 @@
                     </div>
                 </div>
                 {% else %}
-                <div style="display: grid;margin-right:40px;">
+                <div style="display: grid;" class="margin-right-bed">
                     <div><span style="color: rgb(236, 176, 86);font-size: 25px;">HN</span> <span style="color: white;font-size: 25px;">{{ bed.patient.hn_number }}</span></div>
                     <div style="position:relative;">
                         <img src="{% static "/images/bed_online.png" %}"/>

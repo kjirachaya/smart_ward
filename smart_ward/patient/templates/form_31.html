@@ -10,47 +10,169 @@
 {% block form70 %}
 <a href="/patients/ward/form-70"><img src="{% static "/images/form70_top2_btn_2.png" %}" style="margin-right:10px;"/></a>
 {% endblock %}
+{% block style_css %}
+<style>
+    .all-content {
+        width: 98vw;
+    }
+    .table-content {
+        height: 77vh;
+        width: 100%;
+        margin: 10px;
+    }
+    .hn-name-field {
+        margin-left: 60px;
+    }
+    .search-btn-field {
+        
+    }
+    .download-csv-btn {
+        margin-top: -50px;
+            text-align: end;
+            width: inherit;
+    }
+    .font-table-size {
+        font-size: 14px;
+    }
+    @media only screen and (max-width: 800px) {
+        .all-content {
+            width: 145vw;
+        }
+        .table-content {
+            height: 78vh;
+            width: 95vw;
+            margin-top: -20px;
+        }
+        .download-csv-btn {
+            margin-top: 10px;
+            text-align: end;
+            width: inherit;
+            margin-right: 20px;
+        }
+        .font-table-size {
+            font-size: 14px;
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        .all-content {
+            width: 152vw;
+        }
+        .table-content {
+            height: 78vh;
+        }
+        .hn-name-field {
+            margin-left: 58px;
+            margin-top: 10px;
+        }
+        .search-btn-field {
+            margin-top: 10px;
+            width: 100%;
+            text-align: end;
+        }
+        .download-csv-btn {
+            margin-top: 10px;
+            width: 100%;
+            text-align: end;
+        }
+        .font-table-size {
+            font-size: 11px;
+        }
+    }
+    @media only screen and (max-width: 400px) {
+        .all-content {
+            width: 152vw;
+        }
+        .table-content {
+            height: 78vh;
+        }
+        .hn-name-field {
+            margin-left: 58px;
+            margin-top: 10px;
+        }
+        .search-btn-field {
+            margin-top: 10px;
+            width: 100%;
+            text-align: end;
+        }
+        .download-csv-btn {
+            margin-top: 10px;
+            width: 100%;
+            text-align: end;
+        }
+    }
+    @media only screen and (max-width: 320px) {
+        .all-content {
+            width: 152vw;
+        }
+        .table-content {
+            height: 78vh;
+        }
+        .hn-name-field {
+            margin-left: 58px;
+            margin-top: 10px;
+        }
+        .search-btn-field {
+            margin-top: 10px;
+            width: 100%;
+            text-align: end;
+        }
+        .download-csv-btn {
+            margin-top: 10px;
+            width: 100%;
+            text-align: end;
+        }
+        .font-table-size {
+            font-size: 9px;
+        }
+    }
+</style>
+{% endblock style_css %}
 {% block content %}
-<div class="content-center" style="height:88vh;width:95vw;margin-top: 45px;position: absolute;border-radius: 20px;margin-left: 10px;margin-right: 5px;">
+<div class="content-center all-content" style="height:90vh;margin-top: 45px;position: absolute;border-radius: 20px;margin-left: 10px;margin-right: 5px;">
 <div style="margin:10px;">
     <form method="GET" action="/patients/ward/form-31">
         {% csrf_token %}
-    <div style="display: flex;margin-left: 10px;">
+    <div style="display: flex;margin-left: 10px;flex-wrap: wrap;">
         <div style="color:white;font-size: 25px;margin-right: 10px;font-family: Kanit;margin-left:15px;">HN</div>
         <div><input type="text" value="{{ hn_number }}" name="hn_number" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
-        <div style="margin-left:60px;"><input type="text" value="{{ patient.firstname }} {{ patient.lastname }}" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;" disabled/></div>
+        <div class="hn-name-field" style=""><input type="text" value="{{ patient.firstname }} {{ patient.lastname }}" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;" disabled/></div>
     </div>
     <br>
-    <div style="display: flex;margin-left: 10px;">
-        <div style="color:white;font-size: 20px;margin-right: 10px;font-family: Kanit;">Since</div>
+    <div style="display: flex;margin-left: 10px;flex-wrap: wrap;width: 90vw;">
+        <div style="display: flex;">
+        <div style="width:60px;color:white;font-size: 20px;font-family: Kanit;">Since</div>
         <div><input type="date" value="{{ start_date|date:"Y-m-d" }}" name="since_date_input" id="since_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
-        <div style="color:white;font-size: 20px;margin-right: 10px;font-family: Kanit;margin-left:20px;">To</div>
+        </div>
+        <div style="display: flex;">
+        <div style="width:60px;color:white;font-size: 20px;font-family: Kanit;text-align: end;padding-right: 10px;">To</div>
         <div><input type="date" value="{{ end_date|date:"Y-m-d" }}" name="to_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
-        <div style="margin-left:25px;"><button type="submit" style="background: none;border: none;"><img src="{% static "/images/search_btn.png" %}"/></button></div>
+        </div>
+        <div class="search-btn-field" style="margin-left:25px;"><button type="submit" style="background: none;border: none;"><img src="{% static "/images/search_btn.png" %}"/></button></div>
     </div>
     </form>
     <form method="GET" action="/patients/print-form-31">
         {% csrf_token %}
-        <div style="display: none;">
-    <div style="display: flex;margin-left: 10px;">
-        <div style="color:white;font-size: 25px;margin-right: 10px;font-family: Kanit;margin-left:15px;">HN</div>
-        <div><input type="text" value="{{ hn_number }}" name="hn_number" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
-        <div style="margin-left:60px;"><input type="text" value="{{ patient.firstname }} {{ patient.lastname }}" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;" disabled/></div>
+        <div style="display: flex;margin-left: 10px;flex-wrap: wrap;">
+            <div style="display: none;color:white;font-size: 25px;margin-right: 10px;font-family: Kanit;margin-left:15px;">HN</div>
+            <div style="display: none;"><input type="text" value="{{ hn_number }}" name="hn_number" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+            <div class="hn-name-field" style="display: none;"><input type="text" value="{{ patient.firstname }} {{ patient.lastname }}" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;" disabled/></div>
+        </div>
+        <div style="display: flex;margin-left: 10px;flex-wrap: wrap;width: 90vw;">
+            <div style="display: flex;">
+            <div style="display: none;width:60px;color:white;font-size: 20px;font-family: Kanit;">Since</div>
+            <div style="display: none;"><input type="date" value="{{ start_date|date:"Y-m-d" }}" name="since_date_input" id="since_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+            </div>
+            <div style="display: flex;">
+            <div style="display: none;width:60px;color:white;font-size: 20px;font-family: Kanit;text-align: end;padding-right: 10px;">To</div>
+            <div style="display: none;"><input type="date" value="{{ end_date|date:"Y-m-d" }}" name="to_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+            </div>
+        <div class="download-csv-btn" style=""><button type="submit" class="btn btn-primary">Download CSV</button></div>
     </div>
-    <br>
-    <div style="display: flex;margin-left: 10px;">
-        <div style="color:white;font-size: 20px;margin-right: 10px;font-family: Kanit;">Since</div>
-        <div><input type="date" value="{{ start_date|date:"Y-m-d" }}" name="since_date_input" id="since_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
-        <div style="color:white;font-size: 20px;margin-right: 10px;font-family: Kanit;margin-left:20px;">To</div>
-        <div><input type="date" value="{{ end_date|date:"Y-m-d" }}" name="to_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
-        
     </div>
-    </div>
-    <div style="float: right;margin-top:-20px;"><button type="submit" class="btn btn-primary">Download CSV</button></div>
     </form>
     <br>
 
-    <div style="width: 100%;background-color: rgb(60, 60, 62); padding: 20px;border-radius: 10px;height:72vh;font-family: Kanit;overflow-y: scroll;">
+    <div class="table-content font-table-size" style="background-color: rgb(60, 60, 62); padding: 20px;border-radius: 10px;font-family: Kanit;overflow-y: scroll;">
         <table style="width:100%;">
             <thead>
                 <tr style="background-color: black;color: white;height:30px;">
