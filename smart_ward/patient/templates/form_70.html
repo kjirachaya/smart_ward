@@ -495,10 +495,18 @@
 
         // Convert the data to the desired format
         var key = 2
+        var maxTemp = 0
+        var minTemp = 50
         var formattedData = timeSeriesData.map(function(item) {
             var data = NaN
             if (item.data != NaN && item.data != "") {
                 data = parseFloat(item.data)
+                if (data > maxTemp) {
+                    maxTemp = data
+                }
+                if (data < minTemp) {
+                    minTemp = data
+                }
             }
             var value = { x: parseInt(key), y: data };
             key += 4
@@ -508,11 +516,19 @@
         var pulseTimeSeriesData = JSON.parse(pulseTimeSeriesDataElement.textContent) // {key: '02', data: ''}
         // Convert the data to the desired format
         var pulseKey = 2
+        var maxPulse = 0
+        var minPulse = 200
         var pulseFormattedData = pulseTimeSeriesData.map(function(pulse) {
             console.log(pulse.data)
             var data = NaN
             if (pulse.data != NaN && pulse.data != "") {
                 data = parseFloat(pulse.data)
+                if (data > maxPulse) {
+                    maxPulse = data
+                }
+                if (data < minPulse) {
+                    minPulse = data
+                }
             }
             var value = { x: parseInt(pulseKey), y: data };
             pulseKey += 4
@@ -546,7 +562,8 @@
             gridColor: "#00000000",
             tickColor: "#00000000",
             valueFormatString: "###0.0",
-            interval: 0.1,
+            maximum: maxTemp + 0.5,
+            minimum: minTemp - 0.5,
         },
 
         data: [{
@@ -609,7 +626,8 @@
             gridColor: "#00000000",
             tickColor: "#00000000",
             valueFormatString: "###0",
-            interval: 1,
+            maximum: maxPulse + 5,
+            minimum: minPulse - 5,
         },
 
         data: [{
