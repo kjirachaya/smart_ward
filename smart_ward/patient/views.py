@@ -434,20 +434,7 @@ class PatientDetailView(generics.RetrieveAPIView):
 class OperatorDetailView(generics.RetrieveAPIView):
   queryset = OperatorUser.objects.all()
   serializer_class = OperatorSerializer
-
-  def get_queryset(self):
-        queryset = self.queryset
-        params = self.request.query_params
-        # Filter queryset based on query parameters
-        if 'staff_id' in params:
-            queryset = queryset.filter(id=params['staff_id'])
-        if 'first_name' in params:
-            queryset = queryset.filter(username=params['first_name'])
-        if 'last_name' in params:
-            queryset = queryset.filter(email=params['last_name'])
-        # Add more filters for other parameters as needed
-        return queryset
-
+  lookup_field = 'staff_id'
 
 class TelemetryListCreate(generics.ListCreateAPIView):
     queryset = Telemetry.objects.all()
