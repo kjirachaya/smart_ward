@@ -28,8 +28,9 @@
     }
     .download-csv-btn {
         margin-top: -50px;
-            text-align: end;
-            width: inherit;
+        text-align: end;
+        right: 0;
+        position: fixed;
     }
     .font-table-size {
         font-size: 14px;
@@ -189,7 +190,7 @@
                 {% for signal in signals_within_date_range %}
                     {% if forloop.counter0|divisibleby:2 %}
                     <tr style="color: white; white;height:25px;">
-                        <td style="width: 30%;text-align: start;padding-left: 10px;">{{ signal.create_at }}</td>
+                        <td style="width: 30%;text-align: start;padding-left: 10px;">{{ signal.measurement_time|date:"d F, Y H:i" }}</td>
                         <td style="width: 10%;text-align: center;">{{ signal.bp_systolic }}/{{ signal.bp_diastolic }}</td>
                         <td style="width: 10%;text-align: center;">{{ signal.temp }}</td>
                         <td style="width: 10%;text-align: center;">{{ signal.pulse }}</td>
@@ -217,6 +218,7 @@
 {% endblock %}
 
 {% block scripts %}
+<div id="hn-number-container" data-value="{{ hn_number }}"></div>
 <script type="text/javascript">
     $(document).ready(function(){
         //your stuff
@@ -230,7 +232,9 @@
   socket.on('connect', function(){console.log("Hello World!");});
   socket.emit('join', { room: 'form31' });
   socket.on('update_form31', function(data){
-    if (data == {{ hn_number }}) {
+    var valueContainer = document.getElementById('hn-number-container');
+    var hn_number = valueContainer.getAttribute('data-value');
+    if (data == hn_number) {
         window.location.reload();
     }
   });
