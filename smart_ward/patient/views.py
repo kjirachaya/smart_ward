@@ -372,7 +372,7 @@ def wardForm31(request):
   else:
     end_date = default_datetime
     
-  signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), measurement_time__date__range=[start_date, end_date])
+  signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), measurement_time__date__range=[start_date, end_date]).order_by('-measurement_time')
   patient = Patient.objects.filter(hn_number=request.GET.get('hn_number'))
   data = list(patient.values())
 

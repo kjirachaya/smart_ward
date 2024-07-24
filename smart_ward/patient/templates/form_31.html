@@ -200,7 +200,7 @@
                     </tr>
                     {% else %}
                     <tr style="background-color: black;color: white; white;height:30px;">
-                        <td style="width: 30%;text-align: start;padding-left: 10px;">{{ signal.create_at }}</td>
+                        <td style="width: 30%;text-align: start;padding-left: 10px;">{{ signal.measurement_time|date:"d F, Y H:i" }}</td>
                         <td style="width: 10%;text-align: center;">{{ signal.bp_systolic }}/{{ signal.bp_diastolic }}</td>
                         <td style="width: 10%;text-align: center;">{{ signal.temp }}</td>
                         <td style="width: 10%;text-align: center;">{{ signal.pulse }}</td>
