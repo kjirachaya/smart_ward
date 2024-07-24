@@ -76,7 +76,7 @@ MIDDLEWARE = [
 ]
 
 # Auto logout delay in minutes
-AUTO_LOGOUT_DELAY = 5 #equivalent to 5 minutes
+# AUTO_LOGOUT_DELAY = 5 #equivalent to 5 minutes
 
 ROOT_URLCONF = 'smart_ward.urls'
 

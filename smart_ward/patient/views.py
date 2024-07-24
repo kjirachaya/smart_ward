@@ -228,7 +228,7 @@ def wardForm70(request):
   template = loader.get_template('form_70.html')
   default_datetime = datetime.now(tz=timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
   if (request.GET.get('hn_number') == None):
-    start_date = default_datetime - timedelta(days=7)
+    start_date = default_datetime - timedelta(days=2)
     end_date = default_datetime
     context = {
       'start_date': start_date,
@@ -244,23 +244,23 @@ def wardForm70(request):
   if request.GET.get('since_date_input') != None:
     start_date = datetime.strptime(request.GET.get('since_date_input'), "%Y-%m-%d")
   else:
-    start_date = default_datetime - timedelta(days=7)
+    start_date = default_datetime - timedelta(days=2)
   if request.GET.get('to_date_input') != None:
     end_date = datetime.strptime(request.GET.get('to_date_input'), "%Y-%m-%d")
   else:
     end_date = default_datetime
 
-  signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), create_at__date__range=[start_date, end_date])
+  signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), measurement_time__date__range=[start_date, end_date])
   
   patient = Patient.objects.filter(hn_number=request.GET.get('hn_number'))
   data = list(patient.values())
 
   # Serialize datetime fields to strings
   for item in data:
-    if 'create_at' in item:
-      create_at_value = item['create_at']
+    if 'measurement_time' in item:
+      create_at_value = item['measurement_time']
       if isinstance(create_at_value, datetime):
-        item['create_at'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
+        item['measurement_time'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
 
   if data != None and data[0] != None:
     patient = data[0]
@@ -279,7 +279,7 @@ def wardForm70(request):
   while current_date <= (end_date + timedelta(days=1)):
 
     settings.TIME_ZONE  # 'UTC'
-    telemetrys = signals_within_date_range.filter(patient_id=request.GET.get('hn_number'), create_at__range=[current_date - timedelta(hours=interval), current_date])
+    telemetrys = signals_within_date_range.filter(patient_id=request.GET.get('hn_number'), measurement_time__range=[current_date - timedelta(hours=interval), current_date])
 
     setOfHr.add(current_date.strftime("%H"))
     hour = current_date.strftime("%H")
@@ -372,15 +372,15 @@ def wardForm31(request):
   else:
     end_date = default_datetime
     
-  signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), create_at__date__range=[start_date, end_date])
+  signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), measurement_time__date__range=[start_date, end_date])
   patient = Patient.objects.filter(hn_number=request.GET.get('hn_number'))
   data = list(patient.values())
 
   for item in data:
-    if 'create_at' in item:
-      create_at_value = item['create_at']
+    if 'measurement_time' in item:
+      create_at_value = item['measurement_time']
       if isinstance(create_at_value, datetime):
-        item['create_at'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
+        item['measurement_time'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
 
   if data != None and data[0] != None:
     patient = data[0]
