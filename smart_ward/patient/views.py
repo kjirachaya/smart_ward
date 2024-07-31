@@ -437,6 +437,36 @@ class TelemetryListCreate(generics.ListCreateAPIView):
 class TelemetryRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Telemetry.objects.all()
     serializer_class = TelemetrySerializer
+    
+def add_patient_to_db(request):
+	if request.user.is_authenticated == False:
+		return redirect("login")
+	if request.method == 'POST':
+		data = request.POST
+		hn_number = data['input_hn_number']
+		first_name = data['firstname']
+		last_name = data['lastname']
+		id_card = data['id_card']
+
+		 # Example data
+		patient_data = {
+        	'firstname': first_name,
+        	'lastname': last_name,
+        	'hn_number': hn_number,
+           'id_card': id_card
+    	}
+    
+		create_or_get_patient(**patient_data)
+    
+		return redirect('/patients/ward?is_list_view=1')
+              
+def create_or_get_patient(**kwargs):
+    try:
+        # Attempt to create a new patient or get the existing one
+        patient, created = Patient.objects.get_or_create(**kwargs)
+        return patient, created
+    except Patient.DoesNotExist:
+        raise Http404("Patient not found")
 
 def patients(request):
   patients = Patient.objects.all().values()

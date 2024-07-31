@@ -12,6 +12,7 @@ urlpatterns = [
     path('home/', lambda request: redirect('', permanent=True)),
     path('api/patient/<str:hn_number>/', views.PatientDetailView.as_view(), name='patient-detail'),
     path('api/operator/<str:staff_id>/', views.OperatorDetailView.as_view(), name='operator-detail'),
+    path('add-patient-to-db', views.add_patient_to_db, name='add_patient_to_db'),
     path('ward/', views.ward),
     path('ward/add-patient', views.wardAddPatient),
     path('ward/remove-patient', views.wardRemovePatient),

@@ -14,7 +14,7 @@
 {% block style_css %}
 <style>
     .padding-beds {
-        padding: 50px;
+        padding: 25px 50px 25px 50px;
     }
     .margin-right-bed {
         margin-right:40px;
@@ -78,6 +78,9 @@
         <div class="padding-beds" style="color: white;font-family: Kanit;">
             <table style="width: 100%;">
                 <thead class="font-header" style="">
+                    <tr style="height: 50px;">
+                        <td colspan="5" style="text-align: end;"><button class="btn btn-primary" data-toggle="modal" data-target="#add-patient-to-db-modal" >Add Patient</button></td>
+                    </tr>
                     <tr>
                         <td>HN Number</td>
                         <td>First Name</td>
@@ -208,6 +211,49 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-danger" id="btn-remove-patient" >Confirm</button>
+        </div>
+      </div>
+      </form>
+      
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="add-patient-to-db-modal" role="dialog" style="font-family: Kanit;">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <form method="POST" action="{% url 'add_patient_to_db' %}">
+        {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Patient</h4>
+        </div>
+        <div class="modal-body">
+            <label class="col-form-label">HN Number:</label>
+            {% for item in patient_items %}
+                {% if forloop.last %}
+                <input disabled type="text" value="{{ item.hn_number|add:1|stringformat:"05d" }}" id="add-patient-hn-number" name="hn_number" />
+                <input hidden type="text" value="{{ item.hn_number|add:1|stringformat:"05d" }}" id="add-patient-hn-number" name="input_hn_number" />
+                {% endif %}
+            {% endfor %}
+            <br>
+            <br>
+            <label class="col-form-label">First Name:</label>
+            <input type="text" value="" id="add-patient-first-name" name="firstname" />
+            <br>
+            <br>
+            <label class="col-form-label">Last Name:</label>
+            <input type="text" value="" id="add-patient-last-name" name="lastname" />
+            <br>
+            <br>
+            <label class="col-form-label">ID Card:</label>
+            <input type="text" value="" id="add-patient-id-card-name" name="id_card" />
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-success" id="btn-add-patient-to-db" >Add</button>
         </div>
       </div>
       </form>

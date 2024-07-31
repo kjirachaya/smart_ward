@@ -9,7 +9,8 @@ class TelemetrySerializer(serializers.ModelSerializer):
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = '__all__'
+        fields = ['firstname', 'lastname', 'hn_number']  # Include fields as needed
+        read_only_fields = ['hn_number']  # Make sure hn_number is read-only
 
 class OperatorSerializer(serializers.ModelSerializer):
     class Meta:
