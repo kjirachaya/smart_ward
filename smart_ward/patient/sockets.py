@@ -4,8 +4,6 @@ from config import Config
 import json
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from .models import Chat, ChatMessage
-from .serializers import MessageSerializer
 from asgiref.sync import sync_to_async
 
 # mgr = socketio.AsyncRedisManager(Config.REDIS_URL)

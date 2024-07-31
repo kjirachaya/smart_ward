@@ -1,24 +1,15 @@
 from django.http import HttpResponse, JsonResponse, Http404
 from django.template import loader
-from .models import Patient, Telemetry, OperatorUser, Ward, Bed, User
+from .models import Patient, Telemetry, OperatorUser, Bed
 from datetime import datetime, timedelta
-from django.core.serializers import serialize
-from django.core.serializers.json import DjangoJSONEncoder
 import json
 from rest_framework import generics
-from .serializers import TelemetrySerializer, PatientSerializer, OperatorSerializer, BedSerializer
+from .serializers import TelemetrySerializer, PatientSerializer, OperatorSerializer
 from django.utils import timezone
-from channels.layers import get_channel_layer
-from asgiref.sync import async_to_sync
-import redis
-from django.core import serializers
 from django.utils import timezone
-import pytz
 from django.conf import settings
-from django.utils.timezone import make_aware
 import socketio
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
 import csv
 from django.utils.html import format_html
 
