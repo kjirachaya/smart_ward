@@ -78,9 +78,11 @@
         <div class="padding-beds" style="color: white;font-family: Kanit;">
             <table style="width: 100%;">
                 <thead class="font-header" style="">
+                    {% if is_admin %}
                     <tr style="height: 50px;">
                         <td colspan="5" style="text-align: end;"><button class="btn btn-primary" data-toggle="modal" data-target="#add-patient-to-db-modal" >Add Patient</button></td>
                     </tr>
+                    {% endif %}
                     <tr>
                         <td>HN Number</td>
                         <td>First Name</td>

@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, Http404
 from django.template import loader
 from .models import Patient, Telemetry, OperatorUser, Ward, Bed, User
 from datetime import datetime, timedelta
@@ -219,6 +219,7 @@ def ward(request):
     context = {
       'patient_items': patients,
       'is_list_view': is_list_view,
+      'is_admin': request.user.is_superuser,
     }
     print(context)
     return HttpResponse(template.render(context, request))
