@@ -21,6 +21,8 @@ urlpatterns = [
     path('beds/add-bed', views.addBed, name='add-bed'),
     path('users', views.operatorUsers),
     path('print-form-31', views.print_form31),
+    path('get-form70-graph', views.get_form70_graph, name='get_form70_graph'),
+    path('get-form31-data', views.get_form31_data, name='get_form31_data')
     # path('home/', views.patients),
     # path("all", GetChat.as_view(), name="get-chats"),
 ]

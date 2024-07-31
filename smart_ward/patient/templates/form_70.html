@@ -165,7 +165,7 @@
         {% csrf_token %}
     <div style="display: flex;margin-left: 10px;flex-wrap: wrap;">
         <div style="color:white;font-size: 25px;margin-right: 10px;font-family: Kanit;margin-left:15px;">HN</div>
-        <div><input type="text" value="{{ hn_number }}" name="hn_number" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div><input type="text" value="{{ hn_number }}" name="hn_number" id="input_hn_number" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
         <div class="hn-name-field" style=""><input type="text" value="{{ patient.firstname }} {{ patient.lastname }}" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;" disabled/></div>
     </div>
     <br>
@@ -176,7 +176,7 @@
         </div>
         <div style="display: flex;">
         <div style="width:60px;color:white;font-size: 20px;font-family: Kanit;text-align: end;padding-right: 10px;">To</div>
-        <div><input type="date" value="{{ end_date|date:"Y-m-d" }}" name="to_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div><input type="date" value="{{ end_date|date:"Y-m-d" }}" name="to_date_input" id="to_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
         </div>
         <div class="search-btn-field" style="margin-left:25px;"><button type="submit" style="background: none;border: none;"><img src="{% static "/images/search_btn.png" %}"/></button></div>
     </div>
@@ -302,7 +302,7 @@
         <div style="overflow-x: scroll;">
             <div id="chart-temp-container" style="height: 400px; margin-left:0px;width: {{ width_px }}px;"></div> <!-- width: 70 + 180 + 180 + 180 -->
             <div id="chart-pulse-container" style="height: 400px; margin-left:13px;width:  {{ width_px }}px;"></div> <!-- width: 70 + 180 + 180 + 180 -->
-            <div style="display: flex;font-family: Kanit;color: white;margin-left:46px;width: {{ width_px }}px;">
+            <div id="telemetry-container" style="display: flex;font-family: Kanit;color: white;margin-left:46px;width: {{ width_px }}px;">
                 {% for item in telemetry_date_items %}
                     <table style="text-align: center;width: {{ width_table_px }}px;table-layout: fixed;border-spacing: 0px;border-right:1px solid #FFFFFF7d;">
                         <tr style="height:26px;">
@@ -480,14 +480,62 @@
     </div>
 </div>
 </div>
-{% endblock %}
+{% endblock content %}
 
 {% block scripts %}
 <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 <script id="temp_date_items" type="application/json">{{ temp_date_items|safe }}</script>
 <script id="pulse_date_items" type="application/json">{{ pulse_date_items|safe }}</script>
+<script>
+    async function sendPostRequest() {
+        const url = "{% url 'get_form70_graph' %}"; // Replace with your URL endpoint
+        const data = {
+            key1: '',
+            key2: 'value2'
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Sending JSON data
+                    'X-CSRFToken': getCookie('csrftoken') // CSRF token for Django
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log('Success:', result);
+            document.getElementById('message').textContent = 'Success: ' + JSON.stringify(result);
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('message').textContent = 'Error: ' + error;
+        }
+    }
+
+    // Helper function to get CSRF token from cookies (Django specific)
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
   <script type="text/javascript">
-    window.onload = function() {
+    function renderGraph() {
         var timeSeriesDataElement = document.getElementById('temp_date_items')
         var pulseTimeSeriesDataElement = document.getElementById('pulse_date_items')
         if (timeSeriesDataElement.textContent != "null" && pulseTimeSeriesDataElement.textContent != "null") {
@@ -668,16 +716,172 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
 <script>
+    function renderTelemetry(telemetry_date_items) {
+        var inner_html = ''
+        telemetry_date_items.forEach(function(item) {
+            var hr_inner_html = ''
+            var respirations_inner_html = ''
+            var bp_systolic_inner_html = ''
+            var bp_diastolic_inner_html = ''
+            var map_inner_html = ''
+            var o2_sat_inner_html = ''
+            var pain_score_inner_html = ''
+            var height_of_fundus_inner_html = ''
+            var weight_inner_html = ''
+            var hight_inner_html = ''
+            var diet_inner_html = ''
+            var urination_inner_html = ''
+            var defecations_inner_html = ''
+            var intake_oral_inner_html = ''
+            var intake_parenteral_inner_html = ''
+            var intake_total_inner_html = ''
+            var output_urine_inner_html = ''
+            var output_emesis_inner_html = ''
+            var output_total_inner_html = ''
+            var total_intake_inner_html = ''
+            var total_output_inner_html = ''
+            var lochia_inner_html = ''
+            var phlebitis_inner_html = ''
+            var mews_inner_html = ''
+            var pps_inner_html = ''
+            var note_inner_html = ''
+            var atb_inner_html = ''
+            item.telemetry.forEach(function(telemetry) {
+                hr_inner_html += '<td style="width: 35px;text-align: center;">' + telemetry.hr + '</td>'
+                if (telemetry.value) {
+                    respirations_inner_html += '<td>' + telemetry.value.respirations + '</td>'
+                    bp_systolic_inner_html += '<td>' + telemetry.value.bp_systolic + '</td>'
+                    bp_diastolic_inner_html += '<td>' + telemetry.value.bp_diastolic + '</td>'
+                    map_inner_html += '<td>' + telemetry.value.map + '</td>'
+                    o2_sat_inner_html += '<td>' + telemetry.value.o2_sat + '</td>'
+                    pain_score_inner_html += '<td>' + telemetry.value.pain_score + '</td>'
+                    height_of_fundus_inner_html += '<td>' + telemetry.value.height_of_fundus + '</td>'
+                    weight_inner_html += '<td>' + telemetry.value.weight + '</td>'
+                    hight_inner_html += '<td>' + telemetry.value.hight + '</td>'
+                    diet_inner_html += '<td>' + telemetry.value.diet + '</td>'
+                    urination_inner_html += '<td>' + telemetry.value.urination + '</td>'
+                    defecations_inner_html += '<td>' + telemetry.value.defecations + '</td>'
+                    intake_oral_inner_html += '<td>' + telemetry.value.intake_oral + '</td>'
+                    intake_parenteral_inner_html += '<td>' + telemetry.value.intake_parenteral + '</td>'
+                    intake_total_inner_html += '<td>' + telemetry.value.intake_total + '</td>'
+                    output_urine_inner_html += '<td>' + telemetry.value.output_urine + '</td>'
+                    output_emesis_inner_html += '<td>' + telemetry.value.output_emesis + '</td>'
+                    output_total_inner_html += '<td>' + telemetry.value.output_total + '</td>'
+                    total_intake_inner_html += '<td>' + telemetry.value.total_intake + '</td>'
+                    total_output_inner_html += '<td>' + telemetry.value.total_output + '</td>'
+                    lochia_inner_html += '<td>' + telemetry.value.lochia + '</td>'
+                    phlebitis_inner_html += '<td>' + telemetry.value.phlebitis + '</td>'
+                    mews_inner_html += '<td>' + telemetry.value.mews + '</td>'
+                    pps_inner_html += '<td>' + telemetry.value.pps + '</td>'
+                    note_inner_html += '<td>' + telemetry.value.note + '</td>'
+                    atb_inner_html += '<td>' + telemetry.value.atb + '</td>'
+                } else {
+                    respirations_inner_html += '<td></td>'
+                    bp_systolic_inner_html += '<td></td>'
+                    bp_diastolic_inner_html += '<td></td>'
+                    map_inner_html += '<td></td>'
+                    o2_sat_inner_html += '<td></td>'
+                    pain_score_inner_html += '<td></td>'
+                    height_of_fundus_inner_html += '<td></td>'
+                    weight_inner_html += '<td></td>'
+                    hight_inner_html += '<td></td>'
+                    diet_inner_html += '<td></td>'
+                    urination_inner_html += '<td></td>'
+                    defecations_inner_html += '<td></td>'
+                    intake_oral_inner_html += '<td></td>'
+                    intake_parenteral_inner_html += '<td></td>'
+                    intake_total_inner_html += '<td></td>'
+                    output_urine_inner_html += '<td></td>'
+                    output_emesis_inner_html += '<td></td>'
+                    output_total_inner_html += '<td></td>'
+                    total_intake_inner_html += '<td></td>'
+                    total_output_inner_html += '<td></td>'
+                    lochia_inner_html += '<td></td>'
+                    phlebitis_inner_html += '<td></td>'
+                    mews_inner_html += '<td></td>'
+                    pps_inner_html += '<td></td>'
+                    note_inner_html += '<td></td>'
+                    atb_inner_html += '<td></td>'
+                }
+            
+                
+            });
+
+            inner_html += '<table style="text-align: center;width: {{ width_table_px }}px;table-layout: fixed;border-spacing: 0px;border-right:1px solid #FFFFFF7d;">' +
+            '<tr style="height:26px;">' +
+            '<td colspan="{{ size_of_hr }}" style="width: {{ width_table_px }}px;text-align: start;padding-left:5px;">' + item.date_display + '</td>' +
+            '</tr>' +
+            '<tr style="height:26px;">' + hr_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + respirations_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + bp_systolic_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + bp_diastolic_inner_html + '</tr>' +  
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + map_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + o2_sat_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + pain_score_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + height_of_fundus_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + weight_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + hight_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + diet_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + urination_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + defecations_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + intake_oral_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + intake_parenteral_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + intake_total_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + output_urine_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + output_emesis_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + output_total_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + total_intake_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + total_output_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + lochia_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + phlebitis_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + mews_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + pps_inner_html + '</tr>' +
+            '<tr style="background-color: rgb(60, 60, 62);height:26px;">' + note_inner_html + '</tr>' +
+            '<tr style="height:26px;">' + atb_inner_html + '</tr>' +
+            '</table>'
+        });
+        document.getElementById("telemetry-container").innerHTML = inner_html
+    }
+    function fetchGraphData() {
+        console.log('fetchGraphData')
+        var start_date = document.getElementById('since_date_input').value
+        console.log(start_date)
+        var end_date = document.getElementById('to_date_input').value
+        console.log(end_date)
+        var hn_number = document.getElementById('input_hn_number').value
+        console.log(hn_number)
+        console.log("{% url 'get_form70_graph' %}" + "?hn_number=" + hn_number + "&since_date_input=" + start_date + "&to_date_input=" + end_date)
+        $.ajax({
+            url: "{% url 'get_form70_graph' %}" + "?hn_number=" + hn_number + "&since_date_input=" + start_date + "&to_date_input=" + end_date,
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                console.log(data.temp_date_items);
+                console.log(data.pulse_date_items);
+                // Update your HTML with the new data
+                document.getElementById("temp_date_items").textContent = data.temp_date_items
+                document.getElementById("pulse_date_items").textContent = data.pulse_date_items
+                renderGraph()
+                renderTelemetry(data.telemetry_date_items)
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
     var hn_number = "{{ hn_number }}"
   //var socket = io('http://127.0.0.1:8000');
   var socket = io('http://103.253.73.15:8001');
   socket.on('connect', function(){console.log("Hello World!");});
   socket.emit('join', { room: 'form70' });
   socket.on('update_form70', function(data){
+    console.log("Hello World update_form70!");
     if (data == hn_number) {
-        window.location.reload();
+        fetchGraphData();
+        //window.location.reload();
     }
   });
   socket.on('disconnect', function(){});
+  renderGraph();
 </script>
-{% endblock %}
+{% endblock scripts %}

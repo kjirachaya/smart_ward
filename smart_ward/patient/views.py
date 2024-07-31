@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from .models import Patient, Telemetry, OperatorUser, Ward, Bed, User
 from datetime import datetime, timedelta
@@ -20,6 +20,7 @@ import socketio
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 import csv
+from django.utils.html import format_html
 
 sio = socketio.Server(async_mode=None, client_manager=socketio.RedisManager("redis://127.0.0.1:6379"))
 
@@ -418,19 +419,6 @@ class PatientDetailView(generics.RetrieveAPIView):
   serializer_class = PatientSerializer
   lookup_field = 'hn_number'
 
-## for ForeignKey
-
-# class YourModelCreateView(generics.CreateAPIView):
-#     queryset = YourModel.objects.all()
-#     serializer_class = YourModelSerializer
-
-#     def perform_create(self, serializer):
-#         related_model_data = self.request.data.get('related_model')  # Get data for the related model
-#         # Additional actions can be performed here, such as creating the related object
-#         # or performing any necessary processing before creating the main object
-#         related_model_instance = RelatedModel.objects.create(**related_model_data)
-#         serializer.save(related_model=related_model_instance)
-
 class OperatorDetailView(generics.RetrieveAPIView):
   queryset = OperatorUser.objects.all()
   serializer_class = OperatorSerializer
@@ -459,287 +447,206 @@ def patients(request):
   }
   return HttpResponse(template.render(context, request))
 
-# def form70(request):
-#   template = loader.get_template('patients_form_70.html')
-#   default_datetime = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-#   print(request.GET)
-#   if (request.GET.get('hn_number') == None):
-#     start_date = default_datetime - timedelta(days=7)
-#     end_date = default_datetime
-#     context = {
-#       'start_date': start_date,
-#       'end_date': end_date,
-#     }
-#     print(context)
-#     return HttpResponse(template.render(context, request))
-#   if request.GET.get('since_date_input') != None:
-#     start_date = datetime.strptime(request.GET.get('since_date_input'), "%d %b %Y")
-#   else:
-#     start_date = default_datetime - timedelta(days=7)
-#   if request.GET.get('to_date_input') != None:
-#     end_date = datetime.strptime(request.GET.get('to_date_input'), "%d %b %Y")
-#   else:
-#     end_date = default_datetime
-#   print(start_date)
-#   signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), create_at__date__range=[start_date, end_date])
-#   # Retrieve time series data from your database or other source
-#   # print(signals_within_date_range.values())
-#   # Define the step size (4 hour in this case)
-#   step4 = timedelta(hours=4)
-#   step8 = timedelta(hours=8)
-#   step12 = timedelta(hours=12)
-#   step16 = timedelta(hours=16)
-#   step24 = timedelta(hours=24-1)
+def get_form70_graph(request):
+    #if request.user.is_authenticated == False:
+    #  return JsonResponse({'error': 'Required Login'}, status=400)
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        # Get the latest log entry for each device
+        default_datetime = datetime.now(tz=timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+        if (request.GET.get('hn_number') == None):
+          start_date = default_datetime - timedelta(days=2)
+          end_date = default_datetime
+          context = {
+            'start_date': start_date,
+            'end_date': end_date,
+            'size_of_telemetry_date_items': 0,
+            'set_of_hr': [],
+            'size_of_hr': 0,
+            'telemetry_date_items': [],
+            'temp_date_items': json.dumps(None),
+            'pulse_date_items': json.dumps(None),
+          }
+          return JsonResponse({'error': 'Required HN Number'}, status=400)
+        if request.GET.get('since_date_input') != None:
+          start_date = datetime.strptime(request.GET.get('since_date_input'), "%Y-%m-%d")
+        else:
+          start_date = default_datetime - timedelta(days=2)
+        if request.GET.get('to_date_input') != None:
+          end_date = datetime.strptime(request.GET.get('to_date_input'), "%Y-%m-%d")
+        else:
+          end_date = default_datetime
 
-#   current_date = start_date
-#   temp_time_series_data = []
-#   pulse_time_series_data = []
-#   time_series_data_4_hour = []
-#   while current_date <= (end_date + timedelta(days=1)):
-#     print(current_date.strftime("%Y-%m-%d %H:%M:%S"))  # Print the date and time
-#     dataIn4Hour = signals_within_date_range.filter(
-#       create_at__date__range=[current_date.date(), current_date.date()],  # Filter by date range
-#       create_at__hour__range=[current_date.hour, current_date.hour + 3],
-#       create_at__minute__range=[0, 59]).values()
-#     if (current_date + step4) <= (end_date + timedelta(days=1)):
-#       if dataIn4Hour:
-#         # Convert queryset data to a list of dictionaries
-#         # print(dataIn4Hour.last())
-#         # data = list(dataIn4Hour)
+        signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), measurement_time__date__range=[start_date, end_date])
+  
+        patient = Patient.objects.filter(hn_number=request.GET.get('hn_number'))
+        data = list(patient.values())
 
-#         # # Serialize datetime fields to strings
-#         # for item in data:
-#         #   if 'create_at' in item:
-#         #     create_at_value = item['create_at']
-#         #     if isinstance(create_at_value, datetime):
-#         #       item['create_at'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
+        # Serialize datetime fields to strings
+        for item in data:
+          if 'measurement_time' in item:
+            create_at_value = item['measurement_time']
+            if isinstance(create_at_value, datetime):
+              item['measurement_time'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
 
-#         # Convert the list of dictionaries to JSON
-#         # json_data = json.dumps(data[0], cls=DjangoJSONEncoder)
-#         time_series_data_4_hour.append({
-#           'current_date': current_date.strftime("%Y-%m-%d"), 
-#           'hour': current_date.hour + 2,
-#           'value': dataIn4Hour.last(),
-#         })
-#         for signal in signals_within_date_range:
-#           print(signal.temp)
-#           temp_time_series_data.append((current_date, signal.temp))
-#           pulse_time_series_data.append((current_date, signal.pulse))
-#       else:
-#         time_series_data_4_hour.append({
-#           'current_date': current_date.strftime("%Y-%m-%d"), 
-#           'hour': current_date.hour + 2,
-#           'value': None,
-#         })
-#         temp_time_series_data.append((current_date, None))
-#         pulse_time_series_data.append((current_date, None))
-#     current_date += step4
+        if data != None and data[0] != None:
+          patient = data[0]
+        else:
+          patient = None
+  
+        current_date = start_date + timedelta(hours=2)
+        interval = 4 # hr
+        diffTime = timedelta(hours=interval)
+        telemetryDateItems = []
+        tempDateItems = []
+        pulseDateItems = []
+        setOfHr = set()
+        telemetryDateItems = []
+        telemetryTempDataItems = []
+        while current_date <= (end_date + timedelta(days=1)):
 
-#   current_date = start_date
-#   time_series_data_8_hour = []
-#   while current_date <= (end_date + timedelta(days=1)):
-#     print(current_date.strftime("%Y-%m-%d %H:%M:%S"))  # Print the date and time
-#     dataIn8Hour = signals_within_date_range.filter(
-#       create_at__date__range=[current_date.date(), current_date.date()],  # Filter by date range
-#       create_at__hour__range=[current_date.hour, current_date.hour + 7],
-#       create_at__minute__range=[0, 59]).values()
-#     if (current_date + step8) <= (end_date + timedelta(days=1)):
-#       if dataIn8Hour:
-#         # data = list(dataIn8Hour)
+          settings.TIME_ZONE  # 'UTC'
+          telemetrys = signals_within_date_range.filter(patient_id=request.GET.get('hn_number'), measurement_time__range=[current_date - timedelta(hours=interval), current_date])
 
-#         # for item in data:
-#         #   if 'create_at' in item:
-#         #     create_at_value = item['create_at']
-#         #     if isinstance(create_at_value, datetime):
-#         #       item['create_at'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
-
-#         time_series_data_8_hour.append({
-#           'current_date': current_date.strftime("%Y-%m-%d"), 
-#           'hour': current_date.hour + 2,
-#           'value': dataIn8Hour.last(),
-#         })
-#       else:
-#         time_series_data_8_hour.append({
-#           'current_date': current_date.strftime("%Y-%m-%d"), 
-#           'hour': current_date.hour + 2,
-#           'value': None,
-#         })
-#     current_date += step8
-
-#   current_date = start_date
-#   time_series_data_12_hour = []
-#   while current_date <= (end_date + timedelta(days=1)):
-#     print(current_date.strftime("%Y-%m-%d %H:%M:%S"))  # Print the date and time
-#     dataIn12Hour = signals_within_date_range.filter(
-#       create_at__date__range=[current_date.date(), current_date.date()],  # Filter by date range
-#       create_at__hour__range=[current_date.hour, current_date.hour + 11],
-#       create_at__minute__range=[0, 59]).values()
-#     if (current_date + step12) <= (end_date + timedelta(days=1)):
-#       if dataIn12Hour:
-#         # data = list(dataIn12Hour)
-
-#         # for item in data:
-#         #   if 'create_at' in item:
-#         #     create_at_value = item['create_at']
-#         #     if isinstance(create_at_value, datetime):
-#         #       item['create_at'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
-
-#         time_series_data_12_hour.append({
-#           'current_date': current_date.strftime("%Y-%m-%d"), 
-#           'hour': current_date.hour + 2,
-#           'value': dataIn12Hour.last(),
-#         })
-#       else:
-#         time_series_data_12_hour.append({
-#           'current_date': current_date.strftime("%Y-%m-%d"), 
-#           'hour': current_date.hour + 2,
-#           'value': None,
-#         })
-#     current_date += step12
-
-#   current_date = start_date
-#   time_series_data_16_hour = []
-#   while current_date <= (end_date + timedelta(days=1)):
-#     print(current_date.strftime("%Y-%m-%d %H:%M:%S"))  # Print the date and time
-#     dataIn16Hour = signals_within_date_range.filter(
-#       create_at__date__range=[current_date.date(), current_date.date()],  # Filter by date range
-#       create_at__hour__range=[current_date.hour, current_date.hour + 15],
-#       create_at__minute__range=[0, 59]).values()
-#     if (current_date + step16) <= (end_date + timedelta(days=1)):
-#       if dataIn16Hour:
-#         # data = list(dataIn16Hour)
-
-#         # for item in data:
-#         #   if 'create_at' in item:
-#         #     create_at_value = item['create_at']
-#         #     if isinstance(create_at_value, datetime):
-#         #       item['create_at'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
-
-#         time_series_data_16_hour.append({
-#           'current_date': current_date.strftime("%Y-%m-%d"), 
-#           'hour': current_date.hour + 2,
-#           'value': dataIn16Hour.last(),
-#         })
-#       else:
-#         time_series_data_16_hour.append({
-#           'current_date': current_date.strftime("%Y-%m-%d"), 
-#           'hour': current_date.hour + 2,
-#           'value': None,
-#         })
-#     current_date += step16
-
-
-#   temp_time_series_data_iso = [(dt.strftime('%Y-%m-%dT%H:%M:%S'), value) for dt, value in temp_time_series_data]
-#   temp_time_series_data_json = json.dumps(temp_time_series_data_iso)
-
-#   pulse_time_series_data_iso = [(dt.strftime('%Y-%m-%dT%H:%M:%S'), value) for dt, value in pulse_time_series_data]
-#   pulse_time_series_data_json = json.dumps(pulse_time_series_data_iso)
-
-#   patient = Patient.objects.filter(hn_number=request.GET.get('hn_number'))
-#   data = list(patient.values())
-
-#   # Serialize datetime fields to strings
-#   for item in data:
-#     if 'create_at' in item:
-#       create_at_value = item['create_at']
-#       if isinstance(create_at_value, datetime):
-#         item['create_at'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
-
-#   if data[0] is None:
-#     # data[0] is null (None)
-#     # print("data[0] is null")
-#     patient = None
-#   else:
-#     # data[0] is not null
-#     patient = data[0],
-#     # print("data[0] is not null")
-
-#   context = {
-#     'hn_number': request.GET.get('hn_number'),
-#     'time_series_data_4_hour': time_series_data_4_hour,
-#     'time_series_data_8_hour': time_series_data_8_hour,
-#     'time_series_data_12_hour': time_series_data_12_hour,
-#     'time_series_data_16_hour': time_series_data_16_hour,
-#     'temp_time_series_data_json': temp_time_series_data_json,
-#     'pulse_time_series_data_json': pulse_time_series_data_json,
-#     'start_date': start_date,
-#     'end_date': end_date,
-#     'patient': patient,
-#   }
-#   return HttpResponse(template.render(context, request))
-
-# def form31(request):
-#   template = loader.get_template('patients_form_31.html')
-#   default_datetime = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-#   print(request.GET)
-#   if (request.GET.get('hn_number') == None):
-#     start_date = default_datetime - timedelta(days=7)
-#     end_date = default_datetime
-#     context = {
-#       'start_date': start_date,
-#       'end_date': end_date,
-#     }
-#     print(context)
-#     return HttpResponse(template.render(context, request))
-#   if request.GET.get('since_date_input') != None:
-#     start_date = datetime.strptime(request.GET.get('since_date_input'), "%d %b %Y")
-#   else:
-#     start_date = default_datetime - timedelta(days=7)
-#   if request.GET.get('to_date_input') != None:
-#     end_date = datetime.strptime(request.GET.get('to_date_input'), "%d %b %Y")
-#   else:
-#     end_date = default_datetime
+          setOfHr.add(current_date.strftime("%H"))
+          hour = current_date.strftime("%H")
+          if (hour.startswith("0")):
+            hour = hour.strip('0')
+          if (len(telemetrys) > 0):
+        
+            telemetryTempDataItems.append(
+              {
+                "date": current_date.strftime("%m/%d/%Y, %H:%M:%S"),
+                "date_display": current_date.strftime("%d/%m/%Y"),
+                "value": telemetrys.values().reverse()[0],
+                "hr": hour,
+              }
+            )
+            tempDateItems.append({
+              "key": current_date.strftime("%H"),
+              "data": telemetrys.values().reverse()[0]['temp']
+            })
+            pulseDateItems.append({
+              "key": current_date.strftime("%H"),
+              "data": telemetrys.values().reverse()[0]['pulse']
+            })
+          else:
+            telemetryTempDataItems.append(
+              {
+                "date": current_date.strftime("%m/%d/%Y, %H:%M:%S"),
+                "date_display": current_date.strftime("%d/%m/%Y"),
+                "value": None,
+                "hr": hour,
+              }
+            )
+            tempDateItems.append({
+              "key": current_date.strftime("%H"), 
+              "data": ""})
+            pulseDateItems.append({
+              "key": current_date.strftime("%H"), 
+              "data": ""})
     
-#   # Filter data records within the specified date range
-#   signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), create_at__date__range=[start_date, end_date])
-#   print(signals_within_date_range)
-#   patient = Patient.objects.filter(hn_number=request.GET.get('hn_number'))
-#   data = list(patient.values())
-
-#   # Serialize datetime fields to strings
-#   for item in data:
-#     if 'create_at' in item:
-#       create_at_value = item['create_at']
-#       if isinstance(create_at_value, datetime):
-#         item['create_at'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
-
-#   print(data)
-#   if data and data[0] is None:
-#     # data[0] is null (None)
-#     # print("data[0] is null")
-#     patient = data[0]
-#   else:
-#     # data[0] is not null
-#     patient = None
+          if ((current_date + timedelta(hours=interval)).day != current_date.day):
+            telemetryDateItems.append({
+              "date_display": current_date.strftime("%d/%m/%Y"),
+              "telemetry": telemetryTempDataItems, 
+            })
+            telemetryTempDataItems = []
     
-#     # print("data[0] is not null")
+          telemetrys = []
+          current_date += diffTime
 
-#   context = {
-#     'hn_number': request.GET.get('hn_number'),
-#     'signals_within_date_range': signals_within_date_range,
-#     'start_date': start_date,
-#     'end_date': end_date,
-#     'patient': patient,
-#   }
-#   print("context")
-#   print(context)
-#   return HttpResponse(template.render(context, request))
+        # telemetryDateItems.reverse()
+        # tempDateItems.reverse()
+        # pulseDateItems.reverse()
+        widthTemp = len(telemetryDateItems) * len(setOfHr)
+        context = {
+          # 'hn_number': request.GET.get('hn_number'),
+          # 'start_date': start_date,
+          # 'end_date': end_date,
+          # 'patient': patient,
+          'telemetry_date_items': telemetryDateItems,
+          'temp_date_items': json.dumps(tempDateItems),
+          'pulse_date_items': json.dumps(pulseDateItems),
+          # 'set_of_hr': setOfHr,
+          # 'size_of_hr': len(setOfHr),
+          # 'size_of_telemetry_date_items': widthTemp,
+          # 'width_px': (35*widthTemp) + 59,
+          # 'width_table_px': 35*len(setOfHr),
+        }
+        print(context)
+        return JsonResponse(context, safe=False)
+    else:
+        return JsonResponse({'error': 'This endpoint only accepts AJAX requests.'}, status=400)
+    
+def get_form31_data(request):
+	if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+		default_datetime = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+		if (request.GET.get('hn_number') == None):
+			start_date = default_datetime - timedelta(days=7)
+			end_date = default_datetime
+			context = {
+      			'start_date': start_date,
+      			'end_date': end_date,
+    		}
+			return JsonResponse({'error': 'Required HN Number'}, status=400)
+		if request.GET.get('since_date_input') != None:
+			start_date = datetime.strptime(request.GET.get('since_date_input'), "%Y-%m-%d")
+		else:
+			start_date = default_datetime - timedelta(days=7)
+		if request.GET.get('to_date_input') != None:
+			end_date = datetime.strptime(request.GET.get('to_date_input'), "%Y-%m-%d")
+		else:
+			end_date = default_datetime
+    
+		signals_within_date_range = Telemetry.objects.filter(patient_id=request.GET.get('hn_number'), measurement_time__date__range=[start_date, end_date]).order_by('-measurement_time')
+		patient = Patient.objects.filter(hn_number=request.GET.get('hn_number'))
+		data = list(patient.values())
 
-# from rest_framework.generics import GenericAPIView
-# from rest_framework.permissions import IsAuthenticated
-# from rest_framework.response import Response
-# from rest_framework import status
-# from .serializers import ChatSerializer
-# from .models import Chat
+		for item in data:
+			if 'measurement_time' in item:
+				create_at_value = item['measurement_time']
+				if isinstance(create_at_value, datetime):
+					item['measurement_time'] = create_at_value.strftime('%Y-%m-%d %H:%M:%S')
 
+		if data != None and data[0] != None:
+			patient = data[0]
+		else:
+			patient = None
 
+		context = {
+          	'signals_html_string': get_signals_html(signals_within_date_range)
+  		}
+		return JsonResponse(context, safe=False)
+	else:
+		return JsonResponse({'error': 'This endpoint only accepts AJAX requests.'}, status=400)
+   
+def get_signals_html(signals):
+    rows = []
+    for index, signal in enumerate(signals):
+        style_0 = "color: white; white;height:25px;"
+        style_1 = "background-color: black;color: white; white;height:30px;"
+        style = style_1 if index % 2 == 1 else style_0
+        row_html = format_html(
+            '<tr style="{} color: white; white;height:30px;">'
+            '<td style="width: 30%;text-align: start;padding-left: 10px;">{}</td>'
+            '<td style="width: 10%;text-align: center;">{}/{} </td>'
+            '<td style="width: 10%;text-align: center;">{}</td>'
+            '<td style="width: 10%;text-align: center;">{}</td>'
+            '<td style="width: 10%;text-align: center;">{}</td>'
+            '<td style="width: 10%;text-align: center;">{}</td>'
+            '<td style="width: 40%;text-align: end;padding-right:10px;">{}</td>'
+            '</tr>',
+            style,
+            signal.measurement_time.strftime("%d %B, %Y %H:%M"),
+            signal.bp_systolic,
+            signal.bp_diastolic,
+            signal.temp,
+            signal.pulse,
+            signal.respirations,
+            signal.o2_sat,
+            signal.remark
+        )
+        rows.append(row_html)
 
-# class GetChat(GenericAPIView):
-#     permission_classes = [IsAuthenticated]
-#     serializer_class = ChatSerializer
+    return ''.join(rows)
 
-#     def get(self, request):
-#         # chat, created = Chat.objects.get_or_create(initiator__id=request.user.pk)
-#         # serializer = self.serializer_class(instance=chat)
-#         # return Response({"message": "Chat gotten", "data": serializer.data}, status=status.HTTP_200_OK)
-#         return Response({"message": "Chat gotten", "data": "Hello"}, status=status.HTTP_200_OK)

@@ -135,7 +135,7 @@
         {% csrf_token %}
     <div style="display: flex;margin-left: 10px;flex-wrap: wrap;">
         <div style="color:white;font-size: 25px;margin-right: 10px;font-family: Kanit;margin-left:15px;">HN</div>
-        <div><input type="text" value="{{ hn_number }}" name="hn_number" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div><input type="text" value="{{ hn_number }}" name="hn_number" id="input_hn_number" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
         <div class="hn-name-field" style=""><input type="text" value="{{ patient.firstname }} {{ patient.lastname }}" style="height: 35px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;" disabled/></div>
     </div>
     <br>
@@ -146,7 +146,7 @@
         </div>
         <div style="display: flex;">
         <div style="width:60px;color:white;font-size: 20px;font-family: Kanit;text-align: end;padding-right: 10px;">To</div>
-        <div><input type="date" value="{{ end_date|date:"Y-m-d" }}" name="to_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
+        <div><input type="date" value="{{ end_date|date:"Y-m-d" }}" name="to_date_input" id="to_date_input" style="height: 28px;border-radius: 8px;background-color: white;border:none;padding-left:10px;padding-right:10px;font-family: Kanit;font-size: 20px;"/></div>
         </div>
         <div class="search-btn-field" style="margin-left:25px;"><button type="submit" style="background: none;border: none;"><img src="{% static "/images/search_btn.png" %}"/></button></div>
     </div>
@@ -186,7 +186,7 @@
                     <th style="width: 40%;text-align: end;padding-right:10px;">REMARK</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody-container">
                 {% for signal in signals_within_date_range %}
                     {% if forloop.counter0|divisibleby:2 %}
                     <tr style="color: white; white;height:25px;">
@@ -227,6 +227,30 @@
   </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
 <script>
+    function fetchForm31Data() {
+        console.log('fetchForm31Data')
+        var start_date = document.getElementById('since_date_input').value
+        console.log(start_date)
+        var end_date = document.getElementById('to_date_input').value
+        console.log(end_date)
+        var hn_number = document.getElementById('input_hn_number').value
+        console.log(hn_number)
+        console.log("{% url 'get_form31_data' %}" + "?hn_number=" + hn_number + "&since_date_input=" + start_date + "&to_date_input=" + end_date)
+        $.ajax({
+            url: "{% url 'get_form31_data' %}" + "?hn_number=" + hn_number + "&since_date_input=" + start_date + "&to_date_input=" + end_date,
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                // Update your HTML with the new data
+                console.log(data)
+                document.getElementById("tbody-container").innerHTML = data.signals_html_string
+                //renderTelemetry(data.telemetry_date_items)
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
   //var socket = io('http://127.0.0.1:8000');
   var socket = io('http://103.253.73.15:8001');
   socket.on('connect', function(){console.log("Hello World!");});
@@ -235,7 +259,8 @@
     var valueContainer = document.getElementById('hn-number-container');
     var hn_number = valueContainer.getAttribute('data-value');
     if (data == hn_number) {
-        window.location.reload();
+        fetchForm31Data()
+        //window.location.reload();
     }
   });
   socket.on('disconnect', function(){});
