@@ -560,6 +560,11 @@
             key += 4
             return value
         });
+        if (maxTemp == 0 && minTemp == 50) {
+            document.getElementById('chart-temp-container').style.marginLeft = '13px'
+        } else {
+            document.getElementById('chart-temp-container').style.marginLeft = '0px'
+        }
         
         var pulseTimeSeriesData = JSON.parse(pulseTimeSeriesDataElement.textContent) // {key: '02', data: ''}
         // Convert the data to the desired format
